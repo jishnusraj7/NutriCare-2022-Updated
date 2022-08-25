@@ -1,0 +1,1388 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messageData>
+  <message>
+    <code>E000</code>
+    <entext>en</entext>
+    <mtext>mal</mtext>
+  </message>
+  <message>
+    <code>E1001</code>
+    <entext>Saved Successfully.</entext>
+    <mtext>വിവരങ്ങള്‍ ശേഖരിച്ചു</mtext>
+  </message>
+  <message>
+    <code>E1002</code>
+    <entext>Updated Successfully.</entext>
+    <mtext>മാറ്റിയ വിവരങ്ങള്‍ ശേഖരിച്ചു</mtext>
+  </message>
+  <message>
+    <code>E1003</code>
+    <entext>Please Select A Dish To Preview The Image.</entext>
+    <mtext>കാണേണ്ട ചിത്രം തിരഞ്ഞെടുക്കുക.</mtext>
+  </message>
+  <message>
+    <code>E1004</code>
+    <entext>Please Select A Dish To View The Ayurvedic Values.</entext>
+    <mtext>ആയുര്വേദ വിശദാംശങ്ങള്‍ കാണേണ്ട ചിത്രം തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1005</code>
+    <entext>Please Select A Dish To Add To Favorites.</entext>
+    <mtext>പ്രിയപ്പെട്ടതിലേക്കു  ചേര്‍ക്കാന്‍ ഭക്ഷണം  തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1006</code>
+    <entext>Enter Food Habbit.</entext>
+    <mtext>ഭക്ഷണരീതി  തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1007</code>
+    <entext>Exercise Type Already Inserted.</entext>
+    <mtext>വ്യായാമരീതി ആവര്‍ത്തിക്കുന്നു</mtext>
+  </message>
+  <message>
+    <code>E1008</code>
+    <entext>Select Sex.</entext>
+    <mtext>സ്ത്രീ / പുരുഷന്‍ തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1009</code>
+    <entext>Enter Age.</entext>
+    <mtext>വയസു രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1010</code>
+    <entext>Enter Height.</entext>
+    <mtext>പൊക്കം രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1011</code>
+    <entext>Enter Weight.</entext>
+    <mtext>ഭാരം രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1012</code>
+    <entext>Select Life-Style.</entext>
+    <mtext>ജീവിത രീതി തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1013</code>
+    <entext>Select Religion.</entext>
+    <mtext>മതം തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1014</code>
+    <entext>Please Enter The Correct Password.</entext>
+    <mtext>പാസ്സ്‌വേര്‍ഡ്‌ ശരിയായി രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1015</code>
+    <entext>Password Changed.</entext>
+    <mtext>പാസ്സ്‌വേര്‍ഡ്‌ മാറ്റിയിരിക്കുന്നു</mtext>
+  </message>
+  <message>
+    <code>E1016</code>
+    <entext>Currently Unavailable.</entext>
+    <mtext>ഇപ്പോള്‍ ലഭ്യമല്ല</mtext>
+  </message>
+  <message>
+    <code>E1017</code>
+    <entext>Please Enter Password.</entext>
+    <mtext>പാസ്സ്‌വേര്‍ഡ്‌ രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1018</code>
+    <entext>Enter Family Name.</entext>
+    <mtext>വീട്ടുപേര് രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1019</code>
+    <entext>Enter Address.</entext>
+    <mtext>വിലാസം രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1020</code>
+    <entext>Select Country.</entext>
+    <mtext>രാജ്യം തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1021</code>
+    <entext>Select State.</entext>
+    <mtext>സംസ്ഥാനത്തെ തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1022</code>
+    <entext>Select City.</entext>
+    <mtext>ജില്ലയെ തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1023</code>
+    <entext>Enter Pin-Code.</entext>
+    <mtext>പോസ്റ്റ്‌ കോഡ് രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1024</code>
+    <entext>Enter Phone Number.</entext>
+    <mtext>ഫോണ്‍ രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1025</code>
+    <entext>Enter Member Name.</entext>
+    <mtext>പേര് രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1026</code>
+    <entext>Member Profile Data Changed. Do You Want To Save?</entext>
+    <mtext>വിവരങ്ങള്‍ മാറ്റിയിട്ടുണ്ട് .ശേക്കരിച്ചു വെക്കണോ?</mtext>
+  </message>
+  <message>
+    <code>E1027</code>
+    <entext>Please Select A Dish To View Nutrient Details.</entext>
+    <mtext>പോഷകവിവരങ്ങള്‍ അറിയേണ്ട ഭക്ഷണം തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1028</code>
+    <entext>Enter Valid DOB.</entext>
+    <mtext>ജനനത്തീയതി തെറ്റാണ്‌</mtext>
+  </message>
+  <message>
+    <code>E1029</code>
+    <entext>Please Enter The Ingredient Name.</entext>
+    <mtext>ചേരുവയുടെ പേര്  രേഖപ്പെടുത്തുക‌</mtext>
+  </message>
+  <message>
+    <code>E1030</code>
+    <entext>Please Select Ethnicity.</entext>
+    <mtext>Ethnic തെരഞ്ഞെടുക്കുക‌</mtext>
+  </message>
+  <message>
+    <code>E1031</code>
+    <entext>Please Select A Food Type.</entext>
+    <mtext>ഭക്ഷണഇനം തെരഞ്ഞെടുക്കുക‌</mtext>
+  </message>
+  <message>
+    <code>E1032</code>
+    <entext>Invalid Login.</entext>
+    <mtext>ലോഗിന്‍ സാദ്ധ്യമല്ല ‌</mtext>
+  </message>
+  <message>
+    <code>E1033</code>
+    <entext>Please Select A Dish To Print The Recipe.</entext>
+    <mtext>പകര്‍പ്പ് എടുക്കേണ്ട വിഭവം തെരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1034</code>
+    <entext>Enter Duration.</entext>
+    <mtext>സമയം രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1035</code>
+    <entext>Select Exercise Type.</entext>
+    <mtext>വ്യായാമരീതി തെരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1036</code>
+    <entext>Enter A Valid Duration.</entext>
+    <mtext>ശരിയായ സമയം രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1037</code>
+    <entext>Enter A Valid Age.</entext>
+    <mtext>ശരിയായ വയസു രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1038</code>
+    <entext>Enter A Valid Height.</entext>
+    <mtext>ശരിയായ ഉയരം രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1039</code>
+    <entext>Enter A Valid Weight.</entext>
+    <mtext>ശരിയായ ഭാരം രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1040</code>
+    <entext>Please Enter The Dish Name.</entext>
+    <mtext>വിഭവത്തിന്റെ പേര് രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1041</code>
+    <entext>Please Select The Food Category.</entext>
+    <mtext>ഭക്ഷണ വിഭാഗം തെരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1042</code>
+    <entext>Please Select The Food Type.</entext>
+    <mtext>ഭക്ഷണ ഇനം  തെരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1043</code>
+    <entext>Please Select An Ingredient To See Ayurvedic Details.</entext>
+    <mtext>ആയുര്‍വേദ വിവരങ്ങള്‍ കാണാന്‍ ചേരുവ  തെരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1044</code>
+    <entext>Please Select An Ingredient To See Nutrient Details.</entext>
+    <mtext> പോഷകവിവരങ്ങള്‍ കാണാന്‍ ചേരുവ  തെരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1045</code>
+    <entext>Please Select An Ingredient To Add To Your Favorite.</entext>
+    <mtext>പ്രിയപ്പെട്ടതിലേക്ക് ചേര്‍ക്കാന്‍ ചേരുവ തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1046</code>
+    <entext>Please Select An Ingredient To Remove It From Favorite.</entext>
+    <mtext>പ്രിയപ്പെട്ടത്തില്‍ നിന്നും കളയേണ്ട ചേരുവ തിരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1047</code>
+    <entext>Please Enter A Valid Period.</entext>
+    <mtext>ശരിയായ കാലാവധി രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1048</code>
+    <entext>You Cannot Add Same Dish For Comparison.</entext>
+    <mtext>താരതമ്യം ചെയ്യേണ്ട വിഭവം ആവര്‍ത്തിക്കരുത്</mtext>
+  </message>
+  <message>
+    <code>E1049</code>
+    <entext>A Maximum Of Only 4 Dishes Can Be Compared.</entext>
+    <mtext>4 എണ്ണത്തില്‍ കൂടുതല്‍ താരതമ്യം ചെയ്യാന്‍ പറ്റില്ല</mtext>
+  </message>
+  <message>
+    <code>E1050</code>
+    <entext>Please Select A Dish To Add.</entext>
+    <mtext>വിഭവം തെരഞ്ഞെടുക്കുക </mtext>
+  </message>
+  <message>
+    <code>E1051</code>
+    <entext>Enter A Valid Job Duration.</entext>
+    <mtext>ശരിയായ ജോലി സമയം രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1052</code>
+    <entext>Enter A Valid Sleep Duration.</entext>
+    <mtext>ഉറങ്ങുന്ന സമയം ശെരിയായി രേഖപെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1053</code>
+    <entext>Enter Calorie Burned.</entext>
+    <mtext>ഉപയോഗിച്ച കലോറി രേഖപ്പെടുത്തുക </mtext>
+  </message>
+  <message>
+    <code>E1054</code>
+    <entext>Goal Start-Date Must Be Greater Than Current-Date.</entext>
+    <mtext>തുടങ്ങുന്ന ദിവസം ശരിയായി രേഖപ്പെടുത്തുക </mtext>
+  </message>
+  <message>
+    <code>E1055</code>
+    <entext>Goal End-Date Must Be Greater Than Goal Start-Date.</entext>
+    <mtext>തീരുന്ന ദിവസം  തുടങ്ങുന്ന ദിവസത്തെക്കാള്‍ കുടുതല്‍ ആകണം </mtext>
+  </message>
+  <message>
+    <code>E1056</code>
+    <entext>Goal Period Must Be Minimum Of 1 Month.</entext>
+    <mtext>ചുരുങ്ങിയത്‌ ഒരു മാസം കാലാവധി വേണം </mtext>
+  </message>
+  <message>
+    <code>E1057</code>
+    <entext>Enter Desired Weight.</entext>
+    <mtext>നിങ്ങള്‍   ആഗ്രഹിക്കുന്ന ഭാരം രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1058</code>
+    <entext>Enter Desired Calorie Intake.</entext>
+    <mtext>നിങ്ങള്‍ ഉള്‍പെടുത്താന്‍ ആഗ്രഹിക്കുന്ന കലോറി </mtext>
+  </message>
+  <message>
+    <code>E1059</code>
+    <entext>Desired Weight Should Be Less Than Present Weight.</entext>
+    <mtext>ആഗ്രഹിക്കുന്ന ഭാരം എപ്പോഴതെതിനെക്കാള്‍ കുറഞ്ഞിരിക്കണം  </mtext>
+  </message>
+  <message>
+    <code>E1060</code>
+    <entext>Desired Weight Should Be Greater Than Current Weight.</entext>
+    <mtext>ആഗ്രഹിക്കുന്ന ഭാരം എപ്പോഴതെതിനെക്കാള്‍ കൂടിയിരിക്കണം   </mtext>
+  </message>
+  <message>
+    <code>E1061</code>
+    <entext>Another Meal Is Already Set For One or More Days. Do You Want To Overwrite Current Settings?.</entext>
+    <mtext>ഒന്നോ അതിലധികമോ ദിവസത്തേക്കുള്ള ഭക്ഷണക്രമീകരണങ്ങള്‍ ചെയ്തിട്ടുണ്ട് , ഇപ്പോഴത്തെ സെറ്റിങ്സ് ആക്കി സേവ് ചെയ്യണോ ?. </mtext>
+  </message>
+  <message>
+    <code>E1062</code>
+    <entext>Copying Of The Meal Settings Is Cancelled.</entext>
+    <mtext>ഭക്ഷണക്രമീകരണത്തിന്റെ പകര്‍പ്പ് എടുക്കുന്നത് റദ്ദാക്കി</mtext>
+  </message>
+  <message>
+    <code>E1063</code>
+    <entext>The Meal Settings Is Copied.</entext>
+    <mtext>ഭക്ഷണക്രമീകരണത്തിന്റെ പകര്‍പ്പ് എടുത്തു </mtext>
+  </message>
+  <message>
+    <code>E1064</code>
+    <entext>There Is No Meal Setting For The Selected Date.</entext>
+    <mtext>തെരഞ്ഞെടുത്ത തിയതിയില്‍  ഭക്ഷണ ക്രമീകരണങ്ങള്‍ ഒന്നുമില്ല </mtext>
+  </message>
+  <message>
+    <code>E1065</code>
+    <entext>You Cannot Set Meal For Current or Previous Dates.</entext>
+    <mtext>ഇന്നത്തെ ദിവസത്തെക്കാള്‍ കുറഞ്ഞ തിയതിയില്‍ ഭക്ഷണക്രമീകരണം നടത്താന്‍ പറ്റില്ല </mtext>
+  </message>
+  <message>
+    <code>E1066</code>
+    <entext>From-Date Should Be Less Than To-Date</entext>
+    <mtext>തുടങ്ങുന്ന ദിവസം അവസാനിക്കുന്നതിനെക്കാള്‍ കുരഞ്ഞതായിരിക്കണം </mtext>
+  </message>
+  <message>
+    <code>E1067</code>
+    <entext>Please Select From-Date And To-Date To Copy The Meal Settings.</entext>
+    <mtext>ഭക്ഷണ ക്രമീകരണങ്ങളുടെ പകര്‍പ്പ് എടുക്കാന്‍ തുടങ്ങുന്ന ദിവസവും അവസാനിക്കുന്ന ദിവസവും തെരഞ്ഞെടുക്കുക </mtext>
+  </message>
+  <message>
+    <code>E1068</code>
+    <entext>Please Select From-Date To Copy Meal Settings.</entext>
+    <mtext> ഭക്ഷണ ക്രമീകരണങ്ങളുടെ പകര്‍പ്പ് എടുക്കാന്‍ തുടങ്ങുന്ന ദിവസം തെരഞ്ഞെടുക്കുക </mtext>
+  </message>
+  <message>
+    <code>E1069</code>
+    <entext>Do You Want to Delete Weight History?</entext>
+    <mtext>Do You Want to Delete Weight History?</mtext>
+  </message>
+  <message>
+    <code>E1070</code>
+    <entext>Record Deleted Succesfully.</entext>
+    <mtext>വിവരങ്ങള്‍ നീക്കം ചെയ്യപ്പെട്ടു.</mtext>
+  </message>
+  <message>
+    <code>E1071</code>
+    <entext>Ingredient Already Added To The List.</entext>
+    <mtext>ചേരുവകള്‍ ആവര്‍ത്തിക്കാന്‍ പാടില്ല </mtext>
+  </message>
+  <message>
+    <code>E1072</code>
+    <entext>Already Added.</entext>
+    <mtext>ഒരിക്കല്‍ ചേര്‍ത്തതാണ് </mtext>
+  </message>
+  <message>
+    <code>E1073</code>
+    <entext>Please Select The Ingredients.</entext>
+    <mtext>ചേരുവകള്‍ തെരഞ്ഞെടുക്കുക</mtext>
+  </message>
+  <message>
+    <code>E1074</code>
+    <entext>Please Add Atleast 2 Ingredients.</entext>
+    <mtext>കുറഞ്ഞത് 2 ചേരുവകള്‍ തെരഞ്ഞെടുക്കണം </mtext>
+  </message>
+  <message>
+    <code>E1075</code>
+    <entext>Please Enter The Count.</entext>
+    <mtext>ചേരുവയുടെ  എണ്ണം  രേഖപ്പെടുത്തുക</mtext>
+  </message>
+  <message>
+    <code>E1076</code>
+    <entext>Please Select The Unit.</entext>
+    <mtext>യുണിറ്റ്‌ രേഖപ്പെടുത്തുക </mtext>
+  </message>
+  <message>
+    <code>E1077</code>
+    <entext>Nothing Is Selected. Do You Want To Continue?</entext>
+    <mtext>ചേരുവകള്‍ തെരഞ്ഞെടുത്തിട്ടില്ല . പുറത്തു കടക്കണോ ?</mtext>
+  </message>
+  <message>
+    <code>E1078</code>
+    <entext>Member Goal Is Changed. Do You Want To Save Changes?</entext>
+    <mtext>ലക്‌ഷ്യം  മാറ്റിയിട്ടുണ്ട് .ശേക്കരിച്ചു വെക്കണോ?</mtext>
+  </message>
+  <message>
+    <code>E1079</code>
+    <entext>Select Goal Start-Date. </entext>
+    <mtext>തുടങ്ങുന്ന ദിവസം രേഖപ്പെടുത്തുക </mtext>
+  </message>
+  <message>
+    <code>E1080</code>
+    <entext>Select Goal End-Date. </entext>
+    <mtext>അവസാനിക്കുന്ന ദിവസം രേഖപ്പെടുത്തുക </mtext>
+  </message>
+  <message>
+    <code>E1081</code>
+    <entext>Enter Valid Calorie Intake.</entext>
+    <mtext>നിങ്ങള്‍ ആഗ്രഹിക്കുന്ന കലോറി ശരിയായി രേഖപ്പെടുത്തുക </mtext>
+  </message>
+  <message>
+    <code>E1082</code>
+    <entext>Enter Your DOB.</entext>
+    <mtext>ജനനത്തീയതി രേഖപ്പെടുത്തുക‌</mtext>
+  </message>
+  <message>
+    <code>E1083</code>
+    <entext>Please Select A Category or Type in the Search Text.</entext>
+    <mtext>Please Select A Category or Type in the Search Text.</mtext>
+  </message>
+  <message>
+    <code>E1084</code>
+    <entext>Date Should Not Be Greater Than Current Date.</entext>
+    <mtext>Date Should Not Be Greater Than Current Date.</mtext>
+  </message>
+  <message>
+    <code>E1085</code>
+    <entext>Do you want to close Nutrition Plus?</entext>
+    <mtext>Do you want to close Nutrition Plus?</mtext>
+  </message>
+  <message>
+    <code>E1086</code>
+    <entext>There are no Food Items in the list.</entext>
+    <mtext>There are no Food Items in the list.</mtext>
+  </message>
+  <message>
+    <code>E1087</code>
+    <entext>Please select a Dish to get information.</entext>
+    <mtext>Please select a Dish to get information</mtext>
+  </message>
+  <message>
+    <code>E1088</code>
+    <entext>Member food settings saved.</entext>
+    <mtext>Member food settings saved.</mtext>
+  </message>
+  <message>
+    <code>E1089</code>
+    <entext>You cannot delete previous meal(s).</entext>
+    <mtext>You cannot delete previous meal(s).</mtext>
+  </message>
+  <message>
+    <code>E1090</code>
+    <entext>You cannot select same dish more than once.</entext>
+    <mtext>You cannot select same dish more than once.</mtext>
+  </message>
+  <message>
+    <code>E1091</code>
+    <entext>Invalid Phone Number.</entext>
+    <mtext>Invalid Phone Number.</mtext>
+  </message>
+  <message>
+    <code>E1092</code>
+    <entext>Provide atleast one Family Member</entext>
+    <mtext>Provide atleast one Family Member</mtext>
+  </message>
+  <message>
+    <code>E1093</code>
+    <entext>Select Your Body Nature.</entext>
+    <mtext>Select Your Body Nature.</mtext>
+  </message>
+  <message>
+    <code>E1094</code>
+    <entext>Select a Day.</entext>
+    <mtext>Select a Day.</mtext>
+  </message>
+  <message>
+    <code>E1095</code>
+    <entext>Enter a valid Date.</entext>
+    <mtext>Enter a valid Date.</mtext>
+  </message>
+  <message>
+    <code>E1096</code>
+    <entext>Please set a Goal for minimum 4 weeks or maximum 52 weeks</entext>
+    <mtext>Please set a Goal for minimum 4 weeks or maximum 52 weeks</mtext>
+  </message>
+  <message>
+    <code>E1097</code>
+    <entext>Please set the date which is less than a year.</entext>
+    <mtext>Please set the date which is less than a year.</mtext>
+  </message>
+  <message>
+    <code>E1098</code>
+    <entext>Job Duration + Sleep Duration must be less than 24 hours.</entext>
+    <mtext>Job Duration + Sleep Duration must be less than 24 hours.</mtext>
+  </message>
+	<message>
+		<code>E1099</code>
+		<entext>Enter a valid From-Date</entext>
+		<mtext>Enter a valid From-Date</mtext>
+	</message>
+	<message>
+		<code>E1100</code>
+		<entext>Please enter the Ingredient Name.</entext>
+		<mtext>Please enter the Ingredient Name.</mtext>
+	</message>
+	<message>
+		<code>E1101</code>
+		<entext>Please select the Ethnicity.</entext>
+		<mtext>Please select the Ethnicity.</mtext>
+	</message>
+	<message>
+		<code>E1102</code>
+		<entext>Please select the Food Type</entext>
+		<mtext>Please select the Food Type</mtext>
+	</message>
+	<message>
+		<code>E1103</code>
+		<entext>Please specify the Standard Weight of Unit - </entext>
+		<mtext>Please specify the Standard Weight of Unit - </mtext>
+	</message>
+	<message>
+		<code>E1104</code>
+		<entext>Do you want to delete?</entext>
+		<mtext>Do you want to delete?</mtext>
+	</message>
+	<message>
+		<code>E1105</code>
+		<entext>Cannot delete.</entext>
+		<mtext>Cannot delete.</mtext>
+	</message>
+	<message>
+		<code>E1106</code>
+		<entext>Please Select Your Search Criteria</entext>
+		<mtext>Please Select Your Search Criteria</mtext>
+	</message>
+	<message>
+		<code>E1107</code>
+		<entext>Please Select Your Search Criteria.</entext>
+		<mtext>Please Select Your Search Criteria.</mtext>
+	</message>
+	<message>
+		<code>E1108</code>
+		<entext>Please enter the correct password.</entext>
+		<mtext>Please enter the correct password.</mtext>
+	</message>
+	<message>
+		<code>E1109</code>
+		<entext>Password changed.</entext>
+		<mtext>Password changed.</mtext>
+	</message>
+	<message>
+		<code>E1110</code>
+		<entext>Currently unavailable.</entext>
+		<mtext>Currently unavailable.</mtext>
+	</message>
+	<message>
+		<code>E1111</code>
+		<entext>Please enter password.</entext>
+		<mtext>Please enter password.</mtext>
+	</message>
+	<message>
+		<code>E1112</code>
+		<entext>Enter Your Height</entext>
+		<mtext>Enter Your Height</mtext>
+	</message>
+	<message>
+		<code>E1113</code>
+		<entext>Enter a valid Height</entext>
+		<mtext>Enter a valid Height</mtext>
+	</message>
+	<message>
+		<code>E1114</code>
+		<entext>Enter Your Weight</entext>
+		<mtext>Enter Your Weight</mtext>
+	</message>
+	<message>
+		<code>E1115</code>
+		<entext>Enter a valid Weight</entext>
+		<mtext>Enter a valid Weight</mtext>
+	</message>
+	<message>
+		<code>E1116</code>
+		<entext>Enter Your Sex</entext>
+		<mtext>Enter Your Sex</mtext>
+	</message>
+	<message>
+		<code>E1117</code>
+		<entext>Enter Your Age</entext>
+		<mtext>Enter Your Age</mtext>
+	</message>
+	<message>
+		<code>E1118</code>
+		<entext>Enter a valid Age</entext>
+		<mtext>Enter a valid Age</mtext>
+	</message>
+	<message>
+		<code>E1119</code>
+		<entext>Enter Your Height</entext>
+		<mtext>Enter Your Height</mtext>
+	</message>
+	<message>
+		<code>E1120</code>
+		<entext>Enter a valid Height</entext>
+		<mtext>Enter a valid Height</mtext>
+	</message>
+	<message>
+		<code>E1121</code>
+		<entext>Enter Your Weight</entext>
+		<mtext>Enter Your Weight</mtext>
+	</message>
+	<message>
+		<code>E1122</code>
+		<entext>Enter a valid Weight</entext>
+		<mtext>Enter a valid Weight</mtext>
+	</message>
+	<message>
+		<code>E1123</code>
+		<entext>Select Your Life-Style</entext>
+		<mtext>Select Your Life-Style</mtext>
+	</message>
+	<message>
+		<code>E1124</code>
+		<entext>Enter Your Waist Size</entext>
+		<mtext>Enter Your Waist Size</mtext>
+	</message>
+	<message>
+		<code>E1125</code>
+		<entext>Enter Your Hip Size</entext>
+		<mtext>Enter Your Hip Size</mtext>
+	</message>
+	<message>
+		<code>E1126</code>
+		<entext>Enter Your Sex</entext>
+		<mtext>Enter Your Sex</mtext>
+	</message>
+	<message>
+		<code>E1127</code>
+		<entext>Enter Your Height</entext>
+		<mtext>Enter Your Height</mtext>
+	</message>
+	<message>
+		<code>E1128</code>
+		<entext>Enter a valid Height</entext>
+		<mtext>Enter a valid Height</mtext>
+	</message>
+	<message>
+		<code>E1129</code>
+		<entext>Enter Your Sex</entext>
+		<mtext>Enter Your Sex</mtext>
+	</message>
+	<message>
+		<code>E1130</code>
+		<entext>Enter Your Weight</entext>
+		<mtext>Enter Your Weight</mtext>
+	</message>
+	<message>
+		<code>E1131</code>
+		<entext>Enter a valid Weight</entext>
+		<mtext>Enter a valid Weight</mtext>
+	</message>
+	<message>
+		<code>E1132</code>
+		<entext>Enter Your Waist Size</entext>
+		<mtext>Enter Your Waist Size</mtext>
+	</message>
+	<message>
+		<code>E1133</code>
+		<entext>Enter Your Hip Size</entext>
+		<mtext>Enter Your Hip Size</mtext>
+	</message>
+	<message>
+		<code>E1134</code>
+		<entext>Enter Your Wrist Size</entext>
+		<mtext>Enter Your Wrist Size</mtext>
+	</message>
+	<message>
+		<code>E1135</code>
+		<entext>Enter Your Forearm size</entext>
+		<mtext>Enter Your Forearm size</mtext>
+	</message>
+	<message>
+		<code>E1136</code>
+		<entext>Select Your Body Nature</entext>
+		<mtext>Select Your Body Nature</mtext>
+	</message>
+	<message>
+		<code>E1137</code>
+		<entext>Enter Baby's Gender</entext>
+		<mtext>Enter Baby's Gender</mtext>
+	</message>
+	<message>
+		<code>E1138</code>
+		<entext>Enter Age</entext>
+		<mtext>Enter Age</mtext>
+	</message>
+	<message>
+		<code>E1139</code>
+		<entext>Enter a Valid Height</entext>
+		<mtext>Enter a Valid Height</mtext>
+	</message>
+	<message>
+		<code>E1140</code>
+		<entext>Enter Baby's Height</entext>
+		<mtext>Enter Baby's Height</mtext>
+	</message>
+	<message>
+		<code>E1141</code>
+		<entext>Enter a Valid Weight</entext>
+		<mtext>Enter a Valid Weight</mtext>
+	</message>
+	<message>
+		<code>E1142</code>
+		<entext>Enter Baby'sWeight</entext>
+		<mtext>Enter Baby's Weight</mtext>
+	</message>
+	<message>
+		<code>E1143</code>
+		<entext>Enter Duration</entext>
+		<mtext>Enter Duration</mtext>
+	</message>
+	<message>
+		<code>E1144</code>
+		<entext>Select Exercise Type</entext>
+		<mtext>Select Exercise Type</mtext>
+	</message>
+	<message>
+		<code>E1145</code>
+		<entext>Enter valid Duration</entext>
+		<mtext>Enter valid Duration</mtext>
+	</message>
+	<message>
+		<code>E1146</code>
+		<entext>Please Enter the Dish Name.</entext>
+		<mtext>Please Enter the Dish Name.</mtext>
+	</message>
+	<message>
+		<code>E1147</code>
+		<entext>Please select the Ingredients.</entext>
+		<mtext>Please select the Ingredients.</mtext>
+	</message>
+	<message>
+		<code>E1148</code>
+		<entext>Please add atleast 1 Ingredient.</entext>
+		<mtext>Please add atleast 1 Ingredient.</mtext>
+	</message>
+	<message>
+		<code>E1149</code>
+		<entext>Please Enter the Serving Size</entext>
+		<mtext>Please Enter the Serving Size</mtext>
+	</message>
+	<message>
+		<code>E1150</code>
+		<entext>Please enter the count.</entext>
+		<mtext>Please enter the count.</mtext>
+	</message>
+	<message>
+		<code>E1151</code>
+		<entext>Please enter the unit.</entext>
+		<mtext>Please enter the unit.</mtext>
+	</message>
+	<message>
+		<code>E1152</code>
+		<entext>Dish name already exists.</entext>
+		<mtext>Dish name already exists.</mtext>
+	</message>
+	<message>
+		<code>E1153</code>
+		<entext>Exercise Type Already Inserted</entext>
+		<mtext>Exercise Type Already Inserted</mtext>
+	</message>
+	<message>
+		<code>E1154</code>
+		<entext>Please enter the Dish Name.</entext>
+		<mtext>Please enter the Dish Name.</mtext>
+	</message>
+	<message>
+		<code>E1155</code>
+		<entext>Please select the Ethnicity.</entext>
+		<mtext>Please select the Ethnicity.</mtext>
+	</message>
+	<message>
+		<code>E1156</code>
+		<entext>Please select the Food-Type</entext>
+		<mtext>Please select the Food-Type</mtext>
+	</message>
+	<message>
+		<code>E1157</code>
+		<entext>Please select the Food Category</entext>
+		<mtext>Please select the Food Category</mtext>
+	</message>
+	<message>
+		<code>E1158</code>
+		<entext>Please enter the Serving Size for PLAN1</entext>
+		<mtext>Please enter the Serving Size for PLAN1</mtext>
+	</message>
+	<message>
+		<code>E1159</code>
+		<entext>Please select the Serving Unit for PLAN1</entext>
+		<mtext>Please select the Serving Unit for PLAN1</mtext>
+	</message>
+	<message>
+		<code>E1160</code>
+		<entext>Please enter the Standard Weight for PLAN1</entext>
+		<mtext>Please enter the Standard Weight for PLAN1</mtext>
+	</message>
+	<message>
+		<code>E1161</code>
+		<entext>Please select the Ingredients</entext>
+		<mtext>Please select the Ingredients</mtext>
+	</message>
+	<message>
+		<code>E1162</code>
+		<entext>Please add atleast 1 Ingredient.</entext>
+		<mtext>Please add atleast 1 Ingredient.</mtext>
+	</message>
+	<message>
+		<code>E1163</code>
+		<entext>Do you want to delete </entext>
+		<mtext>Do you want to delete </mtext>
+	</message>
+	<message>
+		<code>E1164</code>
+		<entext> has been deleted successfully.</entext>
+		<mtext> has been deleted successfully.</mtext>
+	</message>
+	<message>
+		<code>E1165</code>
+		<entext>Cannot delete </entext>
+		<mtext>Cannot delete </mtext>
+	</message>
+	<message>
+		<code>E1166</code>
+		<entext> is already in use. Cannot Delete!</entext>
+		<mtext> is already in use. Cannot Delete!</mtext>
+	</message>
+	<message>
+		<code>E1167</code>
+		<entext>Please enter the count.</entext>
+		<mtext>Please enter the count.</mtext>
+	</message>
+	<message>
+		<code>E1168</code>
+		<entext>Please enter the unit.</entext>
+		<mtext>Please enter the unit.</mtext>
+	</message>
+	<message>
+		<code>E1169</code>
+		<entext>Please select the Course.</entext>
+		<mtext>Please select the Course.</mtext>
+	</message>
+	<message>
+		<code>E1170</code>
+		<entext>Enter Start-Date</entext>
+		<mtext>Enter Start-Date</mtext>
+	</message>
+	<message>
+		<code>E1171</code>
+		<entext>Enter End-Date</entext>
+		<mtext>Enter End-Date</mtext>
+	</message>
+	<message>
+		<code>E1172</code>
+		<entext>Enter a valid To-Date</entext>
+		<mtext>Enter a valid To-Date</mtext>
+	</message>
+	<message>
+		<code>E1173</code>
+		<entext>Enter a valid From-Date</entext>
+		<mtext>Enter a valid From-Date</mtext>
+	</message>
+	<message>
+		<code>E1174</code>
+		<entext>Enter a valid Date</entext>
+		<mtext>Enter a valid Date</mtext>
+	</message>
+	<message>
+		<code>E1175</code>
+		<entext>Enter Family Name</entext>
+		<mtext>Enter Family Name</mtext>
+	</message>
+	<message>
+		<code>E1176</code>
+		<entext>Enter Address</entext>
+		<mtext>Enter Address</mtext>
+	</message>
+	<message>
+		<code>E1177</code>
+		<entext>Select Country</entext>
+		<mtext>Select Country</mtext>
+	</message>
+	<message>
+		<code>E1178</code>
+		<entext>Select State</entext>
+		<mtext>Select State</mtext>
+	</message>
+	<message>
+		<code>E1179</code>
+		<entext>Select Your City</entext>
+		<mtext>Select Your City</mtext>
+	</message>
+	<message>
+		<code>E1180</code>
+		<entext>Enter Pin Code</entext>
+		<mtext>Enter Pin Code</mtext>
+	</message>
+	<message>
+		<code>E1181</code>
+		<entext>Enter Phone</entext>
+		<mtext>Enter Phone</mtext>
+	</message>
+	<message>
+		<code>E1182</code>
+		<entext>Select Religion</entext>
+		<mtext>Select Religion</mtext>
+	</message>
+	<message>
+		<code>E1183</code>
+		<entext>Select Food Habbit</entext>
+		<mtext>Select Food Habbit</mtext>
+	</message>
+	<message>
+		<code>E1184</code>
+		<entext>Member Name Cannot be repeated.</entext>
+		<mtext>Member Name Cannot be repeated.</mtext>
+	</message>
+	<message>
+		<code>E1185</code>
+		<entext>Enter Member's Name</entext>
+		<mtext>Enter Member's Name</mtext>
+	</message>
+	<message>
+		<code>E1186</code>
+		<entext>Enter Member's Sex</entext>
+		<mtext>Enter Member's Sex</mtext>
+	</message>
+	<message>
+		<code>E1187</code>
+		<entext>Enter a valid Date-of-Birth</entext>
+		<mtext>Enter a valid Date-of-Birth</mtext>
+	</message>
+	<message>
+		<code>E1188</code>
+		<entext>Enter Date-of-Birth</entext>
+		<mtext>Enter Date-of-Birth</mtext>
+	</message>
+	<message>
+		<code>E1189</code>
+		<entext>Family Details Saved.</entext>
+		<mtext>Family Details Saved.</mtext>
+	</message>
+	<message>
+		<code>E1190</code>
+		<entext>Family Details Updated.</entext>
+		<mtext>Family Details Updated.</mtext>
+	</message>
+	<message>
+		<code>E1191</code>
+		<entext>Do You Want to Clear Data?</entext>
+		<mtext>Do You Want to Clear Data?</mtext>
+	</message>
+	<message>
+		<code>E1192</code>
+		<entext>Goal Deleted Succesfully</entext>
+		<mtext>Goal Deleted Succesfully</mtext>
+	</message>
+	<message>
+		<code>E1193</code>
+		<entext>Chart Saved.</entext>
+		<mtext>Chart Saved.</mtext>
+	</message>
+	<message>
+		<code>E1194</code>
+		<entext>Medical Records Deleted Successfully</entext>
+		<mtext>Medical Records Deleted Successfully</mtext>
+	</message>
+	<message>
+		<code>E1195</code>
+		<entext>Do You Want to Delete Medical Records?</entext>
+		<mtext>Do You Want to Delete Medical Records?</mtext>
+	</message>
+	<message>
+		<code>E1196</code>
+		<entext>Select Medical Parameter to Simulate</entext>
+		<mtext>Select Medical Parameter to Simulate</mtext>
+	</message>
+	<message>
+		<code>E1197</code>
+		<entext>Chart Saved.</entext>
+		<mtext>Chart Saved.</mtext>
+	</message>
+	<message>
+		<code>E1198</code>
+		<entext>Total calorie intake is not matching with calorie required for the following members: </entext>
+		<mtext>Total calorie intake is not matching with calorie required for the following members: </mtext>
+	</message>
+	<message>
+		<code>E1199</code>
+		<entext>Member List is Empty</entext>
+		<mtext>Member List is Empty</mtext>
+	</message>
+	<message>
+		<code>E1200</code>
+		<entext>Do you want to delete the Breakfast Menu?</entext>
+		<mtext>Do you want to delete the Breakfast Menu?</mtext>
+	</message>
+	<message>
+		<code>E1201</code>
+		<entext>Do you want to delete the Lunch Menu?</entext>
+		<mtext>Do you want to delete the Lunch Menu?</mtext>
+	</message>
+	<message>
+		<code>E1202</code>
+		<entext>Do you want to delete the Dinner Menu?</entext>
+		<mtext>Do you want to delete the Dinner Menu?</mtext>
+	</message>
+	<message>
+		<code>E1203</code>
+		<entext>Do you want to delete the Snacks Menu?</entext>
+		<mtext>Do you want to delete the Snacks Menu?</mtext>
+	</message>
+	<message>
+		<code>E1204</code>
+		<entext>Enter Member Name</entext>
+		<mtext>Enter Member Name</mtext>
+	</message>
+	<message>
+		<code>E1205</code>
+		<entext>Enter Your Sex</entext>
+		<mtext>Enter Your Sex</mtext>
+	</message>
+	<message>
+		<code>E1206</code>
+		<entext>Enter a Valid Date-of-Birth</entext>
+		<mtext>Enter a Valid Date-of-Birth</mtext>
+	</message>
+	<message>
+		<code>E1207</code>
+		<entext>Enter Date-of-Birth</entext>
+		<mtext>Enter Date-of-Birth</mtext>
+	</message>
+	<message>
+		<code>E1208</code>
+		<entext>Select Your Food-Habbit</entext>
+		<mtext>Select Your Food-Habbit</mtext>
+	</message>
+	<message>
+		<code>E1209</code>
+		<entext>Select Your Life-Style</entext>
+		<mtext>Select Your Life-Style</mtext>
+	</message>
+	<message>
+		<code>E1210</code>
+		<entext>Enter Member Height</entext>
+		<mtext>Enter Member Height</mtext>
+	</message>
+	<message>
+		<code>E1211</code>
+		<entext>Enter Member Weight</entext>
+		<mtext>Enter Member Weight</mtext>
+	</message>
+	<message>
+		<code>E1212</code>
+		<entext>Enter a valid Job Duration</entext>
+		<mtext>Enter a valid Job Duration</mtext>
+	</message>
+	<message>
+		<code>E1213</code>
+		<entext>Enter a valid Sleep Duration</entext>
+		<mtext>Enter a valid Sleep Duration</mtext>
+	</message>
+	<message>
+		<code>E1214</code>
+		<entext>Job Duration + Sleep Duration must be less than 24 hours.</entext>
+		<mtext>Job Duration + Sleep Duration must be less than 24 hours.</mtext>
+	</message>
+	<message>
+		<code>E1215</code>
+		<entext>Exercise-Type already Inserted</entext>
+		<mtext>Exercise-Type already Inserted</mtext>
+	</message>
+	<message>
+		<code>E1216</code>
+		<entext>Enter Duration</entext>
+		<mtext>Enter Duration</mtext>
+	</message>
+	<message>
+		<code>E1217</code>
+		<entext>Select Exercise Type</entext>
+		<mtext>Select Exercise Type</mtext>
+	</message>
+	<message>
+		<code>E1218</code>
+		<entext>Enter Valid Duration</entext>
+		<mtext>Enter Valid Duration</mtext>
+	</message>
+	<message>
+		<code>E1219</code>
+		<entext>Member Details Saved Sucessfully</entext>
+		<mtext>Member Details Saved Sucessfully</mtext>
+	</message>
+	<message>
+		<code>E1220</code>
+		<entext>Member Profile Data Changed. Do You Want to Save the Changed Data?</entext>
+		<mtext>Member Profile Data Changed. Do You Want to Save the Changed Data?</mtext>
+	</message>
+	<message>
+		<code>E1221</code>
+		<entext>Do You Want to Remove the Image?</entext>
+		<mtext>Do You Want to Remove the Image?</mtext>
+	</message>
+	<message>
+		<code>E1222</code>
+		<entext>Please Update your Height and Weight in your Profile.</entext>
+		<mtext>Please Update your Height and Weight in your Profile.</mtext>
+	</message>
+	<message>
+		<code>E1223</code>
+		<entext>Enter Goal Start-Date</entext>
+		<mtext>Enter Goal Start-Date</mtext>
+	</message>
+	<message>
+		<code>E1224</code>
+		<entext>Goal Start-Date must be greater than Current-Date</entext>
+		<mtext>Goal Start-Date must be greater than Current-Date</mtext>
+	</message>
+	<message>
+		<code>E1225</code>
+		<entext>Enter Goal End-Date</entext>
+		<mtext>Enter Goal End-Date</mtext>
+	</message>
+	<message>
+		<code>E1226</code>
+		<entext>Goal End-Date must be greater than Goal Start-Date</entext>
+		<mtext>Goal End-Date must be greater than Goal Start-Date</mtext>
+	</message>
+	<message>
+		<code>E1227</code>
+		<entext>Goal Peroid must be Minimum of 1 Months</entext>
+		<mtext>Goal Peroid must be Minimum of 1 Months</mtext>
+	</message>
+	<message>
+		<code>E1228</code>
+		<entext>Please set a Goal for Minimum 1 Months OR Maximum 18 Months</entext>
+		<mtext>Please set a Goal for Minimum 1 Months OR Maximum 18 Months</mtext>
+	</message>
+	<message>
+		<code>E1229</code>
+		<entext>Enter Desired Weight</entext>
+		<mtext>Enter Desired Weight</mtext>
+	</message>
+	<message>
+		<code>E1230</code>
+		<entext>Desired Weight should be less than Current Weight.</entext>
+		<mtext>Desired Weight should be less than Current Weight.</mtext>
+	</message>
+	<message>
+		<code>E1231</code>
+		<entext>Desired Weight is not Valid for Weight Loss.</entext>
+		<mtext>Desired Weight is not Valid for Weight Loss.</mtext>
+	</message>
+	<message>
+		<code>E1232</code>
+		<entext>Enter a Valid Weight</entext>
+		<mtext>Enter a Valid Weight</mtext>
+	</message>
+	<message>
+		<code>E1233</code>
+		<entext>Desired Weight is not Valid for Weight Gain.</entext>
+		<mtext>Desired Weight is not Valid for Weight Gain.</mtext>
+	</message>
+	<message>
+		<code>E1234</code>
+		<entext>Desired Weight should be greater than Current Weight.</entext>
+		<mtext>Desired Weight should be greater than Current Weight.</mtext>
+	</message>
+	<message>
+		<code>E1235</code>
+		<entext>Enter Desired Calorie Intake</entext>
+		<mtext>Enter Desired Calorie Intake</mtext>
+	</message>
+	<message>
+		<code>E1236</code>
+		<entext>Enter Valid Calorie Intake.</entext>
+		<mtext>Enter Valid Calorie Intake.</mtext>
+	</message>
+	<message>
+		<code>E1237</code>
+		<entext>Enter Daily Calorie Intake</entext>
+		<mtext>Enter Daily Calorie Intake</mtext>
+	</message>
+	<message>
+		<code>E1238</code>
+		<entext>Enter Valid Daily Calorie Intake</entext>
+		<mtext>Enter Valid Daily Calorie Intake</mtext>
+	</message>
+	<message>
+		<code>E1239</code>
+		<entext>Enter Duration</entext>
+		<mtext>Enter Duration</mtext>
+	</message>
+	<message>
+		<code>E1240</code>
+		<entext>Enter valid Duration</entext>
+		<mtext>Enter valid Duration</mtext>
+	</message>
+	<message>
+		<code>E1241</code>
+		<entext>Member Goal Saved Succesfully</entext>
+		<mtext>Member Goal Saved Succesfully</mtext>
+	</message>
+	<message>
+		<code>E1242</code>
+		<entext>Select a Member</entext>
+		<mtext>Select a Member</mtext>
+	</message>
+	<message>
+		<code>E1243</code>
+		<entext>Please enter the Ingredient Name</entext>
+		<mtext>Please enter the Ingredient Name</mtext>
+	</message>
+	<message>
+		<code>E1244</code>
+		<entext>Please select the Ethnicity</entext>
+		<mtext>Please select the Ethnicity</mtext>
+	</message>
+	<message>
+		<code>E1245</code>
+		<entext>Please select the Food Type</entext>
+		<mtext>Please select the Food Type</mtext>
+	</message>
+	<message>
+		<code>E1246</code>
+		<entext>Please specify the Standard Weight of Unit - </entext>
+		<mtext>Please specify the Standard Weight of Unit - </mtext>
+	</message>
+	<message>
+		<code>E1247</code>
+		<entext>Enter Test-Date</entext>
+		<mtext>Enter Test-Date</mtext>
+	</message>
+	<message>
+		<code>E1248</code>
+		<entext>Test-Date must not be greater than Current-Date</entext>
+		<mtext>Test-Date must not be greater than Current-Date</mtext>
+	</message>
+	<message>
+		<code>E1249</code>
+		<entext>Enter Valid Hemoglobin Data</entext>
+		<mtext>Enter Valid Hemoglobin Data</mtext>
+	</message>
+	<message>
+		<code>E1250</code>
+		<entext>Enter Cholesterol Data</entext>
+		<mtext>Enter Cholesterol Data</mtext>
+	</message>
+	<message>
+		<code>E1251</code>
+		<entext>Enter Valid Total-Cholesterol Data</entext>
+		<mtext>Enter Valid Total-Cholesterol Data</mtext>
+	</message>
+	<message>
+		<code>E1252</code>
+		<entext>Enter Valid Triglycerides Data</entext>
+		<mtext>Enter Valid Triglycerides Data</mtext>
+	</message>
+	<message>
+		<code>E1253</code>
+		<entext>Enter Valid HDL Data</entext>
+		<mtext>Enter Valid HDL Data</mtext>
+	</message>
+	<message>
+		<code>E1254</code>
+		<entext>Enter Valid LDL Data</entext>
+		<mtext>Enter Valid LDL Data</mtext>
+	</message>
+	<message>
+		<code>E1255</code>
+		<entext>Enter Diabetes Data</entext>
+		<mtext>Enter Diabetes Data</mtext>
+	</message>
+	<message>
+		<code>E1256</code>
+		<entext>Enter Valid Diabetes-Fasting Data</entext>
+		<mtext>Enter Valid Diabetes-Fasting Data</mtext>
+	</message>
+	<message>
+		<code>E1257</code>
+		<entext>Enter Valid Diabetes1.5PPHrs Data</entext>
+		<mtext>Enter Valid Diabetes1.5PPHrs Data</mtext>
+	</message>
+	<message>
+		<code>E1258</code>
+		<entext>Enter Valid Diabetes-Random Data</entext>
+		<mtext>Enter Valid Diabetes-Random Data</mtext>
+	</message>
+	<message>
+		<code>E1259</code>
+		<entext>Enter Necessary Data</entext>
+		<mtext>Enter Necessary Data</mtext>
+	</message>
+	<message>
+		<code>E1260</code>
+		<entext>Select Member</entext>
+		<mtext>Select Member</mtext>
+	</message>
+	<message>
+		<code>E1261</code>
+		<entext>Member Medical Records Saved Sucessfully</entext>
+		<mtext>Member Medical Records Saved Sucessfully</mtext>
+	</message>
+	<message>
+		<code>E1262</code>
+		<entext>Weight History Deleted Succesfully</entext>
+		<mtext>Weight History Deleted Succesfully</mtext>
+	</message>
+	<message>
+		<code>E1263</code>
+		<entext>Select Simulation Period</entext>
+		<mtext>Select Simulation Period</mtext>
+	</message>
+	<message>
+		<code>E1264</code>
+		<entext>Your Simulation Calorie Must Be Greater Than 1000.</entext>
+		<mtext>Your Simulation Calorie Must Be Greater Than 1000.</mtext>
+	</message>
+	<message>
+		<code>E1265</code>
+		<entext>Enter Your Desired Weight</entext>
+		<mtext>Enter Your Desired Weight</mtext>
+	</message>
+	<message>
+		<code>E1266</code>
+		<entext>Enter a valid Desired Weight</entext>
+		<mtext>Enter a valid Desired Weight</mtext>
+	</message>
+	<message>
+		<code>E1267</code>
+		<entext>Desired Weight must be greater than Present Weight</entext>
+		<mtext>Desired Weight must be greater than Present Weight</mtext>
+	</message>
+	<message>
+		<code>E1268</code>
+		<entext>Family Profile Data Changed. Do You Want to Save?</entext>
+		<mtext>Family Profile Data Changed. Do You Want to Save?</mtext>
+	</message>
+	<message>
+		<code>E1269</code>
+		<entext>Family Details Saved.</entext>
+		<mtext>Family Details Saved.</mtext>
+	</message>
+	<message>
+		<code>E1270</code>
+		<entext>Member Name Cannot be Same.</entext>
+		<mtext>Member Name Cannot be Same.</mtext>
+	</message>
+	<message>
+		<code>E1271</code>
+		<entext>Select Month and Year</entext>
+		<mtext>Select Month and Year</mtext>
+	</message>
+	<message>
+		<code>E1272</code>
+		<entext>Invalid Login. Please check the User Name and Password you have entered.</entext>
+		<mtext>Invalid Login. Please check the User Name and Password you have entered.</mtext>
+	</message>
+	<message>
+		<code>E1273</code>
+		<entext>Do you want to exit Intelligent Eating?</entext>
+		<mtext>Do you want to exit Intelligent Eating?</mtext>
+	</message>
+	<message>
+		<code>E1274</code>
+		<entext> is already in use. Cannot change.</entext>
+		<mtext> is already in use. Cannot change.</mtext>
+	</message>
+	<message>
+		<code>E1275</code>
+		<entext></entext>
+		<mtext></mtext>
+	</message>
+	<message>
+		<code>E1276</code>
+		<entext></entext>
+		<mtext></mtext>
+	</message>
+</messageData>

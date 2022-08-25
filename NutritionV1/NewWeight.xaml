@@ -1,0 +1,105 @@
+﻿<Window x:Class="NutritionV1.NewWeight"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:NutritionV1"
+    xmlns:my="clr-namespace:NutritionV1"
+    Title="New Weight" Height="605" Width="830"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Icon="/Images/AppIcon.ico" Closed="Window_Closed" >
+    
+    <Grid Name="grdNewWeight" Width="830" Height="585" PreviewKeyDown="Grid_PreviewKeyDown">
+        <TabControl Margin="10,10,20,20" Name="tbNewNewWeight">
+            <TabItem  x:Name="tiNewMedicalRecord" Header="New Weight" >
+                <Canvas>
+                    
+                    <Label Canvas.Left="3" Canvas.Top="3"  MinWidth="300" Height="30" Name="lblMemberName" Style="{DynamicResource LabelStyle}">
+                        <Label.Background>
+                            <LinearGradientBrush EndPoint="0.8,0.5" StartPoint="0,0">
+                                <GradientStop Color="Transparent" Offset="1" />
+                                <GradientStop Color="#FF952D2D" Offset="0" />
+                            </LinearGradientBrush>
+                        </Label.Background>
+                    </Label>
+                    
+                    <Label Canvas.Left="51" Canvas.Top="67" Height="25" Name="lblWeight" Style="{DynamicResource LabelStyle}" Width="100">Weight (Kg)</Label>
+                    <TextBox PreviewKeyDown="txtNumber_PreviewKeyDown" Canvas.Left="161" Canvas.Top="67" Height="25" Name="txtWeight" Width="80" Style="{DynamicResource TextStyle}" />
+                    <Image Canvas.Left="161" Canvas.Top="41"  Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="110,33,0,0" Grid.Column="2" />
+                    <Label Canvas.Left="51" Canvas.Top="38" Height="25" Name="lblTestDate" Style="{DynamicResource LabelStyle}" Width="110">Test Date</Label>
+                    <my:DatePicker PreviewKeyDown="txtDate_PreviewKeyDown"  Canvas.Left="161" Canvas.Top="41" Height="21" Name="dtpTestDate" Width="110" xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit" BorderThickness="0" SelectedDateChanged="dtpTestDate_SelectedDateChanged" DisplayDateStart="01/01/1900" DisplayDateEnd="12/31/2100" />
+                    <Label Canvas.Left="690" Canvas.Top="70" Height="25" Name="lblSaveChart" Style="{DynamicResource AddLabel}" Width="90" MouseDown="lblSaveChart_MouseDown">Save Chart</Label>
+                    <Image Canvas.Left="161" Canvas.Top="41"  Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="110,5,0,0" Grid.Column="2" />
+                        <ListView Margin="10,100,0,0" Height="377" Name="lvWeightHistory"  MouseDoubleClick="lvWeightHistory_MouseDoubleClick" SelectionChanged="lvWeightHistory_SelectionChanged"  VerticalAlignment="Stretch" ItemsSource="{Binding}" Style="{DynamicResource ListViewStyle}" BorderThickness="1" BorderBrush="Black" PreviewKeyDown="lvWeightHistory_PreviewKeyDown">
+                            <!--<ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="VerticalContentAlignment"	Value="Center" />
+                                    <Setter Property="FontSize"  Value="10" />
+                                </Style>
+                            </ListView.ItemContainerStyle>-->
+                            <ListView.View>
+
+                                <GridView ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}" AllowsColumnReorder="False">
+                                    <local:FixedWidthColumn x:Name="lvNutritionCol1" Header="Test Date" FixedWidth="110">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <StackPanel Margin="-1.5">
+                                                        <Label Style="{DynamicResource RowStyle}" Content="{Binding Path=ModifiedDate}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </local:FixedWidthColumn>
+                                    <local:FixedWidthColumn x:Name="lvNutritionCol2" Header="Weight" FixedWidth="70">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <StackPanel Margin="-1.5">
+                                                        <Label Style="{DynamicResource RowStyle}" Content="{Binding Path=ParameterValue}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </local:FixedWidthColumn>
+                                    <local:FixedWidthColumn x:Name="lvNutritionCol3" Header="" FixedWidth="30">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Name="imgEdit" Cursor="Hand" MouseDown="imgEdit_MouseDown" Source="images\Add.png"  VerticalAlignment="Top" HorizontalAlignment="Center"  Width="15" Height="15" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </local:FixedWidthColumn>
+                                    <local:FixedWidthColumn x:Name="lvNutritionCol4" Header="" FixedWidth="30">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Name="imgDelete" Cursor="Hand" MouseDown="imgDelete_MouseDown" Source="images\Error.png"  VerticalAlignment="Top" HorizontalAlignment="Center"  Width="15" Height="15"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </local:FixedWidthColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    
+                    <Grid Name="GraphLayout" Canvas.Left="260" Canvas.Top="100" Grid.Column="0" Grid.Row="1" Height="377" Width="525">
+                        <Rectangle Margin="0" Name="recMain1" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource FlipPage}" />
+                        <!--<chartingToolkit:LineSeries Title="WeightHistory Graph" DependentValueBinding="{Binding Modifieddate}" IndependentValueBinding="{Binding ParameterValue}" Height="350" HorizontalAlignment="Left" Margin="10,10,10,10" Name="LineGraph" VerticalAlignment="Top" Width="460" xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit">
+                        </chartingToolkit:LineSeries>-->
+                    </Grid>
+                    
+                </Canvas>
+                
+            </TabItem>
+        </TabControl>
+        <Label HorizontalAlignment="Right" Margin="0,9,15,0" Name="lblClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Top" MouseDown="lblClose_MouseDown" Width="100" Height="23.277">Close</Label>        
+        
+        <Image VerticalAlignment="Bottom"  Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" HorizontalAlignment="Right"  Margin="0,0,790,40" Grid.Column="2" />
+        <Label VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" Name="lblMandatory1" Content="Mandatory Fields" HorizontalAlignment="Right" Margin="0,0,690,33" Grid.Column="2"/>
+        
+        <Button Style="{DynamicResource ImageButton}" Height="25"  HorizontalAlignment="Right" Margin="0,0,41,31" x:Name="btnSave" VerticalAlignment="Bottom" Width="100"  Click="btnSave_Click" />
+    </Grid>
+</Window>
+
+        
+       
+    

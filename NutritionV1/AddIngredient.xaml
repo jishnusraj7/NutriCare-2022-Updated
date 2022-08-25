@@ -1,0 +1,322 @@
+﻿<Page x:Class="NutritionV1.AddIngredient"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Nutrition="clr-namespace:NutritionV1"      
+    Title="AddIngredient"  Loaded="Page_Loaded" Margin="20,10,20,20">
+    
+    <Page.Resources>
+        <DataTemplate x:Key="idTemplate">
+            <Label Name="lblID" FontSize="12" FontWeight="Normal" Content="{Binding NutrientID}" />
+        </DataTemplate>
+        
+        <DataTemplate x:Key="NutrientParamTemplate">
+            <TextBlock Name="txtNParam" Height="20" Width="Auto" Text="{Binding NutrientParam}"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="nutrientvalueTemplate">
+            <TextBox Style="{DynamicResource TextStyle}" Name="txtNutriValue" Width="75" FontSize="12" FontWeight="Normal" MaxLength="5" Text="{Binding NutrientValue}" PreviewKeyDown="txtNutriValue_PreviewKeyDown"  GotFocus="txtNutriValue_GotFocus"  Margin="-5,0" />
+        </DataTemplate>
+        
+        <DataTemplate x:Key="aminovalueTemplate">
+            <TextBox Style="{DynamicResource TextStyle}" Name="txtAminoValue" Width="75" FontSize="12" FontWeight="Normal" MaxLength="5" Text="{Binding NutrientValue}" PreviewKeyDown="txtAminoValue_PreviewKeyDown"  GotFocus="txtAminoValue_GotFocus"  Margin="-5,0"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="fattyvalueTemplate">
+            <TextBox Style="{DynamicResource TextStyle}" Name="txtFattyValue" Width="75" FontSize="12" FontWeight="Normal" MaxLength="5" Text="{Binding NutrientValue}" PreviewKeyDown="txtFattyValue_PreviewKeyDown"  GotFocus="txtFattyValue_GotFocus"  Margin="-5,0"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="valueDisplayTemplate">
+            <TextBlock Name="txtNValueDisplay" Height="20" Width="75" Text="{Binding NutrientValue}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ayurIdTemplate">
+            <Label Name="txtAyurID" FontSize="12" FontWeight="Normal" Content="{Binding AyurID}" Visibility="Hidden" />
+        </DataTemplate>
+        
+        <DataTemplate x:Key="nameAyurTemplate">
+            <TextBox Name="txtAValue" FontSize="12" FontWeight="Normal" MaxLength="100" Text="{Binding AyurValue}"  IsReadOnly="True"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="nameAyurREGTemplate">
+            <TextBox Name="txtAValueREG" FontSize="12" FontWeight="Normal" MaxLength="100" Text="{Binding AyurValueREG}"  IsReadOnly="True"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="unitTemplate">
+            <TextBlock Text="{Binding NutrientUnit}" Height="20"/>
+        </DataTemplate>
+                
+        <DataTemplate x:Key="unitIDTemplate">
+            <Label Name="lblUnitID" Content="{Binding StandardUnitID}" />
+        </DataTemplate>
+        
+        <DataTemplate x:Key="unitNameTemplate">
+            <CheckBox Name="chkStandardUnit" Content="{Binding StandardUnitName}" IsChecked="{Binding Path=IsApplicable}" Foreground="Black" Checked="chkStandardUnit_Checked" Unchecked="chkStandardUnit_Unchecked" PreviewKeyDown="chkStandardUnit_PreviewKeyDown" GotFocus="chkStandardUnit_GotFocus" />
+        </DataTemplate>
+        
+        <DataTemplate x:Key="unitNameDisplayTemplate">
+            <TextBlock Name="txtStandardUnit" Text="{Binding StandardUnitName}"/>
+        </DataTemplate>
+                
+        <DataTemplate x:Key="quantityTemplate">
+            <TextBox Style="{DynamicResource TextStyle}" Name="txtQuantity" Text="{Binding StandardWeight}" Width="50" PreviewKeyDown="txtQuantity_PreviewKeyDown" GotFocus="txtQuantity_GotFocus" Margin="-5,0"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="quantityDisplayTemplate">
+            <TextBlock Name="txtQuantityDisplay" Width="Auto" Text="{Binding StandardWeight}"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="gramTemplate">
+            <TextBlock Name="txtGram" Text="gms" />
+        </DataTemplate>
+                
+        <DataTemplate x:Name="StatusDisplayTemplate" x:Key="StatusDisplayTemplate">
+            <TextBlock x:Name="txtStatus" Text="{Binding PropertyStatusName}" Width = "110"  Height="20"/>
+        </DataTemplate>
+        
+        <Nutrition:WidthConverter x:Key="WidthConverter" />
+    </Page.Resources>
+    
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0"  Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>            
+        </Grid>
+
+        <TabControl Margin="0,0,0,0" Name="tbAddIngredient" Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionChanged="tbAddIngredient_SelectionChanged">
+            <TabItem  x:Name="tbSub" Header="About" TabIndex="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <!--<RowDefinition Height="35"/>-->
+                        <RowDefinition Height="230"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="310"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>   
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Name="lblIngredientNameENG" Style="{DynamicResource LabelStyle}" Width="135" Margin="5,5,0,0" >Name of Ingredient</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" Height="25" Name="txtIngredientNameENG" Width="280" MaxLength="50"  Margin="0,5,0,0" TabIndex="0" AutoWordSelection="True" PreviewKeyDown="txtGeneral_PreviewKeyDown" TextChanged="txtIngredientNameENG_TextChanged" ></TextBox>
+                    <!--<ComboBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0"  Height="25" Name="cboIngredientName" Width="280" TabIndex="0" IsEditable="True" IsTextSearchEnabled="False" IsDropDownOpen="True" PreviewKeyDown="txtGeneral_PreviewKeyDown" LostFocus="cboIngredientName_LostFocus" />-->
+                    <!--<Nutrition:AutoComplete Grid.Column="1" Grid.Row="0" x:Name="cboIngredientName" HorizontalAlignment="Left" Height="25" Width="280" TabIndex="0" SelectedValuePath="ID" DisplayMemberPath="Name" PatternChanged="cboIngredientName_PatternChanged"/>-->
+                    <Image x:Name="imgStar1" Grid.Row="0" Grid.Column="1" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="280,5,0,0"/>
+                    <Button Grid.Column="2" Grid.Row="0" Name="btnEdit" Style="{DynamicResource ImageButton}" Click="btnEdit_Click" Content="Edit" HorizontalAlignment="Right" Width="100" Margin="0,10,0,0"/>
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Name="lblIngredientNameREG" Style="{DynamicResource LabelStyle}" Width="135" Margin="5,5,0,0" Visibility="Hidden">(Regional Name)</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Height="25" Name="txtIngredientNameREG" Width="280" FontSize="14" FontFamily="AnjaliOldLipi" MaxLength="50" TabIndex="1" PreviewKeyDown="txtGeneral_PreviewKeyDown"  Visibility="Hidden"></TextBox>                    
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Name="lblIngredientNameDisplay" Style="{DynamicResource LabelStyle}" Width="135" Margin="5,5,0,0" >Reg. Name in English</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Height="25" Name="txtIngredientNameDisplay" Width="280" MaxLength="50" TabIndex="2" AutoWordSelection="True" PreviewKeyDown="txtGeneral_PreviewKeyDown" ></TextBox>
+                    <Image x:Name="imgStar2" Grid.Row="2" Grid.Column="1" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="280,0,0,0"/>
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" Width="135" Style="{DynamicResource LabelStyle}" Name="lblEthnic" Margin="5,5,0,0">Ethnicity</Label>
+                    <ComboBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3"  Height="25" Name="cboEthnic" Width="280" TabIndex="3" IsEditable="True" IsTextSearchEnabled="True" PreviewKeyDown="txtGeneral_PreviewKeyDown" />
+                    <Image x:Name="imgStar3" Grid.Row="3" Grid.Column="1" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="280,0,0,0"/>
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="4" Name="lblIngredientType" Style="{DynamicResource LabelStyle}"  Width="135" Margin="5,5,0,0">Food Type</Label>
+                    <ComboBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4"  Height="25" Name="cboIngredientType" Width="280" TabIndex="4" IsEditable="True" IsTextSearchEnabled="True" PreviewKeyDown="txtGeneral_PreviewKeyDown" />
+                    <Image x:Name="imgStar4" Grid.Row="4" Grid.Column="1" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="280,0,0,0"/>
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="5" Name="lblScrapRate" Style="{DynamicResource LabelStyle}"  Width="135" Margin="5,5,0,0" Visibility="Visible">Ready To Cook</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Height="25" Name="txtScrapRate" Width="50" MaxLength="5" PreviewKeyDown="txtNumber_PreviewKeyDown" TabIndex="5" Visibility="Visible"  />
+                    <Label HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Name="lblRCPercentage" Style="{DynamicResource LabelStyle}"  Width="30" Margin="50,5,0,0" Visibility="Visible" HorizontalContentAlignment="Left">%</Label>
+                    <Label HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Name="lblWeightChange" Style="{DynamicResource LabelStyle}"  Width="135" Margin="80,5,0,0" Visibility="Visible" HorizontalContentAlignment="Right">Ready To Serve</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Height="25" Name="txtWeightChange" Width="50" MaxLength="5" PreviewKeyDown="txtNumber_PreviewKeyDown" TabIndex="6" Margin="230,0,0,0" Visibility="Visible" />
+                    <Label HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Name="lblRSPercentage" Style="{DynamicResource LabelStyle}"  Width="30" Margin="280,5,0,0" Visibility="Visible" HorizontalContentAlignment="Left">%</Label>
+                    <CheckBox HorizontalAlignment="Left" Grid.Column="1" Margin="0,0,0,0" Grid.Row="5"  VerticalAlignment="Center" Name="chkAllergic"   Width="136" TabIndex="7" Content=" Allergic" Visibility="Hidden"></CheckBox>
+                    <Button Grid.Column="3" Grid.Row="5" Name="btnAddImage" Style="{DynamicResource AddButton}" Click="btnAddImage_Click" Content="Upload Image" HorizontalAlignment="Right" Width="120" Margin="0,5,30,5"/>
+                    <Nutrition:ImageDisplay Grid.Column="3" Grid.Row="0" Grid.RowSpan="5" x:Name="imgDisplay" Margin="5,5,5,5" VerticalAlignment="Top" HorizontalAlignment="Right" Height="150" Width="170" />
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="6" Style="{DynamicResource LabelStyle}" Name="lblDescriptionREG" Margin="5,5,0,0" Visibility="Collapsed">Description (Regional)</Label>
+                    <TextBox AcceptsReturn="True" Background="White" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Focusable="True" Name="txtDescriptionREG" FontSize="14" FontFamily="AnjaliOldLipi" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" Margin="0,2,5,2"  HorizontalContentAlignment="Left" VerticalContentAlignment="Top" GotFocus="txtGeneral_GotFocus" Visibility="Collapsed"/>
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="6"  Style="{DynamicResource LabelStyle}" Name="lblDescriptionENG" Margin="5,5,0,0">Description</Label>
+                    <TextBox Background="White" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Focusable="True" Name="txtDescriptionENG" AcceptsReturn="True" TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  VerticalScrollBarVisibility="Visible" Margin="0,2,5,2" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" TabIndex="8" GotFocus="txtGeneral_GotFocus" PreviewKeyDown="txtDescriptionENG_PreviewKeyDown" />
+                    <TextBlock Margin="10,10,0,0" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Grid.RowSpan="2" Name="txtHelp" Style="{DynamicResource TextBlockStyle}" LineHeight="17"  />
+                    <Rectangle Margin="5,0,5,5" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" Name="recPeriod" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" />
+                    <Grid Margin="7,2,7,7" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="22" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="1" Grid.Column="0" Style="{DynamicResource LabelStyle}"  Name="lblPeriod" Margin="5,0,0,0">Period of Expiry</Label>
+                        <Label Grid.Row="0" Grid.Column="1" Style="{DynamicResource LabelStyle}"  Name="lblShelf" >Shelf Life</Label>
+                        <TextBox Grid.Row="1" Grid.Column="1"  Name="txtShelfLife" MaxLength="3" PreviewKeyDown="txtNumber_PreviewKeyDown" Margin="2,2,2,2" />
+                        <Label Grid.Row="1" Grid.Column="2" Style="{DynamicResource LabelStyle}"  Name="lblDaysShelf" Width="75"  Margin="2,2,2,2" >Days</Label>
+                        
+                        <Label Grid.Row="0" Grid.Column="3" Style="{DynamicResource LabelStyle}"  Name="lblRefrigerated" >Refrigerated Life</Label>
+                        <TextBox Grid.Row="1" Grid.Column="3" Name="txtRefrigeratedLife" MaxLength="3" PreviewKeyDown="txtNumber_PreviewKeyDown" Margin="2,2,2,2" />
+                        <Label Grid.Row="1" Grid.Column="4" Style="{DynamicResource LabelStyle}"  Name="lblDaysRefrigerated"  Margin="2,2,2,2" >Days</Label>
+                        
+                        <Label Grid.Row="0" Grid.Column="5" Style="{DynamicResource LabelStyle}"  Name="lblFrozen" >Frozen Life</Label>
+                        <TextBox Grid.Row="1" Grid.Column="5"  Name="txtFrozenLife" MaxLength="3" PreviewKeyDown="txtNumber_PreviewKeyDown" Margin="2,2,2,2" />
+                        <Label Grid.Row="1" Grid.Column="6"  Style="{DynamicResource LabelStyle}"  Name="lblDaysFrozen"  Margin="2,2,2,2" >Days</Label>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem  x:Name="tbMain" Header="Nutrients" TabIndex="9">
+                <Grid Margin="2,2,2,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Margin="2,2,2,2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="recSearch" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" />
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Label Style="{DynamicResource LabelStyle}" Name="lblSearch" Content="Select Nutrients" Margin="2,8.362,0,8.362" />
+                        <!--<TextBox Grid.Column="1" Grid.Row="0" Name="txtSearch" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="2,2,2,2" TextChanged="txtSearch_TextChanged" AllowDrop="True" />-->
+                        <ComboBox Grid.Column="1" Grid.Row="0" Name="cboSearch" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="2,2,2,2" AllowDrop="True" IsEditable="True" SelectionChanged="cboSearch_SelectionChanged" TabIndex="10" PreviewKeyDown="cboSearch_PreviewKeyDown"  FontSize="11" />
+                    </Grid>
+                                        
+                    <Rectangle Margin="2,2,2,2" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" Name="recNutrients" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" />
+                    <Label Style="{DynamicResource LabelStyle}" Name="lblNutrients" Grid.Row="1" Grid.Column="0" Content="Main Nutrient Values of raw ingredient per 100gm" Margin="5,5,5,0" />
+                    <ListView  Grid.Row="2" MinWidth="340" Grid.Column="0" Grid.RowSpan="4" Name="lvNutrient" ItemsSource="{Binding}" BorderThickness="1" BorderBrush="Black" Height="Auto" VerticalAlignment="Stretch" Margin="5,5,5,5" TabIndex="11" LostFocus="lvList_LostFocus" KeyboardNavigation.TabNavigation="Continue">
+                        <ListBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                        </ListBox.Resources>
+                        <ListView.View>                            
+                            <GridView x:Name="gvNutrients" ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}" AllowsColumnReorder="False" >
+                                <Nutrition:FixedWidthColumn x:Name="gvNutrientColID" Header="ID" CellTemplate="{StaticResource idTemplate}" FixedWidth="0" />
+                                <Nutrition:FixedWidthColumn x:Name="gvNutrientColName" Header="Nutrient Name" FixedWidth="225" CellTemplate="{StaticResource NutrientParamTemplate}"/>
+                                <Nutrition:FixedWidthColumn x:Name="gvNutrientColNameValue" Header="Value" FixedWidth="65" CellTemplate="{StaticResource nutrientvalueTemplate}"/>
+                                <Nutrition:FixedWidthColumn x:Name="gvNutrientColUnitValue" Header="Unit" FixedWidth="50" CellTemplate="{StaticResource unitTemplate}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    
+                                        
+                    <Rectangle Margin="2,2,2,2" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Name="recAminoAcids" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" />
+                    <Label Style="{DynamicResource LabelStyle}" Name="lblAminoAcids" Grid.Row="1" Grid.Column="1" Content="Amino Acid Values of raw ingredient  per 100gm" Margin="5,5,5,0" />
+                    <ListView Grid.Row="2" Grid.Column="1" Name="lvAmino" ItemsSource="{Binding}" BorderThickness="1" BorderBrush="Black" Height="Auto" VerticalAlignment="Stretch" Margin="5,5,5,5" TabIndex="13" LostFocus="lvList_LostFocus" KeyboardNavigation.TabNavigation="Continue">
+                        <ListBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                        </ListBox.Resources>
+                        <ListView.View>
+                            <GridView x:Name="gvAminoAcid" ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}" AllowsColumnReorder="False">
+                                <Nutrition:FixedWidthColumn x:Name="gvAminoAcidColID" Header="ID" FixedWidth="0" CellTemplate="{StaticResource idTemplate}"/>
+                                <Nutrition:FixedWidthColumn x:Name="gvAminoAcidColName" Header="Nutrient Name"  FixedWidth="225" CellTemplate="{StaticResource NutrientParamTemplate}"/>
+                                <Nutrition:FixedWidthColumn x:Name="gvAminoAcidColNameValue" Header="Value" FixedWidth="65" CellTemplate="{StaticResource aminovalueTemplate}"/>
+                                <Nutrition:FixedWidthColumn x:Name="gvAminoAcidColUnitValue" Header="Unit" FixedWidth="50" CellTemplate="{StaticResource unitTemplate}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <Rectangle Margin="2,2,2,2" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Name="recFattyAcids" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" />
+                    <Label Style="{DynamicResource LabelStyle}" Name="lblFattyAcids" Grid.Row="3" Grid.Column="1" Content="Fatty Acid Values of raw ingredient  per 100gm" Margin="5,5,5,0" />
+                    <ListView Grid.Row="4" Grid.Column="1" Name="lvFattyAcid" ItemsSource="{Binding}" BorderThickness="1" BorderBrush="Black" Height="Auto" VerticalAlignment="Stretch" Margin="5,5,5,5" TabIndex="12" LostFocus="lvList_LostFocus" KeyboardNavigation.TabNavigation="Continue">
+                        <ListBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                        </ListBox.Resources>
+                        <ListView.View>
+                            <GridView x:Name="gvFattyAcid" ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}" AllowsColumnReorder="False">
+                                <Nutrition:FixedWidthColumn x:Name="gvFattyAcidColID" Header="ID" FixedWidth="0" CellTemplate="{StaticResource idTemplate}" />
+                                <Nutrition:FixedWidthColumn x:Name="gvFattyAcidColName" Header="Nutrient Name"  FixedWidth="225" CellTemplate="{StaticResource NutrientParamTemplate}"/>
+                                <Nutrition:FixedWidthColumn x:Name="gvFattyAcidColNameValue" Header="Value" FixedWidth="65" CellTemplate="{StaticResource fattyvalueTemplate}"/>
+                                <Nutrition:FixedWidthColumn x:Name="gvFattyAcidColUnitValue" Header="Unit" FixedWidth="50" CellTemplate="{StaticResource unitTemplate}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem  Name="tbAyurvedic"  Header="Health Benefits"  TabIndex="14">
+                <Grid x:Name="grdHealth" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition />
+                        <RowDefinition Height="30"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="600" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Margin="2,2,2,2" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Name="recHealthValue" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" />                    
+                    <Label Grid.Row="0" Grid.Column="0" Name="lblHealthValueAYUR" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="5,5,5,0"  >Nutritional Analysis</Label>
+                    <TextBox Grid.Row="1" Grid.Column="0" Name="txtHealthValueAYUR" Background="White" Focusable="True" AcceptsReturn="True"  TextWrapping="Wrap" FontSize="14" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Top" Margin="7,7,7,7"  TabIndex="15" GotFocus="txtGeneral_GotFocus" />
+                    <Label Grid.Row="2" Grid.Column="0" Name="lblHealthValueGENR" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="5,5,5,0"  >Health Values</Label>
+                    <TextBox Grid.Row="3" Grid.Column="0" Name="txtHealthValueGENR" Background="White" Focusable="True" AcceptsReturn="True"  TextWrapping="Wrap" FontSize="14"  VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Top" Margin="7,7,7,7" TabIndex="16" GotFocus="txtGeneral_GotFocus" PreviewKeyDown="txtHealthValueGENR_PreviewKeyDown"/>
+                    
+                    <Rectangle Margin="2,2,2,2" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Name="recOthers" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" />
+                    <Label Margin="5,5,5,0" Grid.Row="0" Grid.Column="1"  Style="{DynamicResource LabelStyle}" Name="lblStandardUnit" Content="Standard Units"/>
+                    <Image x:Name="imgStar5" Grid.Row="0" Grid.Column="1" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="90,0,0,0" HorizontalAlignment="Left"  />
+                    <ListView Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Margin="5,5,5,5" Name="lvStandardUnit" ItemsSource="{Binding}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TabIndex="20"  LostFocus="lvList_LostFocus" KeyboardNavigation.TabNavigation="Continue">
+                        <ListView.View>
+                            <GridView x:Name="gvStandardUnit" ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}" AllowsColumnReorder="False">
+                                <Nutrition:FixedWidthColumn x:Name="gvUnitIDCol" FixedWidth="0" CellTemplate="{StaticResource unitIDTemplate}"/>
+                                <Nutrition:FixedWidthColumn x:Name="gvUnitNameCol" Header="Standard Unit" CellTemplate="{StaticResource unitNameTemplate}" FixedWidth="240" />
+                                <Nutrition:FixedWidthColumn x:Name="gvQuantityCol" Header="Weight" CellTemplate="{StaticResource quantityTemplate}" FixedWidth="50" />
+                                <Nutrition:FixedWidthColumn x:Name="gvGramCol" Header="Unit" CellTemplate="{StaticResource gramTemplate}" FixedWidth="50" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>                     
+        </TabControl>
+        <Grid x:Name="grdSave" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>            
+            <Image  x:Name="imgStarMain" Grid.Row="0" Grid.Column="0" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" HorizontalAlignment="Left" Margin="5,0,0,0" />
+            <Label x:Name="lblMandatory" Grid.Row="0" Grid.Column="0" Style="{DynamicResource LabelStyle}" Content="Mandatory Fields" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"/>
+            <Button Style="{DynamicResource ImageButton}" Grid.Column="0" Grid.Row="0" Height="25" HorizontalAlignment="Right"  Name="btnSave" VerticalAlignment="Center" Width="100" Click="btnSave_Click" TabIndex="21" Margin="0,0,5,0" >_Save</Button>
+            <Button Style="{DynamicResource DeleteButton}" Grid.Column="1" Grid.Row="0" Height="25" HorizontalAlignment="Right"  Name="btnDelete" VerticalAlignment="Center" Width="100" Click="btnDelete_Click" TabIndex="22" Margin="0,0,5,0">_Delete</Button>
+            <Button Style="{DynamicResource ImageButton}" Grid.Column="2" Grid.Row="0" Height="25" HorizontalAlignment="Right"  Name="btnPrint" VerticalAlignment="Center" Width="100" Click="btnPrint_Click" TabIndex="22" Margin="0,0,5,0">_Print</Button>
+            <Button Style="{DynamicResource ImageButton}" Grid.Column="4" Grid.Row="0" Height="25" HorizontalAlignment="Right"  Name="btnBack" VerticalAlignment="Center" Width="100" Click="btnBack_Click"  TabIndex="34" Margin="0,0,5,0" >Back</Button>
+        </Grid>
+        <!--<Grid x:Name="grdAdd" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="5,0,0,0" >
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>                
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Name="btnAdd" Style="{DynamicResource AddLabel}" MouseDown="btnAdd_Click" Content="Add Ingredient" TabIndex="29"/>
+        </Grid>-->
+    </Grid>
+</Page>

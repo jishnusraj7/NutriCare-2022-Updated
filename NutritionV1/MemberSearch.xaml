@@ -1,0 +1,380 @@
+﻿<Page x:Class="NutritionV1.MemberSearch"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dg="http://schemas.microsoft.com/wpf/2008/toolkit"      
+    xmlns:Nutrition="clr-namespace:NutritionV1"
+    Title="Member Search" Loaded="Page_Loaded">
+    
+    <Page.Resources>
+        <Storyboard x:Key="MouseOver" x:Name="MouseEnters">
+            <DoubleAnimationUsingKeyFrames  BeginTime="00:00:00"  Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" >
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1.266"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"  Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1.266"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"  Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="-0.7"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"  Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="-0.112"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MouseLeave" x:Name="MouseLeaves">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"  Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.6000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"  Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.6000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"  Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FlipBoard">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="10.538"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="-127"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="10.6"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="-120"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:01.5000000" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeIn">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MainContent" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeOut">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MainContent" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ExpandMyGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MyGrid" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1000"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CollapseMyGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MyGrid" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1000"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>        
+        
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border BorderBrush="DarkGray" BorderThickness="1" Margin="10" Background="White">
+                            <Border.BitmapEffect>
+                                <DropShadowBitmapEffect Color="DarkGray" Direction="315" ShadowDepth="5" Softness="0.25" Opacity="0.5"/>
+                            </Border.BitmapEffect>
+                            <Grid Margin="5" Cursor="Hand" ToolTip="{Binding Path=MemberName}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Row="0" Grid.Column="0" Cursor="Hand" x:Name="spMember" MouseDown="spMember_MouseDown" ToolTip="{Binding Path=MemberName}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Name="Image" Grid.Row="0" Grid.Column="0" Source="{Binding Path=ImagePath}" Width="150" Height="100" />
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Foreground="Black" FontSize="11" Name="Name" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="2" Text="{Binding Path=MemberName}" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Foreground="Black" FontSize="11" Name="Sex" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="2" Text="{Binding Path=SexName}" />
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Foreground="Black" FontSize="11" Name="Age" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="2" Text="{Binding Path=Age}" />
+                                </Grid>
+                                <TextBlock Grid.Row="4" Grid.Column="0" TextDecorations="Underline" Foreground="DarkBlue" FontSize="11" Text="Change" HorizontalAlignment="Center" VerticalAlignment="Top" Background="Transparent" Cursor="Hand" MouseDown="Image_MouseDown" />
+                                <Label Grid.Row="1" Grid.Column="0" Name="ID" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden" Content="{Binding Path=MemberID}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        </Style>                                        
+    </Page.Resources>
+    
+    <Grid Name="grdMemberSearch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="110" />                
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="90" />
+                    <RowDefinition Height="10" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="3" Margin="0,3,0,0" Name="rectangle5" RadiusX="23" RadiusY="23" Stroke="Black" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                
+                <Label HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1" Height="25" Name="lblType" Style="{DynamicResource LabelStyle}" HorizontalContentAlignment="Right"  Width="100">Member Name</Label>
+                <TextBox Height="25" Width="200" Grid.Column="2" Grid.Row="1"  Style="{DynamicResource TextStyle}"  Name="txtSearch" TabIndex="2" MaxLength="50" VerticalAlignment="Center" HorizontalAlignment="Left" />                                
+                <!--<Button Style="{DynamicResource SearchButton}" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Margin="5,0,0,0" Height="25" Name="btnSearch" Width="100" HorizontalAlignment="Left" Click="btnSearch_Click" TabIndex="7" >Search</Button>-->
+                <StackPanel x:Name="spSearch" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,0" Width="180" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand" MouseDown="spSearch_MouseDown"  Opacity="100">
+                    <Image Margin="5,5,0,0" Source="images\SearchButton.png" ToolTip="Add Member" Height="30" Width="30" x:Name="imgSearch" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <Label Margin="40,-30,0,0" Height="25" Name="lblSearch" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">Search</Label>
+                </StackPanel>
+                <!--<Button Style="{DynamicResource AddButton}" Grid.Column="5" Grid.Row="1" Margin="0,0,25,0" Height="25" Name="btnNew" Width="100" HorizontalAlignment="Right" Click="btnNew_Click"  TabIndex="7" >Add New</Button>-->
+
+                <!--<Border Grid.Column="5" Grid.Row="1" Margin="0,0,20,0" Width="190" Height="60" CornerRadius="7" Opacity="100" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,0.5" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                            <GradientStop Color="#FF999999" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Border.Background>-->
+                <StackPanel x:Name="spAddNew" Grid.Column="5" Grid.Row="1" Margin="0,0,20,0" Width="180" Height="40" HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="Hand" MouseDown="spAddNew_MouseDown" Opacity="100">
+                    <Image Margin="5,5,0,0" Source="images\AddItem.png" ToolTip="Add Member" Height="30" Width="30" x:Name="imgMember" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <Label Margin="40,-30,0,0" Height="25" Name="lblAdd" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">New Member</Label>
+                </StackPanel>
+                <!--</Border>-->
+            </Grid>
+
+            <Rectangle Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="0,3,0,0" RadiusX="23" RadiusY="23" Stroke="Black" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <Grid x:Name="IconGrid" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="" x:Name="lblTotalItemsList" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="Auto" Foreground="White" FontSize="12" Margin="0,0,0,0"/>
+                <ListBox Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="lvMembers" Background="Transparent" Margin="10,0,10,10">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True" >
+                                    <Setter Property="Background" Value="White" />
+                                </Trigger>
+                            </Style.Triggers>
+                            <Style.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Black"/>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+                            </Style.Resources>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Grid>
+
+            <Rectangle Grid.Column="0" Grid.Row="1" Margin="0,3,0,0" RadiusX="23" RadiusY="23" Stroke="Black" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" />
+
+            <Grid x:Name="MyGrid" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Background="Transparent">
+                <Grid.RowDefinitions>                    
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Margin="20,20,20,20" Stroke="#FFD0E7F2" StrokeThickness="3" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Name="recMy1" RadiusX="17.5" RadiusY="17.5" Style="{DynamicResource AnimationPage}" >
+                    <Rectangle.Effect>
+                        <DropShadowEffect x:Name="Dshadow1" BlurRadius="15" ShadowDepth="0" Color="Black"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+
+                <Grid Margin="20,20,20,20" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Foreground="Black" FontWeight="Bold" Cursor="Hand" HorizontalAlignment="Right" Margin="0,0,5,0" Name="lblMyClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Center" MouseDown="lblMyClose_MouseDown">Close</Label>
+                    <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>                            
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="300"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Nutrition:ImageDisplay x:Name="imgDisplay" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="240" Height="240" Grid.Column="0" Grid.Row="1" Grid.RowSpan="8" Margin="2,2,2,2" />
+
+                        <Label Grid.Column="1" Grid.Row="1" Width="100" FontWeight="Bold" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Name="lblMemberName">Member Name</Label>
+                        <TextBlock Grid.Column="2" Grid.Row="1" Height="23" Name="txtMemberID" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed"/>
+                        <TextBlock Grid.Column="2" Grid.Row="1" FontWeight="Bold" FontSize="17" Foreground="Chocolate" Height="23" Name="txtMemberName" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
+                        <Label Grid.Column="1" Grid.Row="2" FontWeight="Bold" FontSize="12" HorizontalAlignment="Left" Width="100" VerticalAlignment="Top" Name="lblDOB">Age</Label>
+                        <TextBlock Grid.Column="2" Grid.Row="2" FontWeight="Bold" FontSize="17" Foreground="Chocolate" Height="23" Name="txtAge" VerticalAlignment="Top" HorizontalAlignment="Left" Width="50"/>
+                        <Label Grid.Column="1" Grid.Row="3" FontWeight="Bold" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Name="lblSex">Sex</Label>
+                        <TextBlock Grid.Column="2" Grid.Row="3" FontWeight="Bold" FontSize="17" Foreground="Chocolate" Height="23" HorizontalAlignment="Left" x:Name="txtSex" VerticalAlignment="Top" Width="130"/>
+                        <TextBlock Grid.Column="2" Grid.Row="3"  Height="23" HorizontalAlignment="Left" x:Name="txtSexID" VerticalAlignment="Top" Visibility="Collapsed"/>
+
+                        <Label Grid.Column="1" Grid.Row="4" FontWeight="Bold" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Name="lblHeight">Height</Label>
+                        <TextBlock Grid.Column="2" Grid.Row="4" FontWeight="Bold" FontSize="17" Foreground="Chocolate" Height="23" Name="txtHeight" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" />
+                        <Label Grid.Column="1" Grid.Row="5" FontWeight="Bold" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="143" Name="lblWeight">Weight</Label>
+                        <TextBlock Grid.Column="2" Grid.Row="5" FontWeight="Bold" FontSize="17" Foreground="Chocolate" Height="23" HorizontalAlignment="Left" Name="txtWeight" VerticalAlignment="Top" Width="100" />
+
+                        <Label Grid.Column="1" Grid.Row="6" FontWeight="Bold" FontSize="12" HorizontalAlignment="Left" Width="100" VerticalAlignment="Top" Name="lblWaist">Waist (In cms)</Label>
+                        <TextBlock Grid.Column="2" Grid.Row="6" FontWeight="Bold" FontSize="17" Foreground="Chocolate" Height="23" HorizontalAlignment="Left" Name="txtWaist" VerticalAlignment="Top" Width="100" />
+                        <Label Grid.Column="1" Grid.Row="7" FontWeight="Bold" FontSize="12" HorizontalAlignment="Left" Width="100" Name="lblBloodGroup">Blood Group</Label>
+                        <TextBlock Grid.Column="2" Grid.Row="7" FontWeight="Bold" FontSize="17" Foreground="Chocolate" Height="23" Name="txtBloodGroup" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"/>
+                        <Label Grid.Column="1" Grid.Row="8" FontWeight="Bold" FontSize="12" Name="lblLifeStyleMain" Width="100" HorizontalAlignment="Left">Life Style</Label>
+                        <TextBlock Grid.Column="2" Grid.Row="8" FontWeight="Bold" FontSize="17" Foreground="Chocolate" Height="23" Name="txtLifeStyle" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <TextBlock Grid.Column="2" Grid.Row="8" Height="23" Name="txtLifeStyleID" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed"/>
+
+                        <Label Grid.Column="1" Grid.Row="9" FontWeight="Bold" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Name="lblBodyType">Body Type</Label>
+                        <TextBlock Grid.Column="2" Grid.Row="9" FontWeight="Bold" FontSize="17" Foreground="Chocolate" Height="23" Name="txtBodyType" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" />
+                        <TextBlock Grid.Column="2" Grid.Row="9" Height="23" Name="txtBodyTypeID" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" />                        
+                        
+                        <Grid Grid.Column="3" Grid.Row="1" Grid.RowSpan="18" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="10" />                                
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Grid.ColumnSpan="4" Name="recBMI" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource FlipPage}" />
+                            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="25" Name="lblBMICaption" Style="{DynamicResource LabelStyle}" Content="Body Mass Index" FontSize="11" Foreground="Yellow"/>
+                            <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                                <RadioButton Margin="5,7,0,0" Height="15" HorizontalAlignment="Left" Name="rdAsian" VerticalAlignment="Center" FontSize="12" Checked="rdAsian_Checked" />
+                                <Label Margin="15,-20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" Height="25" Width="50" Name="lblAsian" Style="{DynamicResource LabelStyle}" Content="Asian" FontSize="12" Foreground="White"/>
+                                <RadioButton Margin="90,-25,0,0" Height="15" HorizontalAlignment="Left" Name="rdWHO" VerticalAlignment="Center" FontSize="12" Checked="rdWHO_Checked" />
+                                <Label Margin="100,-25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" Height="25" Name="lblWHO" Style="{DynamicResource LabelStyle}" Content="W.H.O" FontSize="12" Foreground="White"/>
+                            </StackPanel>
+                            <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="25" Name="lblBMI" Style="{DynamicResource LabelStyle}" Content="BMI " FontSize="11" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="50,0,0,0" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="22" Name="txtBMIDisplay" Background="White" Foreground="Black" FontWeight="Bold" FontSize="14"/>
+                            <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="25" Name="lblRisk" Style="{DynamicResource LabelStyle}" Content="Risk " FontSize="11" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="50,0,0,0" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="22" Name="txtRisk" Background="White" Foreground="Black" FontWeight="Bold" FontSize="14" />
+                            <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="25" Name="lblStatus" Style="{DynamicResource LabelStyle}" Content="Status " FontSize="11" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="50,0,0,0" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="22" Name="txtWeightStatus" Background="White" Foreground="Black" FontWeight="Bold" FontSize="14"/>
+
+                            <Rectangle Grid.Column="0" Grid.Row="6" Grid.RowSpan="3" Grid.ColumnSpan="4" Name="recIBW" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource FlipPage}" />
+                            <Label Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="25" Name="lblIBWCaption" Style="{DynamicResource LabelStyle}" Content="Ideal Body Weight" FontSize="11" Foreground="Yellow"/>
+                            <StackPanel Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2">
+                                <RadioButton Margin="5,7,0,0"  Height="15" HorizontalAlignment="Left" Name="rdBMIBased" VerticalAlignment="Center" FontSize="12" Checked="rdBMIBased_Checked" />
+                                <Label Margin="15,-20,0,0" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" Height="25" Width="80" Name="lblBMIbased" Style="{DynamicResource LabelStyle}" Content="BMI Based" FontSize="12" Foreground="White"/>
+                                <RadioButton Margin="90,-25,0,0" Height="15" HorizontalAlignment="Left" Name="rdHamwi" VerticalAlignment="Center" FontSize="12" Checked="rdHamwi_Checked" />
+                                <Label Margin="100,-25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" Height="25" Name="lblHamwi" Style="{DynamicResource LabelStyle}" Content="Hamwi" FontSize="12" Foreground="White"/>
+                            </StackPanel>
+                            <Label Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="25" Name="lblIBW" Style="{DynamicResource LabelStyle}" Content="IBW " FontSize="11" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" Margin="50,0,0,0"  TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="22" Name="txtIBW" Background="White" Foreground="Black" FontWeight="Bold" FontSize="14" />
+
+                            <Rectangle Grid.Column="0" Grid.Row="10" Grid.RowSpan="4" Grid.ColumnSpan="4" Name="recDCR" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource FlipPage}" />
+                            <StackPanel Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2">
+                                <RadioButton Margin="5,7,0,0" Height="15" HorizontalAlignment="Left" Name="rdHBFormula" VerticalAlignment="Center" FontSize="12" Checked="rdHBFormula_Checked" />
+                                <Label Margin="15,-20,0,0" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" Height="25" Width="50" Name="lblHB" Style="{DynamicResource LabelStyle}" Content="HB" FontSize="12" Foreground="White"/>
+                                <RadioButton Margin="90,-25,0,0" Height="15" HorizontalAlignment="Left" Name="rdManual" VerticalAlignment="Center" FontSize="12" Checked="rdManual_Checked" />
+                                <Label Margin="100,-25,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" Height="25" Name="lblManual" Style="{DynamicResource LabelStyle}" Content="Manual" FontSize="12" Foreground="White"/>
+                            </StackPanel>
+
+                            <Label Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="25" Name="lblDCR" Style="{DynamicResource LabelStyle}" Content="Daily Calorie Requirement" FontSize="11" Foreground="Yellow"/>
+                            <Label Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="25" Name="lblKCalorieCaption" Style="{DynamicResource LabelStyle}" Content="Select " FontSize="11" Foreground="White"/>
+                            <ComboBox Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Margin="50,0,0,0" Style="{DynamicResource ComboStyle}" Height="23" Name="cbKCalorie" VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" SelectionChanged="cbKCalorie_SelectionChanged" />
+                            <Label Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Margin="100,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="23" Content="Kilo Calorie" Foreground="White" Name="lblKCal"/>
+                            <Label Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="25" Name="lblCalorieCaption" Style="{DynamicResource LabelStyle}" Content="Calorie " FontSize="11" Foreground="White"/>
+                            <TextBlock Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="2" Margin="50,0,0,0" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="22" Name="txtDCR" Background="White" Foreground="Black" FontWeight="Bold" FontSize="14" />
+                        </Grid>
+
+                        <Grid Margin="5,5,5,10" Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="4" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Rectangle Name="rectangle2" RadiusX="23" RadiusY="23" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                            <TextBlock Margin="7,7,7,7" FontSize="12" FontWeight="Bold" Name="txtSource" TextWrapping="Wrap" />
+                        </Grid>
+                        
+                    </Grid>
+                </Grid>                                
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

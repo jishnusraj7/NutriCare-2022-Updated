@@ -1,0 +1,73 @@
+﻿<Window x:Class="NutritionV1.PlanSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+    xmlns:Nutrition="clr-namespace:NutritionV1"
+    Title="PlanSelector" Height="230" Width="280" AllowsTransparency="True" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" Icon="/Images/AppIcon.ico" Loaded="Window_Loaded">
+    
+    <Border Background="{DynamicResource WindowGradientBrush}" 
+                CornerRadius="5,5,5,5" BorderThickness="2,2,2,2" 
+                BorderBrush="{DynamicResource WindowDarkSolidBrush}">
+        
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <ContentControl Style="{DynamicResource WindowTitleContentControl}" 
+                                Content="Select Your Plan" 
+                                MouseLeftButtonDown="txtTitle_MouseLeftButtonDown" />
+        
+        <Label Visibility="Hidden" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,0,0" Name="lblClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Top" MouseDown="lblClose_MouseDown" Width="70" Height="25">Close</Label>
+        <Image Source="../../Images/Close.png" Stretch="Fill" Height="17" Width="17" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" Margin="0,10,15,0" MouseDown="lblClose_MouseDown"/>
+        
+            <Grid Grid.Row="1" Background="{DynamicResource WindowDefaultGradientBrush}">
+            <Grid.RowDefinitions>                
+                <RowDefinition  Height="35"/>
+                <RowDefinition  Height="130"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="15"/>
+            </Grid.ColumnDefinitions>
+                        
+            <Label Style="{DynamicResource LabelStyle}" Foreground="#FF952D2D" FontSize="15" Grid.Column="1"  Grid.Row="0" x:Name="lblDishName"  HorizontalAlignment="Left" Margin="0,0,0,0" Height="30"  VerticalAlignment="Center" MinWidth="225" HorizontalContentAlignment="Left" >
+                <!--<Label.Background>
+                    <LinearGradientBrush EndPoint="0.8,0.5" StartPoint="0,0">
+                        <GradientStop Color="Transparent" Offset="0"/>
+                        <GradientStop Color="#FF952D2D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Background>-->
+            </Label>
+
+            <!--<GroupBox x:Name="gbMonthSelector" Grid.Row="1" Margin="0,7,0,0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <GroupBox.Header>
+                    <Label Style="{DynamicResource LabelStyle}" FontSize="11" >Select Your Plan</Label>
+                </GroupBox.Header>-->
+                <Grid Grid.Row="1" Margin="0,7,0,0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="rbPlan1" Grid.Column="0" Grid.Row="0"  Content="" Margin="5,7,5,5" Checked="rbPlan1_Checked" ></RadioButton>
+                    <RadioButton x:Name="rbPlan2" Grid.Column="0" Grid.Row="1"  Content="" Margin="5,7,5,5" Checked="rbPlan2_Checked" ></RadioButton>
+                    <RadioButton x:Name="rbPlan3" Grid.Column="0" Grid.Row="2"  Content="" Margin="5,7,5,5" Checked="rbPlan3_Checked" ></RadioButton>
+                    <Label  x:Name="lblPlan1" MinWidth="100" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="0"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Center" FontSize="11" Content="Plan1"/>
+                    <Label  x:Name="lblPlan2" MinWidth="100" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="1"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Center" FontSize="11" Content="Plan2"/>
+                    <Label  x:Name="lblPlan3" MinWidth="100" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="2"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Center" FontSize="11" Content="Plan3"/>
+                    <Image Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="Hand" Margin="5,0,38,0" Name="imgPrint" Height="30" Width="30" Source="images/Printer.png" ToolTip="Print Menu" MouseDown="imgPrint_MouseDown" Grid.RowSpan="2" />
+                    <Label Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="Hand" Margin="5,0,5,0" Name="imgPrintLabel"  Style="{DynamicResource LabelStyle}"  MouseDown="imgPrint_MouseDown">Print</Label>
+                </Grid>
+            <!--</GroupBox>-->
+        </Grid>
+    </Grid>
+    </Border>
+</Window>

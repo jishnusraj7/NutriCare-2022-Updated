@@ -1,0 +1,33 @@
+﻿<Window x:Class="NutritionV1.AyurvedicDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Nutrition="clr-namespace:NutritionV1"
+    Title="Ayurvedic Values" Height="550" Width="430" WindowStartupLocation="CenterScreen"  WindowStyle="ToolWindow" Loaded="Window_Loaded">
+    
+    <Grid x:Name="LayoutRoot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TabControl Margin="5,5,5,5" Name="tabControl1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <TabItem Header="Ayurvedic Values" Name="tabItem1">
+                
+                    <ListView Margin="8,8,8,8" Name="lvAyurvedic" ItemsSource="{Binding}" Style="{DynamicResource ListViewStyle}" BorderThickness="1" BorderBrush="Black">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                <Setter Property="VerticalContentAlignment"	Value="Center" />
+                                <Setter Property="FontSize"  Value="11" />
+                                <Setter Property="Height"  Value="20" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}"  x:Name="grdAyurvedic" AllowsColumnReorder="False">
+                                <Nutrition:FixedWidthColumn Header="Property Name"  FixedWidth="200" DisplayMemberBinding="{Binding Path=AyurParam}" />
+                                <Nutrition:FixedWidthColumn Header="Values"  FixedWidth="170" DisplayMemberBinding="{Binding Path=AyurValue}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                
+            </TabItem>
+        </TabControl>
+        <Label Visibility="Hidden" Height="23.277" HorizontalAlignment="Right" Margin="0,4,6,0" Name="lblClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Top" Width="100" MouseDown="lblClose_MouseDown">Close</Label>
+        <Image Source="../../Images/Close.png" Stretch="Fill" Height="17" Width="17" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" Margin="0,5,15,0" MouseDown="lblClose_MouseDown"/>
+    </Grid>
+</Window>

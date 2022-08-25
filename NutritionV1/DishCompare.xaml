@@ -1,0 +1,1012 @@
+﻿<Page x:Class="NutritionV1.DishCompare"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Nutrition="clr-namespace:NutritionV1"
+    xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+    Title="DishCompare" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <Storyboard x:Key="FlipBoard">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="10.538"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="-127"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="10.6"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="-120"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:01.5000000" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeIn">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MainContent" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeOut">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MainContent" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ExpandGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MyGrid" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="660"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CollapseGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MyGrid" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="660"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <DataTemplate x:Key="nameTemplate">
+                <TextBlock Text="{Binding Name}" Height="20" MinWidth="200" FontSize="12" >
+                <TextBlock.ToolTip>
+                    <ToolTip Background="Transparent" BorderThickness="0" Placement="Right">
+                        <Grid Height="130" Width="170">
+                            <Rectangle Name="RecImage" Style="{DynamicResource ImageDisplay}" Grid.Column="0" Grid.Row="0" RadiusX="15.5" RadiusY="15.5"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,0" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition  Height="130"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="170"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Grid.Row="0" Margin="8,7,8,7" Source="{Binding Path=DisplayImage}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ToolTipService.Placement="Top" ToolTipService.ShowDuration="90000" Height="120" Width="160" ></Image>
+                                <Label Foreground="White" FontSize="13" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Content="{Binding Path=Name}" HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" />
+                            </Grid>
+                        </Grid>
+                    </ToolTip>
+                </TextBlock.ToolTip>
+                </TextBlock>
+            </DataTemplate>
+        <DataTemplate x:Key="displayNameTemplate">
+                <TextBlock Text="{Binding DisplayName}" Height="20" MinWidth="200" FontSize="12" >
+                <TextBlock.ToolTip>
+                    <ToolTip Background="Transparent" BorderThickness="0" Placement="Right">
+                        <Grid Height="130" Width="170">
+                            <Rectangle Name="RecImage" Style="{DynamicResource ImageDisplay}" Grid.Column="0" Grid.Row="0" RadiusX="15.5" RadiusY="15.5"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,0" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition  Height="130"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="170"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Grid.Row="0" Margin="8,7,8,7" Source="{Binding Path=DisplayImage}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ToolTipService.Placement="Top" ToolTipService.ShowDuration="90000" Height="120" Width="160" ></Image>
+                                <Label Foreground="White" FontSize="13" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Content="{Binding Path=DisplayName}" HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" />
+                            </Grid>
+                        </Grid>
+                    </ToolTip>
+                </TextBlock.ToolTip>
+                </TextBlock>
+            </DataTemplate>
+
+        <Style x:Key="TreeViewStyle" TargetType="{x:Type TreeView}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFFFFFFF" Offset="0.0" />
+                        <GradientStop Color="#AAAAAAAA" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="BorderBrush" Value="#FFA6AAAB" />
+        </Style>
+
+        <Style x:Key="ImageStyle" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="/Images/FolderLogo.png"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Source" Value="/Images/FolderOpen.png"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="{x:Type ListViewItem}">
+           <EventSetter Event="PreviewMouseLeftButtonDown" Handler="HandlerPreviewMouseLeftButtonDown"/>
+           <EventSetter Event="PreviewMouseMove" Handler="HandlerPreviewMouseMove"/>
+        </Style>
+
+        <Style x:Key="ExpanderRightHeaderStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <Grid SnapsToDevicePixels="False" Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="19"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.LayoutTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <TransformCollection>
+                                                    <RotateTransform Angle="-90"/>
+                                                </TransformCollection>
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Grid.LayoutTransform>
+                                    <Ellipse x:Name="circle" Stroke="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="19" Height="19"/>
+                                    <Path x:Name="arrow" Stroke="#666" StrokeThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="false" Data="M 1,1.5 L 4.5,5 L 8,1.5"/>
+                                </Grid>
+                                <ContentPresenter HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top" SnapsToDevicePixels="True" Grid.Row="1" RecognizesAccessKey="True"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="#FF3C7FB1"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="#FF526C7B"/>
+                                <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="#FF003366"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpanderUpHeaderStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <Grid SnapsToDevicePixels="False" Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="19"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.LayoutTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <TransformCollection>
+                                                    <RotateTransform Angle="180"/>
+                                                </TransformCollection>
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Grid.LayoutTransform>
+                                    <Ellipse x:Name="circle" Stroke="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="19" Height="19"/>
+                                    <Path x:Name="arrow" Stretch="Fill" Stroke="#FF056E10" StrokeThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="15" Height="2" SnapsToDevicePixels="false" Data="M 1,1.5 L 4.5,5 L 8,1.5"/>
+                                    <Path x:Name="arrow1" Stretch="Fill" Stroke="#FF056E10" StrokeThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="15" Height="2" SnapsToDevicePixels="false" Data="M 1,1.5 L 4.5,5 L 8,1.5" RenderTransformOrigin="0.5,0.5">
+                                        <Path.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform Angle="90"/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                                <ContentPresenter HorizontalAlignment="Left" Margin="4,0,0,0" VerticalAlignment="Center" SnapsToDevicePixels="True" Grid.Column="1" RecognizesAccessKey="True"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Visibility" TargetName="arrow1" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Visibility" TargetName="arrow" Value="Visible"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="Red"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Data" TargetName="arrow" 
+								Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="#FF3C7FB1"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="#FF526C7B"/>
+                                <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="#FF003366"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpanderLeftHeaderStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <Grid SnapsToDevicePixels="False" Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="19"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.LayoutTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <TransformCollection>
+                                                    <RotateTransform Angle="90"/>
+                                                </TransformCollection>
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Grid.LayoutTransform>
+                                    <Ellipse x:Name="circle" Stroke="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="19" Height="19"/>
+                                    <Path x:Name="arrow" Stroke="#666" StrokeThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="false" Data="M 1,1.5 L 4.5,5 L 8,1.5"/>
+                                </Grid>
+                                <ContentPresenter HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top" SnapsToDevicePixels="True" Grid.Row="1" RecognizesAccessKey="True"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="#FF3C7FB1"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="#FF526C7B"/>
+                                <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="#FF003366"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpanderHeaderFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border>
+                            <Rectangle Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1" Margin="0" SnapsToDevicePixels="true"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                            <Grid SnapsToDevicePixels="False" Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="19"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse x:Name="circle" Stroke="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="19" Height="19"/>
+                                <Path x:Name="arrow" Stroke="#FFEA0F0F" StrokeThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="false" Data="M 1,1.5 L 4.5,5 L 8,1.5" Stretch="Fill" Height="2" Width="15"/>
+                                <ContentPresenter HorizontalAlignment="Left" Margin="4,0,0,0" VerticalAlignment="Center" SnapsToDevicePixels="True" Grid.Column="1" RecognizesAccessKey="True"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="#FF3C7FB1"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Stroke" TargetName="circle" Value="#FF526C7B"/>
+                                <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
+                                <Setter Property="Stroke" TargetName="arrow" Value="#FF003366"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Expander}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Expander}">
+                        <Border SnapsToDevicePixels="true" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                            <DockPanel>
+                                <ToggleButton x:Name="HeaderSite" FocusVisualStyle="{StaticResource ExpanderHeaderFocusVisual}" Margin="1" MinHeight="0" MinWidth="0" Style="{DynamicResource ExpanderUpHeaderStyle}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" DockPanel.Dock="Top" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <ContentPresenter x:Name="ExpandSite" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Focusable="false" Visibility="Collapsed" DockPanel.Dock="Bottom"/>
+                            </DockPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsExpanded" Value="true">
+                                <Setter Property="Visibility" TargetName="ExpandSite" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="ExpandDirection" Value="Right">
+                                <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Right"/>
+                                <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
+                                <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderRightHeaderStyle}"/>
+                            </Trigger>
+                            <Trigger Property="ExpandDirection" Value="Up">
+                                <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Top"/>
+                                <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
+                                <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderUpHeaderStyle}"/>
+                            </Trigger>
+                            <Trigger Property="ExpandDirection" Value="Left">
+                                <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Left"/>
+                                <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
+                                <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderLeftHeaderStyle}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid Name="grdDishCompare" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="8" Margin="0,0,0,0" Name="rec1" RadiusX="23" RadiusY="23" Stroke="Black" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <Grid Margin="0,0,2,0" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="0" />
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Foreground="White" FontSize="12" Content=" Show Dish In Regional Name"  Margin="15,5,0,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Name="chkRegionalNames" Checked="chkRegionalNames_Checked" Unchecked="chkRegionalNames_Unchecked" TabIndex="0" Visibility="Hidden" />
+                    <TextBox Style="{DynamicResource TextStyle}" Margin="5,5,0,0"  Height="25" Name="txtSearch" Grid.Column="0" Grid.Row="4"  VerticalAlignment="Top" Width="210" HorizontalAlignment="Left" TabIndex="2" MaxLength="50" PreviewKeyDown="txtSearch_PreviewKeyDown" />
+                    <!--<Button Style="{DynamicResource SearchButton}" Height="25" Margin="0,5,0,0" Name="btnSearch" Grid.Column="0" Grid.Row="4" VerticalAlignment="Top"  Width="73" HorizontalAlignment="Right" Click="btnSearch_Click" TabIndex="3">Search</Button>-->
+                    <StackPanel x:Name="spSearch" Grid.Column="0" Grid.Row="4" Margin="0,0,0,0" Width="30" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="Hand" MouseDown="spSearch_MouseDown"  Opacity="100">
+                        <Image Margin="0,0,0,0" Source="images\SearchButton.png" ToolTip="Search Dishes" Height="25" Width="25" x:Name="imgSearch" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <Label Foreground="White" FontSize="12" Style="{DynamicResource LabelStyle}" Name="lblDishCategory" Grid.Row="2" VerticalAlignment="Top"  Margin="15,5,0,0">Category</Label>
+                    <ComboBox Name="cboDishCategory" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Width="170" Height="25"  Margin="75,5,0,0"  HorizontalAlignment="Left" SelectionChanged="cboDishCategory_SelectionChanged" TabIndex="1" />
+                    <ListView Grid.Column="0" Grid.Row="6" Margin="3,0,3,10" AllowDrop="True" DragEnter="SearchList_DragEnter" Drop="SearchList_Drop" MouseDoubleClick="SearchList_MouseDoubleClick" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  BorderBrush="Black" BorderThickness="1" ItemsSource="{Binding}" Name="SearchList" Style="{DynamicResource ListViewStyle}" TabIndex="5" PreviewKeyDown="SearchList_PreviewKeyDown">
+                        <ListView.View>
+                            <GridView x:Name="gvSearchList"  ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}" AllowsColumnReorder="False">
+                                <Nutrition:FixedWidthColumn x:Name ="gvCol1" Header="Dish ID" FixedWidth="0">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="-1.5" Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <Label Style="{DynamicResource RowStyle}" Height="25" Content="{Binding Path=Id}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </Nutrition:FixedWidthColumn>
+                                <Nutrition:FixedWidthColumn x:Name="gvCol2" Header="Dish Name" FixedWidth="185" CellTemplate="{StaticResource nameTemplate}"/>
+                                <Nutrition:FixedWidthColumn x:Name="gvCol3" FixedWidth="30">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Name="btnAdd" Source="../Images/Add.png"  MouseDown="btnAdd_Click" HorizontalAlignment="Center" Cursor="Hand" Height="20" Width="15">
+                                                    <Image.ToolTip>
+                                                        <ToolTip>
+                                                            <TextBlock Foreground="Green" Text="Select the Dish"/>
+                                                        </ToolTip>
+                                                    </Image.ToolTip>
+                                                </Image>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </Nutrition:FixedWidthColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="137" />
+                    <RowDefinition  />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="225"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Margin="3,0,0,0" Name="rec2" RadiusX="23" RadiusY="23" Stroke="Black" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <Grid Grid.Column="0" Margin="5,5,5,5" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="0"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>
+                        <Nutrition:ImageDisplay x:Name="ImgDish1" AllowDrop="True"  DragEnter="ImgDish1_DragEnter" Drop="ImgDish1_Drop" Cursor="Hand"  Grid.Column="1" Grid.Row="0"  VerticalAlignment="Center"  Margin="3,3,3,3" HorizontalAlignment="Center" Width="100" Height="90" MouseDown="ImgDish1_MouseDown" />
+                        <Nutrition:ImageDisplay x:Name="ImgDish2" AllowDrop="True"  DragEnter="ImgDish2_DragEnter" Drop="ImgDish2_Drop" Cursor="Hand"  Grid.Column="2" Grid.Row="0"  VerticalAlignment="Center"  Margin="3,3,3,3" HorizontalAlignment="Center" Width="100" Height="90" MouseDown="ImgDish2_MouseDown" />
+                        <Nutrition:ImageDisplay x:Name="ImgDish3" AllowDrop="True"  DragEnter="ImgDish3_DragEnter" Drop="ImgDish3_Drop" Cursor="Hand"  Grid.Column="3" Grid.Row="0"  VerticalAlignment="Center"  Margin="3,3,3,3" HorizontalAlignment="Center" Width="100" Height="90" MouseDown="ImgDish3_MouseDown" />
+                        <Nutrition:ImageDisplay x:Name="ImgDish4" AllowDrop="True"  DragEnter="ImgDish4_DragEnter" Drop="ImgDish4_Drop" Cursor="Hand"  Grid.Column="4" Grid.Row="0"  VerticalAlignment="Center"  Margin="3,3,3,3" HorizontalAlignment="Center" Width="100" Height="90" MouseDown="ImgDish4_MouseDown" />
+                        <Nutrition:ImageDisplay x:Name="ImgDish5" AllowDrop="True"  DragEnter="ImgDish5_DragEnter" Drop="ImgDish5_Drop" Cursor="Hand"  Grid.Column="5" Grid.Row="0"  VerticalAlignment="Center"  Margin="3,3,3,3" HorizontalAlignment="Center" Width="100" Height="90" MouseDown="ImgDish5_MouseDown" />
+
+                        <Button Style="{DynamicResource ClearButton}" Height="25" Width="73"  HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center"  Name="lblClear"  Grid.Column="0" Grid.Row="1" Click="lblClear_Click">Clear</Button>
+                        <CheckBox Margin="5,0,0,0" Grid.Column="1" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Name="chkClear1" Visibility="Hidden"/>
+                        <CheckBox Margin="5,0,0,0" Grid.Column="2" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Name="chkClear2" Visibility="Hidden"/>
+                        <CheckBox Margin="5,0,0,0" Grid.Column="3" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Name="chkClear3" Visibility="Hidden"/>
+                        <CheckBox Margin="5,0,0,0" Grid.Column="4" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Name="chkClear4" Visibility="Hidden"/>
+                        <CheckBox Margin="5,0,0,0" Grid.Column="5" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Name="chkClear5" Visibility="Hidden"/>
+
+                        <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblServingSize">Per 100 gm</Label>
+                        <TextBlock Foreground="White" FontSize="12" Grid.Column="1" Grid.Row="2" Margin="1,1,1,1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Style="{DynamicResource TextBlockStyle}"  Name="lblDishName1"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="12" Grid.Column="2" Grid.Row="2" Margin="1,1,1,1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Style="{DynamicResource TextBlockStyle}" Name="lblDishName2"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="12" Grid.Column="3" Grid.Row="2" Margin="1,1,1,1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Style="{DynamicResource TextBlockStyle}"  Name="lblDishName3"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="12" Grid.Column="4" Grid.Row="2" Margin="1,1,1,1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Style="{DynamicResource TextBlockStyle}"  Name="lblDishName4"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="12" Grid.Column="5" Grid.Row="2" Margin="1,1,1,1" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Style="{DynamicResource TextBlockStyle}"  Name="lblDishName5"></TextBlock>
+                    </Grid>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="3,3,3,3" Grid.Column="0" Grid.Row="1" Template="{DynamicResource ScrollStyle}">
+                    <Grid Name="dgItem" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Expander Grid.Column="0" Grid.Row="0" Header="Macro Nutrients" Margin="7,0,0,0" Name="expMacroNutrients" Expanded="expMacroNutrients_Expanded"  Collapsed="expMacroNutrients_Collapsed"  IsExpanded="True">
+                            <Grid Grid.Column="0" Grid.Row="0" Margin="10,5,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblCalorie">Calorie</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="lblDish1Calorie" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish2Calorie" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Calorie" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Calorie" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Calorie" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblProtein">Protein (gm)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Protein" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish2Protein" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish3Protein" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish4Protein" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish5Protein" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="lblCarbohydrates">CarboHydrate (gm)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish1Carbohydrates" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish2Carbohydrates" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish3Carbohydrates" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish4Carbohydrates" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish5Carbohydrates" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblFat">Fat (gm)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"     Name="lblDish1Fat" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Fat" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish3Fat" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Fat" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Fat" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblFiber">Fiber (gm)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Fiber" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Fiber" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Fiber" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Fiber" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Fiber" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblMoisture">Moisture</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Moisture" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Moisture" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Moisture" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Moisture" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Moisture" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                            </Grid>
+                        </Expander>
+                        
+                        <Expander Grid.Column="0" Grid.Row="1" Header="Minerals" Margin="7,0,0,0" Name="expMinerals" Expanded="expMinerals_Expanded"  Collapsed="expMinerals_Collapsed"  IsExpanded="True">
+                            <Grid Grid.Column="0" Grid.Row="1" Margin="10,5,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblIron">Iron (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Iron" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Iron" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Iron" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Iron" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Iron" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblCalcium">Calcium (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Calcium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Calcium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Calcium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Calcium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Calcium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblPhosphorus">Phosphorus (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Phosphorus" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Phosphorus" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Phosphorus" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Phosphorus" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Phosphorus" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblSodium">Sodium (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Sodium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Sodium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Sodium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Sodium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Sodium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblPottasium">Pottasium (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Pottasium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Pottasium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Pottasium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Pottasium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Pottasium" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblZinc">Zinc (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Zinc" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Zinc" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Zinc" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Zinc" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Zinc" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                
+                            </Grid>
+                        </Expander>
+                        
+                        <Expander Grid.Column="0" Grid.Row="2" Header="Vitamins" Margin="7,0,0,0" Name="expVitamins" Expanded="expVitamins_Expanded"  Collapsed="expVitamins_Collapsed"  IsExpanded="True">
+                            <Grid Grid.Column="0" Grid.Row="2" Margin="10,5,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="0"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblVitaminAReti">Retinol (mcg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1VitaminAReti" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2VitaminAReti" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3VitaminAReti" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4VitaminAReti" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5VitaminAReti" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblVitaminABeta">Beta Carotene (mcg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1VitaminABeta" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2VitaminABeta" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3VitaminABeta" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4VitaminABeta" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="1" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5VitaminABeta" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblThiamine">Thiamine (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Thiamine" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Thiamine" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Thiamine" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Thiamine" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="2" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Thiamine" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblRiboflavin">Riboflavin (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Riboflavin" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Riboflavin" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Riboflavin" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Riboflavin" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="3" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Riboflavin" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblNicotinicAcid">Nicotinic Acid (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1NicotinicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2NicotinicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3NicotinicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4NicotinicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="4" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5NicotinicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblPyridoxyne">Pyridoxyne (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1Pyridoxyne" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2Pyridoxyne" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3Pyridoxyne" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4Pyridoxyne" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="5" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5Pyridoxyne" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="6" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblFolicAcid">Folic Acid (gm)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="6" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1FolicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="6" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2FolicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="6" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3FolicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="6" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4FolicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="6" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5FolicAcid" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="8" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblVitaminB12">VitaminB12 (mcg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="8" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1VitaminB12" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="8" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2VitaminB12" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="8" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3VitaminB12" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="8" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4VitaminB12" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="8" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5VitaminB12" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                                <Label Foreground="White" FontSize="12" Grid.Column="0" Grid.Row="7" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblVitaminC">Vitamin C (mg)</Label>
+                                <Label FontSize="12" Grid.Column="1" Grid.Row="7" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblDish1VitaminC" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="2" Grid.Row="7" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish2VitaminC" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="3" Grid.Row="7" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish3VitaminC" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="4" Grid.Row="7" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish4VitaminC" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+                                <Label FontSize="12" Grid.Column="5" Grid.Row="7" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Name="lblDish5VitaminC" HorizontalContentAlignment="Right" Style="{DynamicResource HighLightLabel}" Foreground="Black"></Label>
+
+                            </Grid>
+                        </Expander>
+                        
+                    </Grid>
+                </ScrollViewer>
+
+                <Grid Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle  Grid.Column="0" Grid.Row="0" Height="30" Width="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,0" x:Name="ColumnGraph" RadiusX="5" RadiusY="5"/>
+                    <Button Foreground="White" FontSize="12" Height="30" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0" x:Name="btnNormal" VerticalAlignment="Bottom" Width="35" Margin="0,0,35,0" Click="btnNormal_Click" ToolTip="Column Graph">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Transparent" Offset="0.129"/>
+                                <GradientStop Color="Transparent" Offset="0.509"/>
+                                <GradientStop Color="Transparent" Offset="0.884"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Image Width="30" Height="30" Name="imgBar"/>
+                    </Button>
+                    
+                    <Rectangle  Grid.Column="0" Grid.Row="0" Height="30" Width="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,75,0" x:Name="BarGraph" RadiusX="5" RadiusY="5"/>
+                    <Button Foreground="White" FontSize="12" Height="30" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0" x:Name="btnIcon" VerticalAlignment="Bottom" Width="35" Margin="0,0,75,0" Click="btnIcon_Click" ToolTip="Bar Graph">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Transparent" Offset="0.129"/>
+                                <GradientStop Color="Transparent" Offset="0.509"/>
+                                <GradientStop Color="Transparent" Offset="0.884"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Image Width="30" Height="30" Name="imgColumn"/>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3,3,3,3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TreeView Style="{StaticResource TreeViewStyle}" Grid.Column="0" Grid.Row="0" Width="185" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,3,3,7">
+                        <TreeViewItem Margin="5,5,0,0" FontSize="12" FontWeight="Bold" IsExpanded="True">
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                    <Image Source="/Images/Nutrient.png" Width="16" Height="16" />
+                                    <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Macro Nutrients" />
+                                </StackPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem Cursor="Hand" Name="tvCalorie" Selected="tvCalorie_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Calorie" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvProtein" Selected="tvProtein_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Protein" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvCarboHydrate" Selected="tvCarboHydrate_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="CarboHydrate" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvFat" Selected="tvFat_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Fat" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvFibre" Selected="tvFibre_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Fibre" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvMoisture" Selected="tvMoisture_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold">
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Moisture" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Margin="5,5,0,0" FontSize="12" FontWeight="Bold" IsExpanded="True">
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                    <Image Source="/Images/Nutrient.png" Width="16" Height="16" />
+                                    <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Minerals" />
+                                </StackPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem Cursor="Hand" Name="tvIron" Selected="tvIron_Selected"  Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Iron" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvCalcium" Selected="tvCalcium_Selected"  Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Calcium" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvPhosphrous" Selected="tvPhosphrous_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Phosphrous" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvSodium" Selected="tvSodium_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Sodium" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvPottasium" Selected="tvPottasium_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Pottasium" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvZinc" Selected="tvZinc_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Zinc" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Margin="5,5,0,0" FontSize="12" FontWeight="Bold" IsExpanded="True">
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                    <Image Source="/Images/Nutrient.png" Width="16" Height="16" />
+                                    <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Vitamins" />
+                                </StackPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem Cursor="Hand" Name="tvRetinol" Selected="tvRetinol_Selected"  Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Retinol" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvBeta" Selected="tvBeta_Selected"  Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Beta Carotine" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvThaimine" Selected="tvThaimine_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Thaimine" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvRiboflavin" Selected="tvRiboflavin_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Riboflavin" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvNaicine" Selected="tvNaicine_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Nicotinic Acid" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvPyridoxine" Selected="tvPyridoxine_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Pyridoxine" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvFolicAcid" Selected="tvFolicAcid_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Folic Acid" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Cursor="Hand" Name="tvVitaminC" Selected="tvVitaminC_Selected" Margin="0,3,0,0" FontSize="12" FontWeight="Bold" >
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                        <Image Style="{DynamicResource ImageStyle}" Width="16" Height="16" />
+                                        <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="Vitamin C" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeView>
+
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="CalorieGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="ProteinGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="CarboHydratesGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="FATGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="FibreGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="IronGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="CalciumGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="PhosphrousGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="SodiumGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="PottasiumGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="ZincGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="RetinolGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="BetaGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="ThaimineGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="RiboflavinGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="NaicinGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="PyrodoxineGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="FolicAcidGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="VitaminCGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0" Margin="3,3,3,7" Name="MoistureGraphLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </Grid>
+
+                </Grid>
+                
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Page>

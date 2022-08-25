@@ -1,0 +1,411 @@
+﻿<Window x:Class="NutritionV1.MasterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="NutriCare V1" AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"  SizeChanged="Window_SizeChanged"  WindowState="Maximized" Icon="/Images/AppIcon.ico" Closing="Window_Closing"  Loaded="Window_Loaded"  KeyDown="Window_KeyDown">
+    
+    <Window.Resources>
+        <Storyboard x:Key="FlipBoard">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="10.538"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="-127"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="10.6"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="-120"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="pageFlip" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:01.5000000" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeIn">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MainContent" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeOut">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MainContent" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ExpandGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MyGrid" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="800"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CollapseGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MyGrid" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="800"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="NavigationCommands.GoToPage" Executed="GoToPageExecuteHandler" CanExecute="GoToPageCanExecuteHandler" />
+    </Window.CommandBindings>
+
+    <Border Background="{DynamicResource WindowGradientBrush}"  CornerRadius="7,7,7,7" BorderThickness="1,1,1,1" BorderBrush="{DynamicResource WindowDarkSolidBrush}">
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ContentControl Style="{DynamicResource WindowTitleContentControl}"/>
+
+            <Image Source="../../Images/Close.png" Stretch="Fill" Height="17" Width="17" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" Margin="0,10,15,0" MouseDown="lblAppClose_MouseDown"/>
+            <Image Source="../../Images/Minimize.png" Stretch="Fill" Height="17" Width="17" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" Margin="0,10,50,0" MouseDown="lblAppMinimize_MouseDown"/>
+            
+            <Grid Grid.Column="0" Grid.Row="1" x:Name="LayoutRoot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="imgHeader" Grid.Column="0" Grid.Row="0" Margin="5,5,5,5" Stretch="Fill"  Height="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <Grid x:Name="grdHome" Grid.Column="1" Grid.Row="0" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <!--<Rectangle x:Name="recHome" Height="40" Width="120px" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" RadiusX="23" RadiusY="23"/>-->
+                    <!--<Button x:Name="btnHome" Width="110px" Margin="2,2,2,2" ToolTip="Back to Home" HorizontalAlignment="Right" VerticalAlignment="Center" Click="btnHome_Click" >
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30px" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Grid.Row="0" Source="Images/Home.png" Stretch="None" Width="30" Height="25"/>
+                            <Label Grid.Column="1" Grid.Row="1" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Stretch" >Back Home</Label>
+                        </Grid>
+                    </Button>-->
+
+                    <Menu x:Name="mnuTop" Foreground="#FFFFFFFF" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <MenuItem Name="btnHome" Header="Home" BorderBrush="Transparent" BorderThickness="1" VerticalAlignment="Center" Height="30" Width="100"  Cursor="Hand"  HorizontalContentAlignment="Center" TabIndex="2" Padding="0,7" Click="btnHome_Click">
+                            <MenuItem.Icon>
+                                <Image Margin="0,0,0,0" Source="/Images/Home.png" Width="25" Height="25" />
+                            </MenuItem.Icon>
+                            <MenuItem.ToolTip>
+                                <ToolTip ToolTipService.ShowDuration="10" Placement="Bottom" Style="{DynamicResource ToolTipStyle}" Content="Back to Home">
+                                </ToolTip>
+                            </MenuItem.ToolTip>
+                            <MenuItem.BitmapEffect>
+                                <BevelBitmapEffect BevelWidth="1" EdgeProfile="CurvedIn" LightAngle="180"/>
+                            </MenuItem.BitmapEffect>
+                        </MenuItem>
+                        <MenuItem Name="mnubtn1" Header="Search" BorderBrush="Transparent" BorderThickness="1" VerticalAlignment="Center" Height="30" Width="100"  Cursor="Hand" TabIndex="0" HorizontalContentAlignment="Center" Padding="0,7">
+                            <MenuItem.ToolTip>
+                                <ToolTip ToolTipService.ShowDuration="10" Placement="Bottom" Style="{DynamicResource ToolTipStyle}" Content="Ingredient Search">
+                                </ToolTip>
+                            </MenuItem.ToolTip>
+                            <MenuItem.Icon>
+                                <Image Margin="0,0,0,0" Source="/Images/ISearch.png" Width="25" Height="25" />
+                            </MenuItem.Icon>
+                            <MenuItem.BitmapEffect>
+                                <BevelBitmapEffect BevelWidth="1" EdgeProfile="CurvedIn"  LightAngle="180"/>
+                            </MenuItem.BitmapEffect>
+                            <MenuItem Name="mnubtn11" Header="Ingredient" BorderBrush="Transparent" BorderThickness="1"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="3,7" Height="30" Cursor="Hand" TabIndex="5" HorizontalContentAlignment="Center" Click="IngrSearch_Click" ></MenuItem>
+                            <MenuItem Name="mnubtn12" Header="Dish" BorderBrush="Transparent" BorderThickness="1"  VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Padding="3,7" Height="30" Cursor="Hand" TabIndex="5" HorizontalContentAlignment="Center" Click="DishSearch_Click" ></MenuItem>
+                        </MenuItem>
+                        
+                        <MenuItem Name="mnubtn2" Header="Compare" BorderBrush="Transparent" BorderThickness="1"  VerticalAlignment="Center" Height="30" Width="100"  Cursor="Hand" HorizontalContentAlignment="Center" TabIndex="1" Padding="0,7">
+                            <MenuItem.ToolTip>
+                                <ToolTip ToolTipService.ShowDuration="10" Placement="Bottom" Style="{DynamicResource ToolTipStyle}" Content="Compare Ingredient">
+                                </ToolTip>
+                            </MenuItem.ToolTip>
+                            <MenuItem.Icon>
+                                <Image Margin="0,0,0,0" Source="/Images/ICompare.png" Width="25" Height="25" />
+                            </MenuItem.Icon>
+                            <MenuItem.BitmapEffect>
+                                <BevelBitmapEffect BevelWidth="1" EdgeProfile="CurvedIn"  LightAngle="180"/>
+                            </MenuItem.BitmapEffect>
+                            <MenuItem Name="mnubtn21" Header="Ingredient" BorderBrush="Transparent" BorderThickness="1"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Cursor="Hand"  Padding="3,7" TabIndex="5" HorizontalContentAlignment="Center" Click="IngrCompare_Click" ></MenuItem>
+                            <MenuItem Name="mnubtn22" Header="Dish" BorderBrush="Transparent" BorderThickness="1"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Cursor="Hand"  Padding="3,7" TabIndex="5" HorizontalContentAlignment="Center" Click="DishCompare_Click"></MenuItem>
+                        </MenuItem>
+                        
+                        <MenuItem Name="mnubtn5" Header="Add New" BorderBrush="Transparent" BorderThickness="1" VerticalAlignment="Center" Height="30" Width="100"  Cursor="Hand"  HorizontalContentAlignment="Center" TabIndex="2" Padding="0,7" Click="mnubtn5_Click">
+                            <MenuItem.Icon>
+                                <Image Margin="0,0,0,0" Source="/Images/Add.png" Width="25" Height="25" />
+                            </MenuItem.Icon>
+                            <MenuItem.ToolTip>
+                                <ToolTip ToolTipService.ShowDuration="10" Placement="Bottom" Style="{DynamicResource ToolTipStyle}" Content="New">
+                                </ToolTip>
+                            </MenuItem.ToolTip>
+                            <MenuItem.BitmapEffect>
+                                <BevelBitmapEffect BevelWidth="1" EdgeProfile="CurvedIn"  LightAngle="180"/>
+                            </MenuItem.BitmapEffect>
+                            <MenuItem Name="mnubtn51" Header="Ingredient" BorderBrush="Transparent" BorderThickness="1"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Cursor="Hand"  Padding="3,7" TabIndex="5" HorizontalContentAlignment="Center" Click="IngrAdd_Click" ></MenuItem>
+                            <MenuItem Name="mnubtn52" Header="Dish" BorderBrush="Transparent" BorderThickness="1"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Cursor="Hand"  Padding="3,7" TabIndex="5" HorizontalContentAlignment="Center" Click="DishAdd_Click" ></MenuItem>
+                        </MenuItem>
+                        
+                        <MenuItem Name="mnubtn3" Header="Utilities" BorderBrush="Transparent" BorderThickness="1" VerticalAlignment="Center" Height="30" Width="100"  Cursor="Hand"  HorizontalContentAlignment="Center" TabIndex="2" Padding="0,7">
+                            <MenuItem.Icon>
+                                <Image Margin="0,0,0,0" Source="/Images/ICalculate.png" Width="25" Height="25" />
+                            </MenuItem.Icon>
+                            <MenuItem.ToolTip>
+                                <ToolTip ToolTipService.ShowDuration="10" Placement="Bottom" Style="{DynamicResource ToolTipStyle}" Content="Calculators">
+                                </ToolTip>
+                            </MenuItem.ToolTip>
+                            <MenuItem.BitmapEffect>
+                                <BevelBitmapEffect BevelWidth="1" EdgeProfile="CurvedIn"  LightAngle="180"/>
+                            </MenuItem.BitmapEffect>
+                            <MenuItem Name="mnubtn31" Header="Menu Planner" BorderBrush="Transparent" BorderThickness="1"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Cursor="Hand"  Padding="3,7" TabIndex="5" HorizontalContentAlignment="Center" Click="MenuPlanner_Click" ></MenuItem>
+                            <MenuItem Name="mnubtn32" Header="Health Calculator" BorderBrush="Transparent" BorderThickness="1"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Cursor="Hand"  Padding="3,7" TabIndex="5" HorizontalContentAlignment="Center" Click="HealthCalculators_Click" ></MenuItem>
+                        </MenuItem>
+                        
+                        <MenuItem Name="mnubtn4" Header="Exit" BorderBrush="Transparent" BorderThickness="1" VerticalAlignment="Center" Height="30" Width="100"  Cursor="Hand"  Click="Exit_Click" HorizontalContentAlignment="Center" TabIndex="2" Padding="0,7">
+                            <MenuItem.Icon>
+                                <Image Margin="0,0,0,0" Source="/Images/IExit.png" Width="25" Height="25" />
+                            </MenuItem.Icon>
+                            <MenuItem.ToolTip>
+                                <ToolTip ToolTipService.ShowDuration="10" Placement="Bottom" Style="{DynamicResource ToolTipStyle}" Content="Exit NutriCare">
+                                </ToolTip>
+                            </MenuItem.ToolTip>
+                            <MenuItem.BitmapEffect>
+                                <BevelBitmapEffect BevelWidth="1" EdgeProfile="CurvedIn"  LightAngle="180"/>
+                            </MenuItem.BitmapEffect>
+                        </MenuItem>                                                
+                    </Menu>
+                </Grid>
+
+                <Grid Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <!--<ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>-->
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnMenu" Width="60px" Grid.Column="0" Grid.Row="0" Content="Themes" ContextMenuService.IsEnabled="False" Click="btnMenu_Click" >
+                        <Button.ContextMenu>
+                            <ContextMenu >
+                                <MenuItem BorderBrush="Transparent" BorderThickness="1"  Height="25" HorizontalAlignment="Center" x:Name="btnBlue" VerticalAlignment="Center" Width="57px" Click="btnBlue_Click" ToolTip="Ocean Blue" >
+                                    <MenuItem.Background>                                        
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF07223E" Offset="0.129"/>
+                                            <GradientStop Color="#FF1568BF" Offset="0.509"/>
+                                            <GradientStop Color="#FF07223E" Offset="0.884"/>
+                                        </LinearGradientBrush>                                        
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem BorderBrush="Transparent" BorderThickness="1"  Height="25" VerticalAlignment="Center" x:Name="btnGreen" HorizontalAlignment="Center" Width="57px" Click="btnGreen_Click" ToolTip="Natural Green">
+                                    <MenuItem.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF103E07" Offset="0.129"/>
+                                            <GradientStop Color="#FFB0EA1E" Offset="0.509"/>
+                                            <GradientStop Color="#FF103E07" Offset="0.884"/>
+                                        </LinearGradientBrush>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem BorderBrush="Transparent" BorderThickness="1"  Height="25" HorizontalAlignment="Center" x:Name="btnBlack" VerticalAlignment="Center" Width="57px" Click="btnBlack_Click" ToolTip="Metalic Black">
+                                    <MenuItem.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF080808" Offset="0.129"/>
+                                            <GradientStop Color="#FF71767C" Offset="0.509"/>
+                                            <GradientStop Color="#FF080808" Offset="0.884"/>
+                                        </LinearGradientBrush>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem BorderBrush="Transparent" BorderThickness="1" Height="25" HorizontalAlignment="Center" x:Name="btnPink" VerticalAlignment="Center" Width="57px" Click="btnPink_Click"  ToolTip="Pink Theme">
+                                    <MenuItem.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFE75A8E" Offset="0.129"/>
+                                            <GradientStop Color="#FFF2B1C9" Offset="0.509"/>
+                                            <GradientStop Color="#FFE75A8E" Offset="0.884"/>
+                                        </LinearGradientBrush>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem BorderBrush="Transparent" BorderThickness="1" Height="25" HorizontalAlignment="Center" x:Name="btnBrown" VerticalAlignment="Center" Width="57px" Click="btnBrown_Click"  ToolTip="Brown Theme">
+                                    <MenuItem.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF964609" Offset="0.129"/>
+                                            <GradientStop Color="#FFF2CCB0" Offset="0.509"/>
+                                            <GradientStop Color="#FF964609" Offset="0.884"/>
+                                        </LinearGradientBrush>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem BorderBrush="Transparent" BorderThickness="1" Height="25" HorizontalAlignment="Center" x:Name="btnPineapple" VerticalAlignment="Center" Width="57px" Click="btnPineapple_Click"  ToolTip="Pineapple Theme">
+                                    <MenuItem.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFA29918" Offset="0.129"/>
+                                            <GradientStop Color="#FFF1F2B0" Offset="0.509"/>
+                                            <GradientStop Color="#FF968A09" Offset="0.884"/>
+                                        </LinearGradientBrush>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                                <MenuItem BorderBrush="Transparent" BorderThickness="1" Height="25" HorizontalAlignment="Center" x:Name="btnGrape" VerticalAlignment="Center" Width="57px" Click="btnGrape_Click"  ToolTip="Grape Theme">
+                                    <MenuItem.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF331016" Offset="0.129"/>
+                                            <GradientStop Color="#FF85505A" Offset="0.509"/>
+                                            <GradientStop Color="#FF960937" Offset="0.884"/>
+                                        </LinearGradientBrush>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+
+                    <!--<Button Grid.Column="0" Grid.Row="0" Height="25" HorizontalAlignment="Center" x:Name="btnBlue" VerticalAlignment="Center" Width="29" Click="btnBlue_Click" ToolTip="Ocean Blue">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF07223E" Offset="0.129"/>
+                                <GradientStop Color="#FF1568BF" Offset="0.509"/>
+                                <GradientStop Color="#FF07223E" Offset="0.884"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>-->
+                    <!--<Button Grid.Column="1" Grid.Row="0" x:Name="btnGreen" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Width="29" Click="btnGreen_Click" ToolTip="Natural Green">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF103E07" Offset="0.129"/>
+                                <GradientStop Color="#FFB0EA1E" Offset="0.509"/>
+                                <GradientStop Color="#FF103E07" Offset="0.884"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>-->
+                    <!--<Button Grid.Column="2" Grid.Row="0" Height="25" HorizontalAlignment="Center" x:Name="btnBlack" VerticalAlignment="Center" Width="29" Click="btnBlack_Click" ToolTip="Metalic Black">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF080808" Offset="0.129"/>
+                                <GradientStop Color="#FF71767C" Offset="0.509"/>
+                                <GradientStop Color="#FF080808" Offset="0.884"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>-->
+                    <!--<Button Grid.Column="3" Grid.Row="0" Height="25" HorizontalAlignment="Center" x:Name="btnPink" VerticalAlignment="Center" Width="29" Click="btnPink_Click"  ToolTip="Pink Theme">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE75A8E" Offset="0.129"/>
+                                <GradientStop Color="#FFF2B1C9" Offset="0.509"/>
+                                <GradientStop Color="#FFE75A8E" Offset="0.884"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>-->
+                    <!--<Button Grid.Column="4" Grid.Row="0" Height="25" HorizontalAlignment="Center" x:Name="btnBrown" VerticalAlignment="Center" Width="29" Click="btnBrown_Click"  ToolTip="Brown Theme">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF964609" Offset="0.129"/>
+                                <GradientStop Color="#FFF2CCB0" Offset="0.509"/>
+                                <GradientStop Color="#FF964609" Offset="0.884"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>-->
+                    <!--<Button Grid.Column="5" Grid.Row="0" Height="25" HorizontalAlignment="Center" x:Name="btnPineapple" VerticalAlignment="Center" Width="29" Click="btnPineapple_Click"  ToolTip="Pineapple Theme">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFA29918" Offset="0.129"/>
+                                <GradientStop Color="#FFF1F2B0" Offset="0.509"/>
+                                <GradientStop Color="#FF968A09" Offset="0.884"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>-->
+                    <!--<Button Grid.Column="6" Grid.Row="0" Height="25" HorizontalAlignment="Center" x:Name="btnGrape" VerticalAlignment="Center" Width="29" Click="btnGrape_Click"  ToolTip="Pineapple Theme">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF331016" Offset="0.129"/>
+                                <GradientStop Color="#FF85505A" Offset="0.509"/>
+                                <GradientStop Color="#FF960937" Offset="0.884"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>-->
+                </Grid>
+
+                <Grid Name="MainPane"  HorizontalAlignment="Stretch"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,5,5,5">
+                    <Rectangle RadiusX="23" x:Name="recRight" RadiusY="23" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                    <Frame HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" NavigationUIVisibility="Hidden" Name="MainContent">
+                        <Frame.BitmapEffect>
+                            <DropShadowBitmapEffect />
+                        </Frame.BitmapEffect>
+                    </Frame>
+                </Grid>
+
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" x:Name="MyGrid" Background="Transparent" Width="0" Height="500">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="4" Foreground="WhiteSmoke" FontWeight="Bold" Cursor="Hand" HorizontalAlignment="Right" Margin="10,0,0,0" Name="lblClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Center"  MouseDown="lblClose_MouseDown">Close</Label>
+
+                    <Grid Margin="3,3,3,3" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Margin="0,0,0,0" Stroke="WhiteSmoke"  StrokeThickness="3" Grid.Row="0" Grid.Column="0" Name="rec1" RadiusX="17.5" RadiusY="17.5" Style="{DynamicResource AnimationPage}" />
+                        <TextBlock Margin="5,5,5,5" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{DynamicResource TextBlockStyle}" Name="txtComments1" TextWrapping="Wrap" />
+                    </Grid>
+                    <Grid Margin="3,3,3,3" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Margin="0,0,0,0" Stroke="WhiteSmoke" StrokeThickness="3" Grid.Row="0" Grid.Column="0" Name="rec2" RadiusX="17.5" RadiusY="17.5" Style="{DynamicResource AnimationPage}" />
+                        <TextBlock Margin="5,5,5,5" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{DynamicResource TextBlockStyle}" Name="txtComments2" TextWrapping="Wrap" />
+                    </Grid>
+                    <Grid Margin="3,3,3,3" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Margin="0,0,0,0" Stroke="WhiteSmoke" StrokeThickness="3" Grid.Row="0" Grid.Column="0" Name="rec3" RadiusX="17.5" RadiusY="17.5" Style="{DynamicResource AnimationPage}" />
+                        <TextBlock Margin="5,5,5,5" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{DynamicResource TextBlockStyle}" Name="txtComments3" TextWrapping="Wrap" />
+                    </Grid>
+                    <Grid Margin="3,3,3,3" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Margin="0,0,0,0" Stroke="WhiteSmoke" StrokeThickness="3" Grid.Row="0" Grid.Column="0" Name="rec4" RadiusX="17.5" RadiusY="17.5" Style="{DynamicResource AnimationPage}" />
+                        <TextBlock Margin="5,5,5,5" Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{DynamicResource TextBlockStyle}" Name="txtComments4" TextWrapping="Wrap" />
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+
+
+        </Grid>
+    </Border>
+</Window>

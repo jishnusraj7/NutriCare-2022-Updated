@@ -1,0 +1,29 @@
+﻿<Window x:Class="NutritionV1.ImagePreview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Nutrition="clr-namespace:NutritionV1"
+    Title="" Height="265" Icon="/Images/AppIcon.ico"  Width="250" AllowsTransparency="True" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" Loaded="Window_Loaded">
+
+    <Border Background="{DynamicResource WindowGradientBrush}" 
+                CornerRadius="5,5,5,5" BorderThickness="2,2,2,2" 
+                BorderBrush="{DynamicResource WindowDarkSolidBrush}">
+
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <ContentControl Style="{DynamicResource WindowTitleContentControl}" 
+                                Content="" 
+                                MouseLeftButtonDown="txtTitle_MouseLeftButtonDown" />
+
+            <Label Visibility="Hidden" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,0,0" Name="lblClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Top" MouseDown="lblClose_MouseDown" Width="70" Height="25">Close</Label>
+            <Image Source="../../Images/Close.png" Stretch="Fill" Height="17" Width="17" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" Margin="0,10,15,0" MouseDown="lblClose_MouseDown"/>
+
+            <Grid Grid.Row="1" Background="{DynamicResource WindowDefaultGradientBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,0">
+                <Nutrition:ImageDisplay Grid.Column="0" Grid.Row="0" Margin="0,5,0,0" x:Name="imgDisplay" Height="220" Width="225" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

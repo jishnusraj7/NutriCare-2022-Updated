@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9D4F2AD8-47A6-4190-B33F-A7355EC0A04F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NutritionV1</RootNamespace>
+    <AssemblyName>NutriCare V1</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>Images\AppIcon.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SQLCE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeReason.Reports">
+      <HintPath>..\..\..\..\WPF\CodeReason.Reports-master\CodeReason.Reports\bin\Release\CodeReason.Reports.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeReason.Reports.Charts.Visifire">
+      <HintPath>..\CodeReason.Reports.Charts.Visifire.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlTextBlock">
+      <HintPath>..\packages\HtmlTextBlock.1.0.1\lib\net45\HtmlTextBlock.dll</HintPath>
+    </Reference>
+    <Reference Include="Indocosmo.Framework.CommonManagement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1a151da4bbfedbb0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonFramework2018\Indocosmo.Framework.CommonManagement\ICService\bin\Release\Indocosmo.Framework.CommonManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Indocosmo.Framework.ExceptionManagement, Version=1.0.3216.859, Culture=neutral, PublicKeyToken=c9cacc955d36f2b2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonFramework2018\Indocosmo.Framework.ExceptionManagement\bin\Release\Indocosmo.Framework.ExceptionManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework.Luna">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ReachFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit">
+      <HintPath>..\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WPFToolkit">
+      <HintPath>..\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFVisifire.Charts">
+      <HintPath>..\WPFVisifire.Charts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AddDishUpdate.xaml.cs">
+      <DependentUpon>AddDishUpdate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddIngredient.xaml.cs">
+      <DependentUpon>AddIngredient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AlertBoxDisplay.xaml.cs">
+      <DependentUpon>AlertBoxDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AyurvedicDetails.xaml.cs">
+      <DependentUpon>AyurvedicDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrowseDish.xaml.cs">
+      <DependentUpon>BrowseDish.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ExcelOutput.cs" />
+    <Compile Include="Common\Classes\DocumentPaginatorWrapper.cs" />
+    <Compile Include="Common\Constants\BMIPercentile.cs" />
+    <Compile Include="Common\Constants\BodyFat.cs" />
+    <Compile Include="Common\Constants\BodyMassIndex.cs" />
+    <Compile Include="Common\Constants\BodyMassIndexFormula.cs" />
+    <Compile Include="Common\Constants\Calorie.cs" />
+    <Compile Include="Common\Constants\CalorieFormula.cs" />
+    <Compile Include="Common\Constants\BodyFrame.cs" />
+    <Compile Include="Common\Constants\WaistCircumference.cs" />
+    <Compile Include="Common\Constants\Exercise.cs" />
+    <Compile Include="Common\Constants\ExerciseFormula.cs" />
+    <Compile Include="Common\Constants\LifeStyle.cs" />
+    <Compile Include="Common\Enums\BMIWeightType.cs" />
+    <Compile Include="Common\Enums\CalorieType.cs" />
+    <Compile Include="Common\Enums\Category.cs" />
+    <Compile Include="Common\Enums\BodyFrameType.cs" />
+    <Compile Include="Common\Enums\DayType.cs" />
+    <Compile Include="Common\Enums\DishCategoryList.cs" />
+    <Compile Include="Common\Enums\ExerciseType.cs" />
+    <Compile Include="Common\Enums\GoalType.cs" />
+    <Compile Include="Common\Enums\LifeStyleType.cs" />
+    <Compile Include="Common\Enums\MainNutrients.cs" />
+    <Compile Include="Common\Enums\MealType.cs" />
+    <Compile Include="Common\Enums\MenuPlan.cs" />
+    <Compile Include="Common\Enums\NutrientGraphType.cs" />
+    <Compile Include="Common\Enums\MenuItemSelect.cs" />
+    <Compile Include="Common\Enums\PercentageType.cs" />
+    <Compile Include="Common\Enums\RecipeSource.cs" />
+    <Compile Include="Common\Enums\SearchDishType.cs" />
+    <Compile Include="Common\Enums\StatusType.cs" />
+    <Compile Include="CalorieCalculator.xaml.cs">
+      <DependentUpon>CalorieCalculator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddDish.xaml.cs">
+      <DependentUpon>AddDish.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Enums\WeightLimit.cs" />
+    <Compile Include="Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchDishUpdate.xaml.cs">
+      <DependentUpon>SearchDishUpdate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPlanner.xaml.cs">
+      <DependentUpon>MenuPlanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MemberSearch.xaml.cs">
+      <DependentUpon>MemberSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DishCompare.xaml.cs">
+      <DependentUpon>DishCompare.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DishSearch.xaml.cs">
+      <DependentUpon>DishSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MemberProfile.xaml.cs">
+      <DependentUpon>MemberProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewWeight.xaml.cs">
+      <DependentUpon>NewWeight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchDish.xaml.cs">
+      <DependentUpon>SearchDish.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DetailSearch.xaml.cs">
+      <DependentUpon>DetailSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HealthDetails.xaml.cs">
+      <DependentUpon>HealthDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewIngredient.xaml.cs">
+      <DependentUpon>NewIngredient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgressDialog.xaml.cs">
+      <DependentUpon>ProgressDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchIngredient.xaml.cs">
+      <DependentUpon>SearchIngredient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HealthCalculator.xaml.cs">
+      <DependentUpon>HealthCalculator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NutritionDetails.xaml.cs">
+      <DependentUpon>NutritionDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlanSelector.xaml.cs">
+      <DependentUpon>PlanSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewer.xaml.cs">
+      <DependentUpon>ReportViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDish.xaml.cs">
+      <DependentUpon>SelectDish.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShowAlertBox.xaml.cs">
+      <DependentUpon>ShowAlertBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\AlertBox.cs" />
+    <Compile Include="Classes\CommonFunctions.cs" />
+    <Compile Include="Classes\OverrideCursor.cs" />
+    <Compile Include="Common\Classes\BindableRun.cs" />
+    <Compile Include="Common\Classes\BoolToVisibilityConverter.cs" />
+    <Compile Include="Common\Classes\ColumnConverter.cs" />
+    <Compile Include="Common\Classes\DateHelper.cs" />
+    <Compile Include="Common\Classes\DatePicker.cs" />
+    <Compile Include="Common\Classes\EnumConverter.cs" />
+    <Compile Include="Common\Classes\FixedWidthColumn.cs" />
+    <Compile Include="Common\Classes\GridViewUtil.cs" />
+    <Compile Include="Common\Classes\INIFileServices.cs" />
+    <Compile Include="Common\Classes\LinkLabel.cs" />
+    <Compile Include="Common\Classes\LinkLabelBehavior.cs" />
+    <Compile Include="Common\Classes\ListViewHelper.cs" />
+    <Compile Include="Common\Classes\Master.cs" />
+    <Compile Include="Common\Classes\MouseCordinates.cs" />
+    <Compile Include="Common\Classes\PopupHelper.cs" />
+    <Compile Include="Common\Classes\RegistryServices.cs" />
+    <Compile Include="Common\Classes\ResourceSetting.cs" />
+    <Compile Include="Common\Classes\SelectionBehaviour.cs" />
+    <Compile Include="Common\Classes\TextSearchFilter.cs" />
+    <Compile Include="Common\Classes\ValueConverters.cs" />
+    <Compile Include="Common\Classes\WidthConverter.cs" />
+    <Compile Include="Common\Classes\XMLServices.cs" />
+    <Compile Include="Common\Enums\AlertButtons.cs" />
+    <Compile Include="Common\Enums\AlertType.cs" />
+    <Compile Include="Common\Enums\FlowType.cs" />
+    <Compile Include="Common\Enums\FoodCategoryList.cs" />
+    <Compile Include="Common\Enums\GridColumnWidth.cs" />
+    <Compile Include="Common\Enums\HelpType.cs" />
+    <Compile Include="Common\Enums\ItemType.cs" />
+    <Compile Include="Common\Enums\LanguageList.cs" />
+    <Compile Include="Common\Enums\NutrientGroup.cs" />
+    <Compile Include="Common\Enums\NutritionType.cs" />
+    <Compile Include="Common\Enums\PropertyType.cs" />
+    <Compile Include="Common\Enums\ReportItem.cs" />
+    <Compile Include="Common\Enums\SearchSource.cs" />
+    <Compile Include="Common\Enums\StandardUnitType.cs" />
+    <Compile Include="Common\Enums\ThemeStyles.cs" />
+    <Compile Include="Common\Enums\UnitName.cs" />
+    <Compile Include="Common\Enums\UnitType.cs" />
+    <Compile Include="ImagePreview..xaml.cs">
+      <DependentUpon>ImagePreview..xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IngradientCompare.xaml.cs">
+      <DependentUpon>IngradientCompare.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IngradientSearch.xaml.cs">
+      <DependentUpon>IngradientSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.xaml.cs">
+      <DependentUpon>MasterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SimulateYourFoodDiary.xaml.cs">
+      <DependentUpon>SimulateYourFoodDiary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SimulateYourFoodSetting.xaml.cs">
+      <DependentUpon>SimulateYourFoodSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SimulateYourGoal.xaml.cs">
+      <DependentUpon>SimulateYourGoal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tips.xaml.cs">
+      <DependentUpon>Tips.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AutoComplete.xaml.cs">
+      <DependentUpon>AutoComplete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ImageDisplay.xaml.cs">
+      <DependentUpon>ImageDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PageFlip.xaml.cs">
+      <DependentUpon>PageFlip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Shade.xaml.cs">
+      <DependentUpon>Shade.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AddDishUpdate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddIngredient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AlertBoxDisplay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AyurvedicDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BrowseDish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CalorieCalculator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddDish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Help.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchDishUpdate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MenuPlanner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MemberSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DishCompare.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DishSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MemberProfile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewWeight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchDish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DetailSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HealthDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewIngredient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProgressDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchIngredient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HealthCalculator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NutritionDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PlanSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReportViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SelectDish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ShowAlertBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Xaml\BrownTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Xaml\Common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Xaml\GrapeTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Xaml\MetalicBlack.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Xaml\NatureGreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Xaml\OceanTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Xaml\PineappleTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\Xaml\PinkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImagePreview..xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IngradientCompare.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IngradientSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MasterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SimulateYourFoodDiary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SimulateYourFoodSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SimulateYourGoal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\DishList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\IngredientList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\MenuList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Tips.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AutoComplete.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\CircularProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ImageDisplay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\PageFlip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Shade.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Xml\LanguageList.xml" />
+    <Resource Include="Common\Xml\Messages.xml" />
+    <Resource Include="Common\Xml\Nutrition.xml" />
+    <Resource Include="Common\Xml\Suitable.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AppIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Nutrients.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NutritionHead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Control.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BrownTheme.png" />
+    <Resource Include="Images\GrapeTheme.png" />
+    <Resource Include="Images\PineappleTheme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NatureGreen.png" />
+    <Resource Include="Images\PinkTheme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MetalicBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OceanTheme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Error.png" />
+    <Resource Include="Images\Exclamation.png" />
+    <Resource Include="Images\Information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLNutrition\BLNutrition.csproj">
+      <Project>{D0734C85-58E0-4DCB-9F7E-C85448B20F6A}</Project>
+      <Name>BLNutrition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BONutrition\BONutrition.csproj">
+      <Project>{75B15E31-DE8C-47A7-88E1-D5D4924A9AD7}</Project>
+      <Name>BONutrition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLNutrition\DLNutrition.csproj">
+      <Project>{EE6EA3CC-7E87-4080-97CE-04750B844A55}</Project>
+      <Name>DLNutrition</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NoPreview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Ayurveda.png" />
+    <Resource Include="Images\Image.png" />
+    <Resource Include="Images\Info.png" />
+    <Resource Include="Images\Nutrient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Vista.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Next.png" />
+    <Resource Include="Images\Previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Tip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ICompare.png" />
+    <Resource Include="Images\ISearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IExit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BarGraph.png" />
+    <Resource Include="Images\ColumnGraph.png" />
+    <Resource Include="Images\GridView.png" />
+    <Resource Include="Images\IconView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FolderLogo.png" />
+    <Resource Include="Images\FolderOpen.png" />
+    <Resource Include="Images\Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BoyBelowEighteen.png" />
+    <Resource Include="Resources\GirlBelowEighteen.png" />
+    <Resource Include="Resources\MenAboveFifty.png" />
+    <Resource Include="Resources\MenBelowFifty.png" />
+    <Resource Include="Resources\WomenAboveFifty.png" />
+    <Resource Include="Resources\WomenBelowFifty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Xml\ServeUnit.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ICalculate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Calculate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LookupGlass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomeDish.png" />
+    <Resource Include="Images\HomeIng.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomeCalorie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomeHealth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomeMember.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomeSignOff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomeCompareIng.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HomeCompareDish.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BackHome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NoImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AddItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SearchButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Common\Xml\WeekDays.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

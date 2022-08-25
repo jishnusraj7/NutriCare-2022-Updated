@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Nutrtions>
+  <Nutrtion LanguageID ="1">
+    <NutrtionType ID="1" Name="Calorie"></NutrtionType>
+    <NutrtionType ID="2" Name="Protein"></NutrtionType>
+    <NutrtionType ID="3" Name="Carbohydrate"></NutrtionType>
+    <NutrtionType ID="4" Name="Fat"></NutrtionType>
+    <NutrtionType ID="5" Name="Fiber"></NutrtionType>
+    <NutrtionType ID="6" Name="Moisture"></NutrtionType>
+    <NutrtionType ID="7" Name="Iron"></NutrtionType>
+    <NutrtionType ID="8" Name="Calcium"></NutrtionType>
+    <NutrtionType ID="9" Name="Phosphorus"></NutrtionType>
+    <NutrtionType ID="10" Name="Sodium"></NutrtionType>
+    <NutrtionType ID="11" Name="Pottasium"></NutrtionType>
+    <NutrtionType ID="12" Name="Zinc"></NutrtionType>
+    <NutrtionType ID="13" Name="Retinol"></NutrtionType>
+    <NutrtionType ID="14" Name="BetaCarotene"></NutrtionType>
+    <NutrtionType ID="15" Name="Thiamine"></NutrtionType>
+    <NutrtionType ID="16" Name="Riboflavin"></NutrtionType>
+    <NutrtionType ID="17" Name="NicotinicAcid"></NutrtionType>
+    <NutrtionType ID="18" Name="Pyridoxine"></NutrtionType>
+    <NutrtionType ID="19" Name="FolicAcid"></NutrtionType>
+    <NutrtionType ID="20" Name="VitaminC"></NutrtionType>
+  </Nutrtion>
+</Nutrtions>

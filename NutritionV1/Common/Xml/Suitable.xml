@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Suitables>
+  <Suitable LanguageID ="1">
+    <SuitableType ID="1" Name="Weight loss"></SuitableType>
+    <SuitableType ID="3" Name="Weight gain"></SuitableType>
+  </Suitable>
+</Suitables>
+  

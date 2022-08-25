@@ -1,0 +1,728 @@
+﻿<Page x:Class="NutritionV1.MenuPlanner"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Nutrition="clr-namespace:NutritionV1"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+    Title="Menu Planner"  Loaded="Page_Loaded" PreviewKeyDown="Page_PreviewKeyDown">
+    <Page.Resources>
+        <Nutrition:BoolToVisibilityConverter x:Key="boolToVis" />
+        
+        <Style TargetType="{x:Type TextBlock}" x:Key="GridBlockStyle">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Visibility" Value="{Binding Path=IsSelected, 
+              RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}},
+              Converter={StaticResource boolToVis},ConverterParameter=False}" />
+        </Style>
+
+        <Style TargetType="{x:Type FrameworkElement}" x:Key="GridEditStyle">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Visibility" Value="{Binding Path=IsSelected, 
+              RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}},
+              Converter={StaticResource boolToVis}, ConverterParameter=True}" />
+        </Style>
+        
+        <Storyboard x:Key="ExpandGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SearchGrid" Storyboard.TargetProperty="(FrameworkElement.Height)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="450"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CollapseGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="SearchGrid" Storyboard.TargetProperty="(FrameworkElement.Height)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="450"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ExpandMemberGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NutrientsGrid" Storyboard.TargetProperty="(FrameworkElement.Height)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="440"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CollapseMemberGrid">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="NutrientsGrid" Storyboard.TargetProperty="(FrameworkElement.Height)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="440"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="ExpandMemberList">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ListGrid" Storyboard.TargetProperty="(FrameworkElement.Height)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="300"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CollapseMemberList">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ListGrid" Storyboard.TargetProperty="(FrameworkElement.Height)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="300"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        
+        <DataTemplate x:Key="displayNameTemplate">
+            <TextBlock Text="{Binding DisplayName}" Height="20" FontSize="12" />
+        </DataTemplate>
+        <DataTemplate x:Key="nameTemplate">
+            <TextBlock Text="{Binding Name}" Height="20" FontSize="12" />
+        </DataTemplate>
+        <DataTemplate x:Key="dishNameTemplate">
+            <TextBlock Text="{Binding DishName}" Height="20" FontSize="12" />
+        </DataTemplate>
+        <DataTemplate x:Key="displayTemplate">
+            <Label x:Name="lblDisplay" />
+        </DataTemplate>
+        <DataTemplate x:Key="nutrientTemplate">
+            <TextBlock Text="{Binding NutrientParam}" Height="20" FontSize="12" />
+        </DataTemplate>
+        
+        <DataTemplate x:Key="planBreakFastTemplate">
+            <ComboBox x:Name="cboPlan1" DisplayMemberPath="PlanStatus" SelectedValuePath="PlanWeight" SelectedValue="{Binding PlanWeight, Mode=TwoWay}" SelectedItem="{Binding PlanStatus}" Width = "80" ItemsSource="{Binding MemberMealPlanList}" GotFocus="cboPlan1_GotFocus" Margin="-5,0" FontSize="11" />
+        </DataTemplate>
+        <DataTemplate x:Key="planLunchTemplate">
+            <ComboBox x:Name="cboPlan2" DisplayMemberPath="PlanStatus" SelectedValuePath="PlanWeight" SelectedValue="{Binding PlanWeight, Mode=TwoWay}" SelectedItem="{Binding PlanStatus}" Width = "80" ItemsSource="{Binding MemberMealPlanList}" GotFocus="cboPlan2_GotFocus" Margin="-5,0" FontSize="11" />
+        </DataTemplate>
+        <DataTemplate x:Key="planDinnerTemplate">
+            <ComboBox x:Name="cboPlan3" DisplayMemberPath="PlanStatus" SelectedValuePath="PlanWeight" SelectedValue="{Binding PlanWeight, Mode=TwoWay}" SelectedItem="{Binding PlanStatus}" Width = "80" ItemsSource="{Binding MemberMealPlanList}" GotFocus="cboPlan3_GotFocus" Margin="-5,0" FontSize="11" />
+        </DataTemplate>
+        <DataTemplate x:Key="planSnacksTemplate">
+            <ComboBox x:Name="cboPlan4" DisplayMemberPath="PlanStatus" SelectedValuePath="PlanWeight" SelectedValue="{Binding PlanWeight, Mode=TwoWay}" SelectedItem="{Binding PlanStatus}" Width = "80" ItemsSource="{Binding MemberMealPlanList}" GotFocus="cboPlan4_GotFocus" Margin="-5,0" FontSize="11" />
+        </DataTemplate>
+        
+        <DataTemplate x:Key="planBreakFastDisplayTemplate">
+            <TextBox Style="{DynamicResource TextDisableStyle}" x:Name="txtPlan1" Text="{Binding PlanWeight}" Width = "80" Foreground="Black" FontSize="11" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextAlignment="Right" Margin="-5,0"/>
+        </DataTemplate>
+        <DataTemplate x:Key="planLunchDisplayTemplate">
+            <TextBox Style="{DynamicResource TextDisableStyle}" x:Name="txtPlan2" Text="{Binding PlanWeight}" Width = "80" Foreground="Black" FontSize="11" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextAlignment="Right" Margin="-5,0"/>
+        </DataTemplate>
+        <DataTemplate x:Key="planDinnerDisplayTemplate">
+            <TextBox Style="{DynamicResource TextDisableStyle}" x:Name="txtPlan3" Text="{Binding PlanWeight}" Width = "80" Foreground="Black" FontSize="11" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextAlignment="Right" Margin="-5,0"/>
+        </DataTemplate>
+        <DataTemplate x:Key="planSnacksDisplayTemplate">
+            <TextBox Style="{DynamicResource TextDisableStyle}" x:Name="txtPlan4" Text="{Binding PlanWeight}" Width = "80" Foreground="Black" FontSize="11" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextAlignment="Right" Margin="-5,0"/>
+        </DataTemplate>
+
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>                        
+                        <Border BorderBrush="DarkGray" BorderThickness="1" Margin="5" Background="White">
+                            <Border.BitmapEffect>
+                                <DropShadowBitmapEffect Color="DarkGray" Direction="315" ShadowDepth="5" Softness="0.25" Opacity="0.5"/>
+                            </Border.BitmapEffect>
+                            <Grid Margin="5" Cursor="Hand" ToolTip="{Binding Path=MemberName}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>                                    
+                                </Grid.ColumnDefinitions>
+                                <Image Name="Image" Grid.Row="0" Grid.Column="0" Source="{Binding Path=ImagePath}" Margin="5,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" />
+                                <TextBlock Grid.Row="1" Grid.Column="0" Foreground="Black" FontSize="11" Name="Name" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=MemberName}" Margin="0,0,0,0" />
+                                <Label Grid.Row="1" Grid.Column="0" Name="ID" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden" Content="{Binding Path=MemberID}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        </Style>
+    </Page.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PreviewKeyDown="Grid_PreviewKeyDown">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Row="0" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="{x:Null}" Template="{DynamicResource ScrollStyle}">
+            <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition  />
+                <RowDefinition Height="450"/>
+                <RowDefinition Height="90"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="680"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="1" Grid.Row="0" Width="200" Content="Select Member Name" FontSize="12" x:Name="lblSelectMember" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Bottom"/>
+            <!--<Rectangle Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" Name="recMemberName" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" HorizontalAlignment="Left" Width="250"/>-->
+            <ComboBox Grid.Column="1" Grid.Row="1" Margin="2,0,2,0" Name="cboMemberName"  Width="240" SelectionChanged="cboMemberName_SelectionChanged"  Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" TabIndex="0" />
+            <!--<Label Grid.Column="1" Grid.Row="1" FontSize="12" x:Name="lblMemberName" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch"/>-->
+            <!--<Label Grid.Column="1" Grid.Row="3" Width="50" Content="Name" FontSize="12" x:Name="lblSearch" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Top"/>-->
+            <!--<TextBox Grid.Column="1" Grid.Row="3" FontSize="12" FontWeight="Bold" Height="22" Margin="50,0,0,0" Name="txtMemberSearch" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" BorderThickness="0" PreviewKeyDown="txtMemberSearch_PreviewKeyDown" TextChanged="txtMemberSearch_TextChanged"/>-->
+            <!--<ComboBox Style="{DynamicResource ComboStyle}" Name="cboMemberName" Grid.Column="1" Grid.Row="1" Height="25" Width="250"  Margin="0,0,0,0"  HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="cboMemberName_SelectionChanged">
+                <ComboBoxItem Background="LightCoral" Foreground="Red" FontFamily="Verdana" FontSize="12" FontWeight="Bold">                    
+                    <StackPanel Orientation="Horizontal">
+                        <Image Stretch="Uniform" Source="{Binding Path=ImagePath}" Height="30"></Image>
+                        <TextBlock x:Name="txtMName" FontSize="12" Text="{Binding Path=MemberName}"></TextBlock>
+                        <TextBlock x:Name="txtMID" FontSize="12" Text="{Binding Path=MemberID}" Visibility="Collapsed"></TextBlock>
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>-->
+            
+            <Label Grid.Column="3" Grid.Row="0" Width="300" Content="Select Date" FontSize="12" x:Name="lblMenuPlanDate" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Bottom"/>
+            <!--<Rectangle Margin="0,0,0,0" Grid.Column="3" Grid.Row="1" Name="recSelectDate" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" HorizontalAlignment="Left" Width="300" />-->
+            <!--<Label Grid.Column="3" Grid.Row="1" Width="294" FontSize="14" FontWeight="Bold" Foreground="AliceBlue" x:Name="lblSelectDate" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Center"/>-->
+            <my:DatePicker Grid.Column="3" Grid.Row="1" Height="23" Name="dtpSelectDate" VerticalAlignment="Center" HorizontalAlignment="Left" BorderThickness="0" Width="130" TabIndex="1" PreviewKeyDown="txtDate_PreviewKeyDown" DisplayDateStart="01/01/1900" DisplayDateEnd="12/31/2100" SelectedDateChanged="dtpSelectDate_SelectedDateChanged" />
+            <GroupBox Grid.Row="2" Grid.Column="1" Grid.RowSpan="4" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,5,0,0" >
+                <Grid Margin="2,8,2,2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="180"/>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  >
+                        <my:Calendar  Margin="2,2,2,2" Name="calDishSetting" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionMode="MultipleRange" IsTodayHighlighted="True" DisplayDateStart="01/01/2000" DisplayDateEnd="12/31/2100" IsEnabled="True">
+                            <my:Calendar.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                    <GradientStop Color="PeachPuff" Offset="1.0" />
+                                    <GradientStop Color="White" Offset="0.10" />
+                                </LinearGradientBrush>
+                            </my:Calendar.Background>
+                        </my:Calendar>
+                    </GroupBox>
+                    <!--<Label Grid.Column="0" Grid.Row="1" Width="200" Content="Copy Meal Settings" FontSize="13" x:Name="lblCopyMealsetting" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Bottom"/>-->
+                    <GroupBox x:Name="gbCopyFrom" Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                        <GroupBox.Header>
+                            <Label Style="{DynamicResource LabelStyle}" FontSize="11">Copy Meal Setting</Label>
+                        </GroupBox.Header>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition  Height="30"/>
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label  x:Name="lblCopyFrom" Style="{DynamicResource LabelStyle}" Grid.Column="0"  Grid.Row="0"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Top" FontSize="11" Content="Copy From"/>
+                            <my:DatePicker Margin="0,0,0,5"  Grid.Row="0" Grid.Column="1"  Name="dpCopyFromDate" VerticalAlignment="Top" HorizontalAlignment="Left" Text="dd" BorderThickness="0" SelectedDateChanged="dpCopyFromDate_SelectedDateChanged" DisplayDateStart="01/01/2000" DisplayDateEnd="12/31/2100" />
+                            <Label  x:Name="lblCopyTo" Style="{DynamicResource LabelStyle}" Grid.Column="0"  Grid.Row="1"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Top" FontSize="11" Content="Copy To"/>
+                            <my:DatePicker Grid.Row="1" Grid.Column="1"  Name="dpTodate" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="0" DisplayDateStart="01/01/2000" DisplayDateEnd="12/31/2100"/>
+                            <Button Height="24" Name="btnCopyDay" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top"  MinWidth="70" HorizontalAlignment="Right"  TabIndex="2" Click="btnCopyDay_Click">Copy</Button>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox x:Name="gbCopyTo" Grid.Row="3" Margin="0,5,0,5" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <GroupBox.Header>
+                            <Label Style="{DynamicResource LabelStyle}" FontSize="11" >Copy by Week-Day</Label>
+                        </GroupBox.Header>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="25"/>
+                                <RowDefinition  Height="25"/>
+                                <RowDefinition  Height="25"/>
+                                <RowDefinition  Height="25"/>
+                                <RowDefinition  Height="25"/>
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label  x:Name="lblCopyFrom1" Style="{DynamicResource LabelStyle}" Grid.Column="0"  Grid.Row="0"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Top" FontSize="11" Content="Copy From"/>
+                            <!--<RadioButton Margin="5,7,0,0" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Height="15" HorizontalAlignment="Left" Name="rdCopyOption1" VerticalAlignment="Top" Content=" Date Range" Checked="rdCopyOption1_Checked" Unchecked="rdCopyOption1_Unchecked" />-->
+                            <!--<Label Style="{DynamicResource LabelStyle}" x:Name="lblCopyStart" Grid.Column="0"  Grid.Row="1"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Top" FontSize="11"/>-->
+                            <my:DatePicker Grid.Row="1" Grid.Column="0"  Name="dpFromDate" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="0" LostFocus="dpFromDate_LostFocus" DisplayDateStart="01/01/2000" DisplayDateEnd="12/31/2100" />
+                            <TextBox Name="txtWeekday" Height="20" Width="90" Grid.Column="1"  Grid.Row="1"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="11" IsReadOnly="True"/>
+                            <Label  x:Name="lblCopyFrom2" MinWidth="100" Style="{DynamicResource LabelStyle}" Grid.Column="0"  Grid.Row="2"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Top" FontSize="11" Content="To All "/>
+                            <ComboBox Margin="0,0,0,0" x:Name="cboWeek" Grid.Row="2" Grid.Column="1" Height="20" Width="90" HorizontalAlignment="Left" />
+                            <Label  x:Name="lblCopyFrom3" Margin="0,0,0,0" Style="{DynamicResource LabelStyle}" Grid.Column="0"  Grid.Row="3"  HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="11" Content="Till the Date"/>
+                            <!--<Label Style="{DynamicResource LabelStyle}" x:Name="lblCopyEnd" Grid.Column="0"  Grid.Row="2"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Top" FontSize="11"/>-->
+                            <!--<my:DatePicker Grid.Row="2" Grid.Column="1"  Name="dpTodate" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="0" />-->
+
+                            <!--<RadioButton Margin="5,7,0,0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Height="15" HorizontalAlignment="Left" Name="rdCopyOption2" VerticalAlignment="Top" Content=" WeekDays" Checked="rdCopyOption2_Checked" Unchecked="rdCopyOption2_Unchecked"  />-->
+                            <!--<Label Style="{DynamicResource LabelStyle}" x:Name="lblCopyToWeek" Grid.Column="0"  Grid.Row="4"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Top" FontSize="11"/>-->
+                            <!--<ComboBox Margin="2,0,2,10" x:Name="cboWeek" Grid.Row="5" Grid.Column="0" Height="20" />-->
+                            <!--<Label Style="{DynamicResource LabelStyle}" x:Name="lblCopyToDate" Grid.Column="1"  Grid.Row="4"  HorizontalAlignment="Left" Margin="0,0,0,0"  VerticalAlignment="Top" FontSize="11"/>-->
+                            <my:DatePicker Grid.Row="3" Grid.Column="1"  Name="dpToDateWeek" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="0" DisplayDateStart="01/01/2000" DisplayDateEnd="12/31/2100"/>
+                            <Button Height="24" Name="btnCopyWeek" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top"  MinWidth="70" HorizontalAlignment="Right"  TabIndex="2" Click="btnCopyWeek_Click">Copy</Button>
+                        </Grid>
+                    </GroupBox>
+
+                </Grid>
+            </GroupBox>
+
+            <Label HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="3"  Grid.Row="0" Margin="0,0,35,0" Style="{DynamicResource PrintLabel}" Name="imgPrint"  MouseDown="imgPrint_MouseDown">Print</Label>
+            
+            
+            <Label Name="btnCalculateNutrients" Cursor="Hand"  Style="{DynamicResource SubLabel1}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right" MouseDown="btnCalculateNutrients_MouseDown"  Content="Calculate Calorie" Margin="0,0,30,0"/>
+            <!--<ScrollViewer HorizontalScrollBarVisibility="Hidden"  Grid.Row="3" Grid.Column="3" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="{x:Null}">-->
+                <Grid Margin="0,0,0,0" Grid.Row="3" Grid.Column="3" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="180" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition MinHeight="180" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition MinHeight="180" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition MinHeight="180" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle  Height="30" Margin="0,25,0,0" Grid.Row="0" Grid.Column="0" Style="{DynamicResource HeaderBackground}" VerticalAlignment="Top" />
+                    <Image Margin="4,4,0,0" Grid.Row="0" Grid.Column="0" Source="Images/Delete.png" Height="18" Width="18" VerticalAlignment="Top" HorizontalAlignment="Left" Cursor="Hand" MouseDown="lblBreakfastClear_MouseDown" ToolTip="Delete BreakFast Menu"/>
+                    <Label Margin="25,0,0,0" Name="lblBreakFast" Style="{DynamicResource LabelStyle}" Grid.Row="0" Grid.Column="0"  Content="BREAKFAST"  VerticalAlignment="Top" Background="#00FFFFFF" FontWeight="Bold" FontSize="12" />
+                    <Label Margin="0,0,5,0" Name="btnAddBreakFast" Style="{DynamicResource AddLabel}" Grid.Row="0" Grid.Column="0"  VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="btnAddBreakFast_MouseDown" Content="Add Dish"/>
+
+                    <Grid Margin="0,25,0,0" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="370"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label  Height="25" Grid.Row="0" Grid.Column="0" Name="lblDishes1" Grid.ColumnSpan="2" Content="Dishes"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center" Margin="0,0,0,0" />
+                        <Label  Height="25" Grid.Row="0" Grid.Column="2" Name="lblWeight1" Content="Weight"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,0,0,0" />
+                        <Label  Height="25" Grid.Row="0" Grid.Column="3" Name="lblQuantity1" Content="Qty"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="0,0,0,0" />
+                    </Grid>
+                    
+                    <ListView x:Name="lvsetting1" Grid.Row="0" Grid.Column="0" Margin="0,55,0,0" MinHeight="130" VerticalAlignment="Top" BorderBrush="#FF0B2E69" ItemsSource="{Binding}" Style="{DynamicResource ListViewStyle}" SelectionMode="Single" GotFocus="lvsetting1_GotFocus" KeyboardNavigation.TabNavigation="Continue">
+                        <ListBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                        </ListBox.Resources>
+                        <ListView.View>
+                            <GridView x:Name="gvsetting1">
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style>
+                                        <Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+                                <GridViewColumn Header="DishID" Width="0" DisplayMemberBinding="{Binding Path=DishID}"/>
+                                <GridViewColumn Header="" Width="25">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                <Image Source="images\Error.png" ToolTip="Delete Dish"  x:Name="imgDelete" Width="15" Height="15" Cursor="Hand" MouseDown="btnRemBreakFast_MouseDown"  HorizontalAlignment="Center" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn x:Name="gvColBreakFastName" Width="370" CellTemplate="{StaticResource dishNameTemplate}"/>
+                                <GridViewColumn x:Name="gvColBreakFastPlan" Width="80" CellTemplate="{StaticResource planBreakFastTemplate}"/>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox x:Name="txtQty" Height="25" Width="80" Style="{DynamicResource TextStyle}"  MaxLength="4"  PreviewKeyDown="txtNumber_PreviewKeyDown" Text="{Binding Path=DishCount}" GotFocus="txtQuantity1_GotFocus" Margin="-5,0" TextAlignment="Right"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Grid  Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="395" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="12" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        <Label Style="{DynamicResource InfoLabel}" Foreground="Yellow" VerticalAlignment="Stretch" HorizontalAlignment="Left" MouseDown="lblBreakfastNutrient_MouseDown"  x:Name="lblBreakfastNutrient"  Margin="0,0,0,0" Content="View More ..." Width="100" Height="25" Visibility="Hidden" />
+                        <Label Grid.Column="0" Grid.Row="0" Margin="0,1,1,0"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Style="{DynamicResource LabelStyle}" Name="lblNutritionValues1" HorizontalContentAlignment="Right" Width="175" FontSize="11" >Calorie Intake (BreakFast)</Label>
+                        <Label Grid.Column="1" Grid.Row="0" Margin="1,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="lblBreakFastCalorie" Style="{DynamicResource LabelStyle}" HorizontalContentAlignment="Left" FontSize="11"/>
+                    </Grid>
+                    <Rectangle Height="30" Margin="0,25,0,0" Grid.Row="2" Grid.Column="0"  Style="{DynamicResource HeaderBackground}"  VerticalAlignment="Top"/>
+                    <Image Margin="4,4,0,0" Grid.Row="2" Grid.Column="0" Source="Images/Delete.png" Height="18" Width="18" VerticalAlignment="Top" HorizontalAlignment="Left" Cursor="Hand" MouseDown="lblLunchClear_MouseDown" ToolTip="Delete Lunch Menu"/>
+                    <Label Margin="25,0,0,0"  Grid.Row="2" Grid.Column="0"  Name="lblLunch" Content="LUNCH" VerticalAlignment="Top"  Style="{DynamicResource LabelStyle}" FontWeight="Bold" FontSize="12"/>
+                    <Label Margin="0,0,5,0"  Name="btnAddLunch" Style="{DynamicResource AddLabel}" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="btnAddLunch_MouseDown"  Content="Add Dish"/>
+
+                    <Grid Margin="0,25,0,0" VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="370"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>                            
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label  Height="25" Grid.Row="0" Grid.Column="0" Name="lblDishes2" Grid.ColumnSpan="2" Content="Dishes"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center" Margin="0,0,0,0" />
+                        <Label  Height="25" Grid.Row="0" Grid.Column="2" Name="lblWeight2" Content="Weight"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,0,0,0" />
+                        <Label  Height="25" Grid.Row="0" Grid.Column="3" Name="lblQuantity2" Content="Qty"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="0,0,0,0" />
+                    </Grid>
+                    
+                    <ListView x:Name="lvsetting2" Grid.Row="2" Grid.Column="0"  Margin="0,55,0,0" MinHeight="130" VerticalAlignment="Top" ItemsSource="{Binding}" Style="{DynamicResource ListViewStyle}" SelectionMode="Single" GotFocus="lvsetting2_GotFocus" KeyboardNavigation.TabNavigation="Continue">
+                        <ListBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                        </ListBox.Resources>
+                        <ListView.View>
+                            <GridView x:Name="gvsetting2">
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style>
+                                        <Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+                                <GridViewColumn Header="DishID" Width="0" DisplayMemberBinding="{Binding Path=DishID}"/>
+                                <GridViewColumn Header="" Width="25">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                <Image Source="images\Error.png"  IsEnabled="{Binding Path=Status}" ToolTip="Delete Dish"  x:Name="imgDelete" Width="15" Height="15" Cursor="Hand" MouseDown="btnRemLunch_MouseDown"  HorizontalAlignment="Center" />
+                                           </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn x:Name="gvColLunchName" Width="370" CellTemplate="{StaticResource dishNameTemplate}"/>
+                                <GridViewColumn x:Name="gvColLunchPlan" Width="80" CellTemplate="{StaticResource planLunchTemplate}"/>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox x:Name="txtQty" Height="25" IsReadOnly="{Binding Path=Status}"  Width="80" Style="{DynamicResource TextStyle}" MaxLength="4"  PreviewKeyDown="txtNumber_PreviewKeyDown" Text="{Binding Path=DishCount}" GotFocus="txtQuantity2_GotFocus" Margin="-5,0" TextAlignment="Right"/>                                            
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Grid  Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="395" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="12" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        <Label Style="{DynamicResource InfoLabel}" Foreground="Yellow" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalAlignment="Left" MouseDown="lblLunchNutrient_MouseDown"  x:Name="lblLunchNutrient"  Margin="0,0,0,0" Content="View More ..." Width="100" Height="25" Visibility="Hidden" />
+                        <Label Margin="99,1,0,0"  HorizontalAlignment="Right" Style="{DynamicResource LabelStyle}" Name="lblNutritionValues2" HorizontalContentAlignment="Right" Width="175" FontSize="11">Calorie Intake (Lunch)</Label>                        
+                        <Label Grid.Column="1" Grid.Row="0" Margin="5,0,0,0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblLunchCalorie" Style="{DynamicResource LabelStyle}" HorizontalContentAlignment="Left" FontSize="11"/>
+                    </Grid>
+                    <Rectangle Height="30" Margin="0,25,0,0" Grid.Row="4" Grid.Column="0"  Style="{DynamicResource HeaderBackground}"  VerticalAlignment="Top"/>
+                    <Image Margin="4,4,0,0" Grid.Row="4" Grid.Column="0" Source="Images/Delete.png" Height="18" Width="18" VerticalAlignment="Top" HorizontalAlignment="Left" Cursor="Hand" MouseDown="lblDinnerClear_MouseDown" ToolTip="Delete Dinner Menu"/>
+                    <Label Margin="25,0,0,0"  Grid.Row="4" Grid.Column="0" Name="lblDinner" Content="DINNER"  VerticalAlignment="Top" Style="{DynamicResource LabelStyle}" FontWeight="Bold" FontSize="12"/>
+                    <Label Margin="0,0,5,0" Name="btnAddDinner" Style="{DynamicResource AddLabel}" Grid.Row="4" Grid.Column="0"  VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="btnAddDinner_MouseDown"  Content="Add Dish"/>
+
+                    <Grid Margin="0,25,0,0" VerticalAlignment="Top" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="370"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label  Height="25" Grid.Row="0" Grid.Column="0" Name="lblDishes3" Grid.ColumnSpan="2" Content="Dishes"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center" Margin="0,0,0,0" />
+                        <Label  Height="25" Grid.Row="0" Grid.Column="2" Name="lblWeight3" Content="Weight"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,0,0,0" />
+                        <Label  Height="25" Grid.Row="0" Grid.Column="3" Name="lblQuantity3" Content="Qty"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="0,0,0,0" />
+                    </Grid>
+                    
+                    <ListView x:Name="lvsetting3" Grid.Row="4" Grid.Column="0"   Margin="0,55,0,0" MinHeight="130" VerticalAlignment="Top" ItemsSource="{Binding}" Style="{DynamicResource ListViewStyle}" SelectionMode="Single" GotFocus="lvsetting3_GotFocus" KeyboardNavigation.TabNavigation="Continue">
+                        <ListBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                        </ListBox.Resources>
+                        <ListView.View>
+                            <GridView x:Name="gvsetting3">
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style>
+                                        <Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+                                <GridViewColumn Header="DishID" Width="0" DisplayMemberBinding="{Binding Path=DishID}"/>
+                                <GridViewColumn Header="" Width="25">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                <Image Source="images\Error.png" ToolTip="Delete Dish"  x:Name="imgDelete" Width="15" Height="15" Cursor="Hand" MouseDown="btnRemDinner_MouseDown"  HorizontalAlignment="Center" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn x:Name="gvColDinnerName" Width="370" CellTemplate="{StaticResource dishNameTemplate}"/>
+                                <GridViewColumn x:Name="gvColDinnerPlan" Width="80" CellTemplate="{StaticResource planDinnerTemplate}"/>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox x:Name="txtQty" Height="25" Width="80" Style="{DynamicResource TextStyle}" MaxLength="4"  PreviewKeyDown="txtNumber_PreviewKeyDown" Text="{Binding Path=DishCount}" GotFocus="txtQuantity3_GotFocus" Margin="-5,0" TextAlignment="Right"/>                                            
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Grid  Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="395" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="12" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        <Label Style="{DynamicResource InfoLabel}" Foreground="Yellow" FontWeight="Bold" VerticalAlignment="Stretch" HorizontalAlignment="Left" MouseDown="lblDinnerNutrient_MouseDown"  x:Name="lblDinnerNutrient"  Margin="0,0,0,0" Content="View More ..." Width="100" Height="25" Visibility="Hidden" />
+                        <Label Grid.Column="0" Grid.Row="0" Margin="0,1,1,0"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Style="{DynamicResource LabelStyle}" Name="lblNutritionValues3" HorizontalContentAlignment="Right" Width="175" FontSize="11">Calorie Intake (Dinner)</Label>
+                        <Label Grid.Column="1" Grid.Row="0" Margin="5,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="lblDinnerCalorie" Style="{DynamicResource LabelStyle}" HorizontalContentAlignment="Left" FontSize="11"/>
+                    </Grid>
+                    <Rectangle Height="30" Margin="0,25,0,0" Grid.Row="6" Grid.Column="0"  Style="{DynamicResource HeaderBackground}"   VerticalAlignment="Top"/>
+                    <Image Margin="4,4,0,0" Grid.Row="6" Grid.Column="0" Source="Images/Delete.png" Height="18" Width="18" VerticalAlignment="Top" HorizontalAlignment="Left" Cursor="Hand" MouseDown="lblSnacksClear_MouseDown" ToolTip="Delete Snacks Menu"/>
+                    <Label Margin="25,0,0,0"  Grid.Row="6" Grid.Column="0"  Name="lblSnacks" Content="SNACKS"  VerticalAlignment="Top" Style="{DynamicResource LabelStyle}" FontWeight="Bold" FontSize="12"/>
+                    <Label Margin="0,0,5,0" Name="btnAddSnacks" Style="{DynamicResource AddLabel}" Grid.Row="6" Grid.Column="0"  VerticalAlignment="Top" HorizontalAlignment="Right" MouseDown="btnAddSnacks_MouseDown"  Content="Add Dish"/>
+
+                    <Grid Margin="0,25,0,0" VerticalAlignment="Top" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="370"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label  Height="25" Grid.Row="0" Grid.Column="0" Name="lblDishes4" Grid.ColumnSpan="2" Content="Dishes"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center" Margin="0,0,0,0" />
+                        <Label  Height="25" Grid.Row="0" Grid.Column="2" Name="lblWeight4" Content="Weight"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,0,0,0" />
+                        <Label  Height="25" Grid.Row="0" Grid.Column="3" Name="lblQuantity4" Content="Qty"  VerticalAlignment="Bottom" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="0,0,0,0" />
+                    </Grid>
+                    
+                    <ListView x:Name="lvsetting4" Grid.Row="6" Grid.Column="0"  Margin="0,55,0,0" MinHeight="130" VerticalAlignment="Top" ItemsSource="{Binding}" Style="{DynamicResource ListViewStyle}" SelectionMode="Single" GotFocus="lvsetting4_GotFocus" KeyboardNavigation.TabNavigation="Continue">
+                        <ListBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                        </ListBox.Resources>
+                        <ListView.View>
+                            <GridView x:Name="gvsetting4">
+                                <GridView.ColumnHeaderContainerStyle>
+                                    <Style>
+                                        <Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
+                                    </Style>
+                                </GridView.ColumnHeaderContainerStyle>
+
+                                <GridViewColumn Header="DishID" Width="0" DisplayMemberBinding="{Binding Path=DishID}"/>
+                                <GridViewColumn Header="" Width="25">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                <Image Source="images\Error.png" ToolTip="Delete Dish"  x:Name="imgDelete" Width="15" Height="15" Cursor="Hand" MouseDown="btnRemSnacks_MouseDown"  HorizontalAlignment="Center" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn x:Name="gvColSnacksName" Width="370" CellTemplate="{StaticResource dishNameTemplate}"/>
+                                <GridViewColumn x:Name="gvColSnacksPlan" Width="80" CellTemplate="{StaticResource planSnacksTemplate}"/>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox x:Name="txtQty" Height="25" Width="80" Style="{DynamicResource TextStyle}" MaxLength="4"  PreviewKeyDown="txtNumber_PreviewKeyDown" Text="{Binding Path=DishCount}" GotFocus="txtQuantity4_GotFocus" Margin="-5,0" TextAlignment="Right"/>                                            
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Grid  Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="395" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Margin="0,0,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="12" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        <Label Style="{DynamicResource InfoLabel}" Foreground="Yellow" VerticalAlignment="Stretch" HorizontalAlignment="Left" MouseDown="lblSnacksNutrient_MouseDown"  x:Name="lblSnacksNutrient"  Margin="0,0,0,0" Content="View More ..." Width="100" Height="25" Visibility="Hidden" />
+                        <Label Grid.Column="0" Grid.Row="0" Margin="0,1,1,0"  HorizontalAlignment="Right" VerticalAlignment="Stretch" Style="{DynamicResource LabelStyle}" Name="lblNutritionValues4" HorizontalContentAlignment="Right" Width="175" FontSize="11">Calorie Intake (Snacks)</Label>
+                        <Label Grid.Column="1" Grid.Row="0" Margin="5,1,1,1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Name="lblSnacksCalorie" Style="{DynamicResource LabelStyle}" HorizontalContentAlignment="Left"  FontSize="11"/>
+                    </Grid>
+                </Grid>
+            <!--</ScrollViewer>-->
+            
+            <Grid  Margin="0,2,0,0" VerticalAlignment="Top" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="395" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Margin="0,1,1,0"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Right" VerticalAlignment="Stretch" Style="{DynamicResource HighLightLabel}" Name="lblNutritionValues" FontSize="13">Total Calorie Intake</Label>
+                <Label Grid.Column="1" Grid.Row="0" Margin="5,1,1,0"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalAlignment="Stretch" Style="{DynamicResource HighLightLabelNew}" Name="lblCalorieIntake" VerticalContentAlignment="Center"  FontSize="13" />
+
+                <Label Grid.Column="0" Grid.Row="1" Margin="0,1,1,0"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Right"  VerticalAlignment="Stretch" Style="{DynamicResource HighLightLabel}" Name="lblNutritionReqValues" FontSize="13">Calorie Required</Label>
+                <Label Grid.Column="1" Grid.Row="1" Margin="5,1,1,0"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalAlignment="Stretch" Style="{DynamicResource HighLightLabelNew}" Name="lblCalorieRequired" VerticalContentAlignment="Center" FontSize="13"/>
+                                
+            </Grid>
+        </Grid>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PreviewKeyDown="Grid_PreviewKeyDown">
+            <Grid.RowDefinitions>
+                <RowDefinition />                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Style="{DynamicResource ImageButton}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,10,0" Height="25" Name="btnSave" Width="100" Click="btnSave_Click">Save</Button>
+        </Grid>
+        <!--<Grid x:Name="ListGrid" Margin="15,125,0,0" Height="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Name="recListGrid" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource RecStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <ListBox Grid.Column="0" Grid.Row="0" Margin="10,10,10,10" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="270" Name="lvMemberName" BorderThickness="0" PreviewKeyUp="lvMemberName_PreviewKeyUp" PreviewMouseUp="lvMemberName_PreviewMouseUp" PreviewMouseDoubleClick="lvMemberName_PreviewMouseDoubleClick" Background="White">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True" >
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Black"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+                        </Style.Resources>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Grid>-->
+
+        <Grid  x:Name="SearchGrid" Style="{DynamicResource WindowStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,10,10" Width="250" Height="0" PreviewKeyDown="GridSearch_Enter" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="10,10,10,10" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>                    
+                </Grid.ColumnDefinitions>
+                <Label Style="{DynamicResource LabelStyle}" FontSize="15" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" Margin="5,0,0,0"  VerticalAlignment="Top" x:Name="lblSearchDish" Height="30">Search Dish</Label>
+                <Label Grid.Column="0" Grid.Row="0" Cursor="Hand" HorizontalAlignment="Right" Margin="30,0,0,0" Name="lblClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Top"  MouseDown="imgClose_MouseDown">Close</Label>
+                <Label Style="{DynamicResource LabelStyle}" Name="lblType" Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="5,5,0,0">Type Here</Label>
+                <TextBox Style="{DynamicResource TextStyle}" Margin="5,5,2,0"  Height="25" Name="txtSearch" Grid.Row="4"  VerticalAlignment="Top" Width="95" TabIndex="2" MaxLength="50" KeyDown="txtSearch_KeyDown" />
+                <Button Height="24" Margin="0,5,10,0" Name="btnSearch" Grid.Row="4" VerticalAlignment="Top"  Width="50" HorizontalAlignment="Right" Click="btnSearch_Click" TabIndex="3">Sea_rch</Button>
+                <Label Style="{DynamicResource LabelStyle}" Name="lblDishCategory" Grid.Row="3" VerticalAlignment="Top"  Margin="5,5,0,0">Category</Label>
+                <ComboBox Style="{DynamicResource ComboStyle}" Name="cboDishCategory" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Height="25" Width="150"  Margin="70,5,0,0"  HorizontalAlignment="Left" SelectionChanged="cboDishCategory_SelectionChanged" TabIndex="0" />
+                <ListView  Grid.Column="0" Grid.Row="5" Margin="5,0,5,5"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  BorderBrush="Black" BorderThickness="1" ItemsSource="{Binding}" Name="lvSearchList" Style="{DynamicResource ListViewStyle}" SelectionMode="Single" PreviewKeyDown="Grid_PreviewKeyDown" >
+                    <ListBox.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                    </ListBox.Resources>
+                    <ListView.View>
+                        <GridView x:Name="gvSearchList"  ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}" AllowsColumnReorder="False" >
+                            <Nutrition:FixedWidthColumn x:Name="gvCol1" Header="DishID" FixedWidth="0" DisplayMemberBinding="{Binding Path=Id}"/>
+                            <Nutrition:FixedWidthColumn x:Name="gvCol2" Header="Dish Name" FixedWidth="165"  CellTemplate="{StaticResource nameTemplate}"/>                            
+                            <Nutrition:FixedWidthColumn x:Name="gvCol3" Header="Add" FixedWidth="30">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Name="btnAdd"  MouseDown="btnAdd_Click" HorizontalAlignment="Center"  Source="Images/Add.png" Cursor="Hand" Height="20" Width="15">
+                                                <Image.ToolTip>
+                                                    <ToolTip>
+                                                        <TextBlock Foreground="Black" Text="Select the Dish"/>
+                                                    </ToolTip>
+                                                </Image.ToolTip>
+                                            </Image>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </Nutrition:FixedWidthColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>                
+            </Grid>
+                       
+            <Rectangle  Margin="2,2,2,2"  Grid.Column="0" Grid.Row="0"  Stroke="#FFCCC9C9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        </Grid>
+
+        <Grid  x:Name="NutrientsGrid" Style="{DynamicResource WindowStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,25,10,10" Width="450" Height="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="10,10,10,10" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="35" />                    
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Style="{DynamicResource LabelStyle}" FontSize="13" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" Margin="5,0,0,0"  VerticalAlignment="Top" x:Name="lblMemberNutrients">Member Nutrients Summary</Label>
+                <Label Grid.Column="0" Grid.Row="0" Cursor="Hand" HorizontalAlignment="Right" Margin="30,0,0,0" Name="lblMemberClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Top"  MouseDown="imgMemberClose_MouseDown">Close</Label>
+                <ListView  Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="5,0,5,5"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  BorderBrush="Black" BorderThickness="1" ItemsSource="{Binding}" Name="lvMemberNutrients" SelectionMode="Single" KeyboardNavigation.TabNavigation="None">
+                    <ListView.View>
+                        <GridView x:Name="gvNutriList"  ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}" AllowsColumnReorder="False">                            
+                            <Nutrition:FixedWidthColumn x:Name="gvNutriCol1" Header="MemberID" FixedWidth="0" DisplayMemberBinding="{Binding Path=MemberID}"/>
+                            <Nutrition:FixedWidthColumn x:Name="gvNutriCol2" Header="NutrientID" FixedWidth="0" DisplayMemberBinding="{Binding Path=NutrientID}"/>
+                            <Nutrition:FixedWidthColumn x:Name="gvNutriCol3" Header="Nutrients Name" FixedWidth="200" CellTemplate="{StaticResource nutrientTemplate}"/>
+                            <Nutrition:FixedWidthColumn x:Name="gvNutriCol4" Header="Required" FixedWidth="80" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock x:Name="txtRequired" Text="{Binding ReqValue}" TextAlignment="Right" Width="80" FontSize="11"  Margin="-12,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </Nutrition:FixedWidthColumn>
+                            <Nutrition:FixedWidthColumn x:Name="gvNutriCol5" Header="Yield" FixedWidth="80" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock x:Name="txtYield" Text="{Binding YieldValue}" Foreground="{Binding YeildColour}" TextAlignment="Right" Width="80" FontSize="11"  Margin="-12,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </Nutrition:FixedWidthColumn>
+                            <Nutrition:FixedWidthColumn x:Name="gvNutriCol6" Header="Unit" FixedWidth="50">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding NutrientUnit}" TextAlignment="Left" Width="50" FontSize="11"  Margin="0,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </Nutrition:FixedWidthColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>                
+            </Grid>
+
+            <Rectangle  Margin="2,2,2,2"  Grid.Column="0" Grid.Row="0"  Stroke="#FFCCC9C9" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        </Grid>
+    </Grid>
+</Page>

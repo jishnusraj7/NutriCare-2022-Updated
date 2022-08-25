@@ -1,0 +1,126 @@
+﻿<Page x:Class="NutritionV1.Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Nutrition="clr-namespace:NutritionV1"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="Home" Loaded="Page_Loaded">
+
+    <Grid Name="grdHomeMain" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="HomeMenu" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,20,20,20" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10px"/>
+                    <RowDefinition Height="180px"/>
+                    <RowDefinition Height="180px"/>
+                    <RowDefinition />
+                    <RowDefinition Height="10px"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10px"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="10px"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150px"/>
+                        <RowDefinition Height="25px"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Nutrition:ImageDisplay Cursor="Hand" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="imgIngredients" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" MouseDown="imgIngredients_MouseDown" />                    
+                </Grid>
+
+                <Grid Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150px"/>
+                        <RowDefinition Height="25px"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Nutrition:ImageDisplay Cursor="Hand" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="imgIngredientsCompare" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" MouseDown="imgIngredientsCompare_MouseDown" />
+                </Grid>
+                
+                <Grid Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150px"/>
+                        <RowDefinition Height="25px"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Nutrition:ImageDisplay Cursor="Hand" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="imgDishes" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" MouseDown="imgDishes_MouseDown" />                    
+                </Grid>                                
+
+                <Grid Grid.Column="4" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150px"/>
+                        <RowDefinition Height="25px"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Nutrition:ImageDisplay Cursor="Hand" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="imgDishCompare" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" MouseDown="imgDishCompare_MouseDown" />                    
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150px"/>
+                        <RowDefinition Height="25px"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Nutrition:ImageDisplay Cursor="Hand" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="imgMember" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" MouseDown="imgMember_MouseDown" />                    
+                </Grid>
+
+                <Grid Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150px"/>
+                        <RowDefinition Height="25px"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Nutrition:ImageDisplay Cursor="Hand" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="imgMenuPlanner" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" MouseDown="imgMenuPlanner_MouseDown" />                    
+                </Grid>
+
+                <Grid Grid.Column="3" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150px"/>
+                        <RowDefinition Height="25px"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Nutrition:ImageDisplay Cursor="Hand" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="imgHealthCalculator" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" MouseDown="imgHealthCalculator_MouseDown" />                    
+                </Grid>
+
+                <Grid Grid.Column="4" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150px"/>
+                        <RowDefinition Height="25px"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Nutrition:ImageDisplay Cursor="Hand" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="imgExit" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,2,2" MouseDown="imgExit_MouseDown" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="NutritionV1.Help"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Nutrition="clr-namespace:NutritionV1"
+    xmlns:HTML="http://www.quickzip.org/UserControls"
+    Title="Help" Height="550" Width="430" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize" WindowStyle="ToolWindow" Loaded="Window_Loaded" Icon="/Images/AppIcon.ico">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,0">
+        <TabControl Margin="5,5,5,5" Name="tbHelp">
+            <TabItem Header="Help">
+                <Grid Margin="5,5,5,5" Height="470" VerticalAlignment="Bottom" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Margin="0" Grid.Column="0" Grid.Row="0" Name="recMain1" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource FlipPage}" />
+                    <ScrollViewer x:Name="svContent" Margin="5,5,5,5" Grid.Column="0" Grid.Row="0" Template="{DynamicResource ScrollStyle}">
+                        <!--<TextBlock Margin="7,7,7,7" Grid.Column="0" Grid.Row="0" Name="txtHelp" Style="{DynamicResource TextBlockStyle}" TextWrapping="Wrap" />-->
+                        <!--<HTML:HtmlTextBlock Margin="7,7,7,7" FontSize="12" Foreground="White" Grid.Column="0" Grid.Row="0" Name="txtHelp" TextWrapping="Wrap" TextAlignment="Justify" />-->
+                    </ScrollViewer>
+                </Grid>
+                </TabItem>
+            </TabControl>
+        <Label Height="25" HorizontalAlignment="Right" Margin="0,3,6,0" Name="lblClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Top" Width="100" MouseDown="lblClose_MouseDown">Close</Label>
+    </Grid>
+</Window>

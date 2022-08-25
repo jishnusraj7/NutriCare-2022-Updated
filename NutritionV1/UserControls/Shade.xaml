@@ -1,0 +1,52 @@
+﻿
+<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="NutritionV1.Shade1"
+	x:Name="Shade"
+	d:DesignWidth="162" d:DesignHeight="178">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.989*"/>
+            <RowDefinition Height="0.011*"/>
+        </Grid.RowDefinitions>
+        <Path Stretch="Fill" StrokeThickness="2" Data="M136,288 C127,287 145,152.99988 144,152 143,151.00012 144,112 176,120 208,128 296,112.00015 296,112.00015 300.16504,113.38967 289.44961,159.81742 136,288 z" Margin="-2.528,0,-0.675,0" Grid.RowSpan="2">
+            <Path.Stroke>
+                <LinearGradientBrush EndPoint="0.463,0.489" StartPoint="0.041,0.018">
+                    <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                    <GradientStop Color="#FF0C1C2C" Offset="1"/>
+                </LinearGradientBrush>
+            </Path.Stroke>
+            <Path.Fill>
+                <LinearGradientBrush EndPoint="0.553,0.509" StartPoint="-0.147,-0.252">
+                    <GradientStop Color="#FF08233F" Offset="0"/>
+                    <GradientStop Color="#FFFFFFFF" Offset="0.498"/>
+                    <GradientStop Color="#FF08233F" Offset="0.871"/>
+                    <GradientStop Color="#FF181818" Offset="1"/>
+                    <GradientStop Color="#FFF4F5F5" Offset="0"/>
+                </LinearGradientBrush>
+            </Path.Fill>
+        </Path>
+        <Path HorizontalAlignment="Right" Margin="0,0,-79,23.042" VerticalAlignment="Bottom" Width="2" Height="2" Stretch="Fill" StrokeThickness="2" Data="M240,152">
+            <Path.Fill>
+                <LinearGradientBrush EndPoint="0.553,0.509" StartPoint="-0.147,-0.252">
+                    <GradientStop Color="#FF08233F" Offset="0"/>
+                    <GradientStop Color="#FFFFFFFF" Offset="0.498"/>
+                    <GradientStop Color="#FF08233F" Offset="0.871"/>
+                    <GradientStop Color="#FF181818" Offset="1"/>
+                    <GradientStop Color="#FFF4F5F5" Offset="0"/>
+                </LinearGradientBrush>
+            </Path.Fill>
+            <Path.Stroke>
+                <LinearGradientBrush EndPoint="0.463,0.489" StartPoint="0.041,0.018">
+                    <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                    <GradientStop Color="#FF0C1C2C" Offset="1"/>
+                </LinearGradientBrush>
+            </Path.Stroke>
+        </Path>
+    </Grid>
+</UserControl>

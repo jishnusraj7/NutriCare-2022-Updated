@@ -1,0 +1,113 @@
+﻿<Page x:Class="Nutrition.ToolMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="ToolMenu" Loaded="Page_Loaded">
+    
+    <Grid Name="dgToolMenu" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Menu x:Name="mnuTool" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Width="200" Background="{x:Null}" >
+
+            <MenuItem Cursor="Hand" x:Name="mnuItem9" Width="200" Height="30" Header="Ingredient Search" VerticalAlignment="Center" Padding="10,8" Click="mnuItem9_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Search for any ingredients which are high or low in the selected nutrients and also foods which are best suitable for weight gain and weight loss">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem17" Width="200" Height="30" Header="Compare Ingredient" VerticalAlignment="Center" Padding="10,8" Click="mnuItem17_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Compare the nutritive vaues of different types of Ingredients">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem8" Width="200" Height="30" Header="Dish Search" VerticalAlignment="Center" Padding="10,8" Click="mnuItem8_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Search for any dishes which are high or low in the selected nutrients and also foods which are best suitable for weight gain and weight loss">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem15" Width="200" Height="30" Header="Compare Dish" VerticalAlignment="Center" Padding="10,8" Click="mnuItem15_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Compare the nutritive vaues of different types of dishes">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem14" Width="200" Height="30" Header="Recipe Analyzer" VerticalAlignment="Center" Padding="10,8" Click="mnuItem14_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Analyze the details about a selected dish recipe">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem10" Width="200" Height="30" Header="Calorie Calculator" VerticalAlignment="Center" Padding="10,8" Click="mnuItem10_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="You can calculate the calorie requirement based on age,sex,height,weight,lifestyle and our daily exercises">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem11" Width="200" Height="30" Header="Food Calorie Calculator" VerticalAlignment="Center" Padding="10,8" Click="mnuItem11_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Get the main nutrient values for the selected dishes">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem1" Width="200" Height="30" Header="Health Calculator" VerticalAlignment="Center" Padding="10,8" Click="mnuItem1_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Various health calculators like Body mass index,Calorie needs,Waist Hip ratio,Body fat ratio are included in this section.">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem12" Width="200" Height="30" Header="Water Intake" VerticalAlignment="Center" Padding="10,8" Click="mnuItem12_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="You can calculate the required water intake based on age,sex,height,weight,lifestyle and our daily exercises">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem2" Width="200" Height="30" Header="Weight Management" VerticalAlignment="Center" Padding="10,8" Click="mnuItem2_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Considering your present weight we can get the tips for weight gain or weight loss, whatever you prefer">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" Visibility="Collapsed" x:Name="mnuItem3" Width="200" Height="30" Header="Ayurvedic Tips" VerticalAlignment="Center" Padding="10,8" Click="mnuItem3_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Know your ayurvedic nature considering your ">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" Visibility="Collapsed" x:Name="mnuItem4" Width="200" Height="30" Header="Ayurvedic Body Nature" VerticalAlignment="Center" Padding="10,8" Click="mnuItem4_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Know your ayurvedic body nature considering your physical and physicological factors">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem5" Width="200" Height="30" Header="Baby Care" VerticalAlignment="Center" Padding="10,8" Click="mnuItem5_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Informations about the calorie requirement for babies, some tips about their health related factors, the dishes suitable for them and their balanced diet">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem6" Width="200" Height="30" Header="Pregnancy Care" VerticalAlignment="Center" Padding="10,8" Click="mnuItem6_Click">
+              <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Informations about the calorie requirement for pregnant women, some tips about their health related factors, the dishes suitable for them and their balanced diet">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem7" Width="200" Height="30" Header="Elderly Care" VerticalAlignment="Center" Padding="10,8" Click="mnuItem7_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Informations about the calorie requirement for elderly people (above 60yrs), some tips about their health related factors, the dishes suitable for them and their balanced diet">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem13" Width="200" Height="30" Header="Unit Conversion" VerticalAlignment="Center" Padding="10,8" Click="mnuItem13_Click">
+                <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Convertion tool for different types of units">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            <MenuItem Cursor="Hand" x:Name="mnuItem16" Width="200" Height="30" Header="References" VerticalAlignment="Center" Padding="10,8" Click="mnuItem16_Click">
+              <MenuItem.ToolTip>
+                    <ToolTip ToolTipService.ShowDuration="10" Placement="Right" Style="{DynamicResource ToolTipStyle}" Content="Tabular references about some health parameters">
+                    </ToolTip>
+                </MenuItem.ToolTip>
+            </MenuItem>
+            </Menu>
+    </Grid>
+</Page>

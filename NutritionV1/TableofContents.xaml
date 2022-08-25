@@ -1,0 +1,84 @@
+﻿<Page x:Class="Nutrition.TableofContents"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="References" Loaded="Window_Loaded">
+    <Grid Name="grdTableofContents" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TabControl Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" Name="tbTableofContents" >
+            <TabItem   Name="tiTableofContents" Header="Reference Tables">
+                <Grid  Margin="10,10,10,10" Grid.Column="0" Grid.Row="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="30"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                        <RowDefinition  Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!--<Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="14" Height="30" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Name="lblHeader" Style="{DynamicResource LabelStyle}" VerticalAlignment="Top" >
+                        <Label.Background>
+                            <LinearGradientBrush EndPoint="0.8,0.5" StartPoint="0,0">
+                                <GradientStop Color="Transparent" Offset="1" />
+                                <GradientStop Color="#FF952D2D" Offset="0" />
+                            </LinearGradientBrush>
+                        </Label.Background>
+                    </Label>-->
+                    <Label Grid.Column="0" Grid.Row="0" Margin="0,3,0,0" Style="{DynamicResource LabelStyle}" Name="lblReferanceItems" VerticalAlignment="Top" Height="25">Select the Reference Item </Label>
+                    <ComboBox Grid.Column="1" Grid.Row="0" Margin="3,3,0,0" SelectionChanged="cbReferanceItems_SelectionChanged"  Style="{DynamicResource ComboStyle}" Height="25" Name="cbReferanceItems" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" TabIndex="1" />
+                    
+                    <Grid Margin="0,5,0,0" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Rectangle Margin="0" Name="rectangle1" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource FlipPage}" />
+                        <Path Data="M240,568C240,568 240,504 240,504 240,504 240,488 256,488 256,488 320,496 320,456 320,456 320,496 288,528 288,528 240,568 240,568z" Height="52" HorizontalAlignment="Right" Stretch="Fill" Stroke="{x:Null}" VerticalAlignment="Bottom" Width="43">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.575,0.643" StartPoint="0.07,0.25">
+                                    <GradientStop Color="White" Offset="0" />
+                                    <GradientStop Color="#FF02041E" Offset="1" />
+                                    <GradientStop Color="#FF8A8B8F" Offset="0.756" />
+                                    <GradientStop Color="#FFD0D0DE" Offset="0.431" />
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock  Margin="15,23,50,6" Name="txtFewWords" Style="{DynamicResource TextBlockStyle}"/>
+                        <Label Style="{DynamicResource LabelStyle}" Margin="292,1,266,0" Name="lblItems" VerticalAlignment="Top" Height="25">A Few Words</Label>
+                    </Grid>
+                    <!--<Grid Canvas.Left="168" Canvas.Top="115" Height="400" Width="670">
+                        <Rectangle Margin="0" Name="rectangle2" RadiusX="7.5" RadiusY="7.5" Style="{DynamicResource FlipPage}" />
+                        <ScrollViewer Name="svContent" Margin="10,10,10,10" Template="{DynamicResource ScrollStyle}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                            
+                        </ScrollViewer>
+                    </Grid>-->
+                    <Grid Margin="0,5,0,0" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <ScrollViewer Name="svContent" VerticalAlignment="Top" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
+                        </ScrollViewer>
+                    </Grid>
+                    
+                    <TextBlock Margin="7,7,7,7" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Name="txtReferance" Style="{DynamicResource TextBlockStyle}"/>
+                    
+                    <Grid Name="ReferanceLeftMenu" Visibility="Hidden" Height="565" Width="170" >
+                        <Menu x:Name="mnuLeft" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Width="170" Background="{x:Null}" >
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem1" Width="170" Height="30" Header="Know Calorie" VerticalAlignment="Center" Click="mnuItem1_Click" />
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem2" Width="170" Height="30" Header="BMI Impact" VerticalAlignment="Center" Click="mnuItem2_Click" />
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem5" Width="170" Height="30" Header="Baby HeightWeight" VerticalAlignment="Center" Click="mnuItem5_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem3" Width="170" Height="30" Header="Children HeightWeight" VerticalAlignment="Center" HorizontalAlignment="Left" Click="mnuItem3_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem4" Width="170" Height="30" Header="Adolescents HeightWeight" VerticalAlignment="Center" HorizontalAlignment="Left" Click="mnuItem4_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem6" Width="170" Height="30" Header="Baby Immunization" VerticalAlignment="Center" Click="mnuItem6_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem7" Width="170" Height="30" Header="Ideal Weight" VerticalAlignment="Center" Click="mnuItem7_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem8" Width="170" Height="30" Header="Energy Requirement" VerticalAlignment="Center" Click="mnuItem8_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem9" Width="170" Height="30" Header="Mean, SE Value of Height" VerticalAlignment="Center" Click="mnuItem9_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem10" Width="170" Height="30" Header="Mean, SE Value of Weight" VerticalAlignment="Center" Click="mnuItem10_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem11" Width="170" Height="30" Header="Baby Balanced Diet" VerticalAlignment="Center" Click="mnuItem11_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem12" Width="170" Height="30" Header="Children Balanced Diet" VerticalAlignment="Center" Click="mnuItem12_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem13" Width="170" Height="30" Header="Adolescents Balanced Diet" VerticalAlignment="Center" Click="mnuItem13_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem14" Width="170" Height="30" Header="Elderly Balanced Diet" VerticalAlignment="Center" Click="mnuItem14_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem15" Width="170" Height="30" Header="Pregnancy Balanced Diet" VerticalAlignment="Center" Click="mnuItem15_Click"/>
+                            <MenuItem  Cursor="Hand" x:Name="mnuItem16" Width="170" Height="30" Header="Nutrient Source" VerticalAlignment="Center" Click="mnuItem16_Click"/>
+                        </Menu>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Label Grid.Column="2" Height="25" HorizontalAlignment="Right" Margin="0,0,15,0" Name="lblHelp" Style="{DynamicResource HelpLabel}" VerticalAlignment="Top" Width="100" MouseDown="lblHelp_MouseDown" >Help</Label>
+    </Grid>
+</Page>

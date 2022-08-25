@@ -1,0 +1,94 @@
+﻿<Window x:Class="NutritionV1.NewIngredient"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="New Ingredient" Height="540" Width="500" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="/Images/AppIcon.ico" ResizeMode="NoResize">
+    
+    <Window.Resources>
+        <DataTemplate x:Key="unitIDTemplate">
+            <Label Name="lblUnitID" Foreground="Black" Content="{Binding StandardUnitID}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="unitNameTemplate">
+            <CheckBox Name="chkStandardUnit" Foreground="Black" Content="{Binding StandardUnitName}" IsChecked="{Binding Path=IsApplicable}" Checked="chkStandardUnit_Checked" Unchecked="chkStandardUnit_Unchecked" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="quantityTemplate">
+            <TextBox Style="{DynamicResource TextStyle}" Name="txtQuantity" Foreground="Black" Text="{Binding StandardWeight}" Width="45" PreviewKeyDown="txtNumber_PreviewKeyDown"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="gramTemplate">
+            <TextBlock Name="txtGram" Foreground="Black" Text="gms"/>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid Height="500" Width="480" >
+        <TabControl Margin="2,2,2,2" x:Name="tbNewIngredient" VerticalAlignment="Top">
+            <TabItem  Header="Ingredient Details" x:Name="tiNewIngredient">
+                <Grid x:Name="grdNewIngredient">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="250"/>                        
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Name="lblIngredientNameENG" Style="{DynamicResource LabelStyle}" Width="135" Margin="5,5,0,0" >Name of Ingredient</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" Height="25" Name="txtIngredientNameENG" Width="300" MaxLength="50"  Margin="0,5,0,0" TabIndex="0" TextChanged="txtIngredientNameENG_TextChanged" ></TextBox>
+                    <Image x:Name="imgStar1" Grid.Row="0" Grid.Column="1" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="0,5,20,0" HorizontalAlignment="Right" />
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Name="lblIngredientNameREG" Style="{DynamicResource LabelStyle}" Width="135" Margin="5,5,0,0">(Regional)</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Height="25" Name="txtIngredientNameREG" Width="300" FontSize="14" FontFamily="AnjaliOldLipi" MaxLength="50" TabIndex="1"></TextBox>
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Name="lblIngredientNameDisplay" Style="{DynamicResource LabelStyle}" Width="135" Margin="5,5,0,0" >Reg. Name in English</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Height="25" Name="txtIngredientNameDisplay" Width="300" MaxLength="50"  Margin="0,5,0,0" TabIndex="2" ></TextBox>
+                    <Image x:Name="imgStar2" Grid.Row="2" Grid.Column="1" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="0,5,20,0" HorizontalAlignment="Right" />
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" Width="135" Style="{DynamicResource LabelStyle}" Name="lblEthnic" Margin="5,5,0,0">Ethnic</Label>
+                    <ComboBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3"  Height="25" Name="cboEthnic" Width="300" TabIndex="3"/>
+                    <Image x:Name="imgStar3" Grid.Row="3" Grid.Column="1" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="0,5,20,0" HorizontalAlignment="Right" />
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="4" Name="lblIngredientType" Style="{DynamicResource LabelStyle}"  Width="135" Margin="5,5,0,0">Food Type</Label>
+                    <ComboBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4"  Height="25" Name="cboIngredientType" Width="300" TabIndex="4"/>                    
+                    <Image x:Name="imgStar4" Grid.Row="4" Grid.Column="1" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="0,5,20,0" HorizontalAlignment="Right" />
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="5" Name="lblScrapRate" Style="{DynamicResource LabelStyle}"  Width="135" Margin="5,5,0,0" Visibility="Visible">Ready To Cook</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Height="25" Name="txtScrapRate" Width="50" MaxLength="5" PreviewKeyDown="txtNumber_PreviewKeyDown" TabIndex="5" Visibility="Visible"/>
+                    <Label HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Name="lblRCPercentage" Style="{DynamicResource LabelStyle}"  Width="30" Margin="50,5,0,0" Visibility="Visible" HorizontalContentAlignment="Left">%</Label>
+                    <Label HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Name="lblWeightChange" Style="{DynamicResource LabelStyle}"  Width="135" Margin="80,5,0,0" Visibility="Visible" HorizontalContentAlignment="Right">Ready To Serve</Label>
+                    <TextBox HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Height="25" Name="txtWeightChange" Width="50" MaxLength="5" PreviewKeyDown="txtNumber_PreviewKeyDown" TabIndex="6" Margin="230,0,0,0" Visibility="Visible" />
+                    <Label HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5" Name="lblRSPercentage" Style="{DynamicResource LabelStyle}"  Width="30" Margin="280,5,0,0" Visibility="Visible" HorizontalContentAlignment="Left">%</Label>
+                    <Label HorizontalAlignment="Left" Grid.Column="0" Grid.Row="6" Name="lblStandardUnits" Style="{DynamicResource LabelStyle}"  Width="135" Margin="5,5,0,0">Standard Units</Label>
+                    <Image x:Name="imgStar5" Grid.Row="6" Grid.Column="0" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" Margin="5,10,35,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                    <ListView Grid.Row="6" Grid.Column="1" Margin="0,5,5,5" Name="lvStandardUnit" ItemsSource="{Binding}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TabIndex="5"  LostFocus="lvList_LostFocus">
+                        <ListView.View>
+                            <GridView x:Name="gvStandardUnit" ColumnHeaderContainerStyle="{DynamicResource HeaderStyle}" AllowsColumnReorder="False">
+                                <GridViewColumn x:Name="gvUnitIDCol" Width="0" CellTemplate="{StaticResource unitIDTemplate}"/>
+                                <GridViewColumn x:Name="gvUnitNameCol" Header="StandardUnit" CellTemplate="{StaticResource unitNameTemplate}" Width="170" />
+                                <GridViewColumn x:Name="gvQuantityCol" Header="Weight" CellTemplate="{StaticResource quantityTemplate}" Width="53" />
+                                <GridViewColumn x:Name="gvGramCol" Header="Unit" CellTemplate="{StaticResource gramTemplate}" Width="45" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <Grid Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image  x:Name="imgStarMain" Grid.Row="0" Grid.Column="0" Source="Images/Star.png" Stretch="Fill" Height="10" Width="10" HorizontalAlignment="Left" Margin="5,0,0,0" />
+                        <Label x:Name="lblMandatory" Grid.Row="0" Grid.Column="0" Style="{DynamicResource LabelStyle}" Content="Mandatory Fields" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                        <Button Style="{DynamicResource ImageButton}" Grid.Column="1" Grid.Row="0" Height="25" HorizontalAlignment="Right"  Name="btnSave" VerticalAlignment="Top" Width="100" TabIndex="6" Click="btnSave_Click" Margin="0,0,5,0">Save</Button>
+                        <Button Style="{DynamicResource CancelButton}" Grid.Column="2" Grid.Row="0" Height="25" HorizontalAlignment="Right"  Name="btnCancel" VerticalAlignment="Top" Width="100" TabIndex="7" Click="btnCancel_Click" Margin="0,0,5,0">Cancel</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Label HorizontalAlignment="Right" Margin="0,0,10,0" Name="lblClose" Style="{DynamicResource CloseLabel}" VerticalAlignment="Top" MouseDown="lblClose_MouseDown" Width="100" Height="23.277">Close</Label>
+    </Grid>
+</Window>
