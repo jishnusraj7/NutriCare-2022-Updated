@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WeekDays>
+  <WeekDayType ID="1" Name="Sunday"></WeekDayType>
+  <WeekDayType ID="2" Name="Monday"></WeekDayType>
+  <WeekDayType ID="3" Name="Tuesday"></WeekDayType>
+  <WeekDayType ID="4" Name="Wednesday"></WeekDayType>
+  <WeekDayType ID="5" Name="Thursday"></WeekDayType>
+  <WeekDayType ID="6" Name="Friday"></WeekDayType>
+  <WeekDayType ID="7" Name="Saturday"></WeekDayType>  
+</WeekDays>

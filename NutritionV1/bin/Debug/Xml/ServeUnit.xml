@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<ServeUnit>
+  <ServeUnitList LanguageID ="1">
+    <ServeUnitName ID="1" Name="Nos"></ServeUnitName>
+    <ServeUnitName ID="2" Name="Cup"></ServeUnitName>
+    <ServeUnitName ID="3" Name="Glass"></ServeUnitName>
+    <ServeUnitName ID="4" Name="Plate"></ServeUnitName>
+    <ServeUnitName ID="5" Name="Grams"></ServeUnitName>
+    <ServeUnitName ID="6" Name="Table Spoon"></ServeUnitName>
+  </ServeUnitList> 
+</ServeUnit>
